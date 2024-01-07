@@ -1,10 +1,3 @@
-//
-//  KsyCareUITestsLaunchTests.swift
-//  KsyCareUITests
-//
-//  Created by Elizaveta Osipova on 1/4/24.
-//
-
 import XCTest
 
 final class KsyCareUITestsLaunchTests: XCTestCase {

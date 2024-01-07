@@ -1,10 +1,3 @@
-//
-//  KsyCareTests.swift
-//  KsyCareTests
-//
-//  Created by Elizaveta Osipova on 1/4/24.
-//
-
 import XCTest
 @testable import KsyCare
 
