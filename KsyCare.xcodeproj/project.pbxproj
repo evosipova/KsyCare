@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		5E351F1A2B48770F004A3803 /* LessonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E351F192B48770F004A3803 /* LessonCell.swift */; };
+		5E351F1C2B5DE398004A3803 /* StatisticsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E351F1B2B5DE398004A3803 /* StatisticsView.swift */; };
 		5ECCBE5B2B46E6470042CC5F /* KsyCareApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ECCBE5A2B46E6470042CC5F /* KsyCareApp.swift */; };
 		5ECCBE5D2B46E6470042CC5F /* ScreensaverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ECCBE5C2B46E6470042CC5F /* ScreensaverView.swift */; };
 		5ECCBE5F2B46E6480042CC5F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5ECCBE5E2B46E6480042CC5F /* Assets.xcassets */; };
@@ -19,11 +19,9 @@
 		5ECCBE872B46F7500042CC5F /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ECCBE862B46F7500042CC5F /* LoginView.swift */; };
 		5ECCBE892B46FB8B0042CC5F /* MainScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ECCBE882B46FB8B0042CC5F /* MainScreenView.swift */; };
 		5ECCBE8B2B4732FE0042CC5F /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ECCBE8A2B4732FE0042CC5F /* ProfileView.swift */; };
-		5ECCBE8D2B4733200042CC5F /* EducationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ECCBE8C2B4733200042CC5F /* EducationView.swift */; };
 		5ECCBE8F2B4733560042CC5F /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ECCBE8E2B4733560042CC5F /* HomeView.swift */; };
 		5ECCBE912B4735080042CC5F /* AddNoteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ECCBE902B4735080042CC5F /* AddNoteView.swift */; };
 		5ECCBE932B4735460042CC5F /* HealthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ECCBE922B4735450042CC5F /* HealthView.swift */; };
-		5ECCBE952B4754390042CC5F /* test.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ECCBE942B4754390042CC5F /* test.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,7 +42,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		5E351F192B48770F004A3803 /* LessonCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LessonCell.swift; sourceTree = "<group>"; };
+		5E351F1B2B5DE398004A3803 /* StatisticsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticsView.swift; sourceTree = "<group>"; };
 		5ECCBE572B46E6470042CC5F /* KsyCare.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KsyCare.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5ECCBE5A2B46E6470042CC5F /* KsyCareApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KsyCareApp.swift; sourceTree = "<group>"; };
 		5ECCBE5C2B46E6470042CC5F /* ScreensaverView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreensaverView.swift; sourceTree = "<group>"; };
@@ -59,11 +57,9 @@
 		5ECCBE862B46F7500042CC5F /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		5ECCBE882B46FB8B0042CC5F /* MainScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreenView.swift; sourceTree = "<group>"; };
 		5ECCBE8A2B4732FE0042CC5F /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
-		5ECCBE8C2B4733200042CC5F /* EducationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EducationView.swift; sourceTree = "<group>"; };
 		5ECCBE8E2B4733560042CC5F /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		5ECCBE902B4735080042CC5F /* AddNoteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNoteView.swift; sourceTree = "<group>"; };
 		5ECCBE922B4735450042CC5F /* HealthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthView.swift; sourceTree = "<group>"; };
-		5ECCBE942B4754390042CC5F /* test.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = test.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,19 +93,10 @@
 				5ECCBE8E2B4733560042CC5F /* HomeView.swift */,
 				5ECCBE922B4735450042CC5F /* HealthView.swift */,
 				5ECCBE902B4735080042CC5F /* AddNoteView.swift */,
-				5E351F182B4876EC004A3803 /* Education */,
 				5ECCBE8A2B4732FE0042CC5F /* ProfileView.swift */,
+				5E351F1B2B5DE398004A3803 /* StatisticsView.swift */,
 			);
 			path = Screens;
-			sourceTree = "<group>";
-		};
-		5E351F182B4876EC004A3803 /* Education */ = {
-			isa = PBXGroup;
-			children = (
-				5ECCBE8C2B4733200042CC5F /* EducationView.swift */,
-				5E351F192B48770F004A3803 /* LessonCell.swift */,
-			);
-			path = Education;
 			sourceTree = "<group>";
 		};
 		5ECCBE4E2B46E6470042CC5F = {
@@ -143,7 +130,6 @@
 				5E351F172B476BAB004A3803 /* Screens */,
 				5ECCBE5E2B46E6480042CC5F /* Assets.xcassets */,
 				5ECCBE602B46E6480042CC5F /* Preview Content */,
-				5ECCBE942B4754390042CC5F /* test.swift */,
 			);
 			path = KsyCare;
 			sourceTree = "<group>";
@@ -307,14 +293,12 @@
 				5ECCBE892B46FB8B0042CC5F /* MainScreenView.swift in Sources */,
 				5ECCBE5D2B46E6470042CC5F /* ScreensaverView.swift in Sources */,
 				5ECCBE872B46F7500042CC5F /* LoginView.swift in Sources */,
-				5ECCBE8D2B4733200042CC5F /* EducationView.swift in Sources */,
 				5ECCBE8F2B4733560042CC5F /* HomeView.swift in Sources */,
 				5ECCBE912B4735080042CC5F /* AddNoteView.swift in Sources */,
 				5ECCBE8B2B4732FE0042CC5F /* ProfileView.swift in Sources */,
 				5ECCBE932B4735460042CC5F /* HealthView.swift in Sources */,
+				5E351F1C2B5DE398004A3803 /* StatisticsView.swift in Sources */,
 				5ECCBE5B2B46E6470042CC5F /* KsyCareApp.swift in Sources */,
-				5ECCBE952B4754390042CC5F /* test.swift in Sources */,
-				5E351F1A2B48770F004A3803 /* LessonCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

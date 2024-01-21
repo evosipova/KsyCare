@@ -1,9 +1,6 @@
 import SwiftUI
 
 struct MainScreenView: View {
-
-    @StateObject private var viewModel = NotesViewModel()
-
     init() {
         let appearance = UITabBarAppearance()
         appearance.backgroundEffect = UIBlurEffect(style: .regular)
@@ -15,7 +12,7 @@ struct MainScreenView: View {
 
     var body: some View {
         TabView {
-            HomeView(viewModel: viewModel)
+            HomeView()
                 .tabItem {
                     Image(uiImage: tabBarItemImage(systemName: "house.fill") ?? UIImage())
                 }
@@ -23,13 +20,13 @@ struct MainScreenView: View {
                 .tabItem {
                     Image(uiImage: tabBarItemImage(systemName: "heart.fill") ?? UIImage())
                 }
-            AddNoteView(viewModel: viewModel)
+            AddNoteView()
                 .tabItem {
                     Image(uiImage: tabBarItemImage(systemName: "plus.circle.fill") ?? UIImage())
                 }
-            EducationView()
+            StatisticsView()
                 .tabItem {
-                    Image(uiImage: tabBarItemImage(systemName: "graduationcap.fill") ?? UIImage())
+                    Image(uiImage: tabBarItemImage(systemName: "chart.line.uptrend.xyaxis") ?? UIImage())
                 }
             ProfileView()
                 .tabItem {
