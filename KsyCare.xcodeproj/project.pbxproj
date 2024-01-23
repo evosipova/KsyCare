@@ -9,6 +9,10 @@
 /* Begin PBXBuildFile section */
 		5E351F1C2B5DE398004A3803 /* StatisticsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E351F1B2B5DE398004A3803 /* StatisticsView.swift */; };
 		5E351F1F2B5DFD7B004A3803 /* MealCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E351F1E2B5DFD7B004A3803 /* MealCard.swift */; };
+		5E351F222B5F4DDA004A3803 /* FoodView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E351F212B5F4DDA004A3803 /* FoodView.swift */; };
+		5E351F242B5F4DE2004A3803 /* BloodSugarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E351F232B5F4DE2004A3803 /* BloodSugarView.swift */; };
+		5E351F262B5F4DEB004A3803 /* InsulinView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E351F252B5F4DEB004A3803 /* InsulinView.swift */; };
+		5E351F282B5F4DF3004A3803 /* CombinedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E351F272B5F4DF3004A3803 /* CombinedView.swift */; };
 		5ECCBE5B2B46E6470042CC5F /* KsyCareApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ECCBE5A2B46E6470042CC5F /* KsyCareApp.swift */; };
 		5ECCBE5D2B46E6470042CC5F /* ScreensaverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ECCBE5C2B46E6470042CC5F /* ScreensaverView.swift */; };
 		5ECCBE5F2B46E6480042CC5F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5ECCBE5E2B46E6480042CC5F /* Assets.xcassets */; };
@@ -45,6 +49,10 @@
 /* Begin PBXFileReference section */
 		5E351F1B2B5DE398004A3803 /* StatisticsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticsView.swift; sourceTree = "<group>"; };
 		5E351F1E2B5DFD7B004A3803 /* MealCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealCard.swift; sourceTree = "<group>"; };
+		5E351F212B5F4DDA004A3803 /* FoodView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodView.swift; sourceTree = "<group>"; };
+		5E351F232B5F4DE2004A3803 /* BloodSugarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BloodSugarView.swift; sourceTree = "<group>"; };
+		5E351F252B5F4DEB004A3803 /* InsulinView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsulinView.swift; sourceTree = "<group>"; };
+		5E351F272B5F4DF3004A3803 /* CombinedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CombinedView.swift; sourceTree = "<group>"; };
 		5ECCBE572B46E6470042CC5F /* KsyCare.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KsyCare.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5ECCBE5A2B46E6470042CC5F /* KsyCareApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KsyCareApp.swift; sourceTree = "<group>"; };
 		5ECCBE5C2B46E6470042CC5F /* ScreensaverView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreensaverView.swift; sourceTree = "<group>"; };
@@ -92,9 +100,9 @@
 		5E351F172B476BAB004A3803 /* Screens */ = {
 			isa = PBXGroup;
 			children = (
-				5E351F1D2B5DE66C004A3803 /* HomeScreen */,
+				5E351F202B5F4DB5004A3803 /* AddNoteScreen */,
 				5ECCBE922B4735450042CC5F /* HealthView.swift */,
-				5ECCBE902B4735080042CC5F /* AddNoteView.swift */,
+				5E351F1D2B5DE66C004A3803 /* HomeScreen */,
 				5ECCBE8A2B4732FE0042CC5F /* ProfileView.swift */,
 				5E351F1B2B5DE398004A3803 /* StatisticsView.swift */,
 			);
@@ -108,6 +116,18 @@
 				5E351F1E2B5DFD7B004A3803 /* MealCard.swift */,
 			);
 			path = HomeScreen;
+			sourceTree = "<group>";
+		};
+		5E351F202B5F4DB5004A3803 /* AddNoteScreen */ = {
+			isa = PBXGroup;
+			children = (
+				5ECCBE902B4735080042CC5F /* AddNoteView.swift */,
+				5E351F212B5F4DDA004A3803 /* FoodView.swift */,
+				5E351F232B5F4DE2004A3803 /* BloodSugarView.swift */,
+				5E351F252B5F4DEB004A3803 /* InsulinView.swift */,
+				5E351F272B5F4DF3004A3803 /* CombinedView.swift */,
+			);
+			path = AddNoteScreen;
 			sourceTree = "<group>";
 		};
 		5ECCBE4E2B46E6470042CC5F = {
@@ -300,15 +320,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5E351F222B5F4DDA004A3803 /* FoodView.swift in Sources */,
 				5ECCBE852B46F70F0042CC5F /* RegistrationView.swift in Sources */,
 				5E351F1F2B5DFD7B004A3803 /* MealCard.swift in Sources */,
 				5ECCBE892B46FB8B0042CC5F /* MainScreenView.swift in Sources */,
 				5ECCBE5D2B46E6470042CC5F /* ScreensaverView.swift in Sources */,
+				5E351F282B5F4DF3004A3803 /* CombinedView.swift in Sources */,
+				5E351F242B5F4DE2004A3803 /* BloodSugarView.swift in Sources */,
 				5ECCBE872B46F7500042CC5F /* LoginView.swift in Sources */,
 				5ECCBE8F2B4733560042CC5F /* HomeView.swift in Sources */,
 				5ECCBE912B4735080042CC5F /* AddNoteView.swift in Sources */,
 				5ECCBE8B2B4732FE0042CC5F /* ProfileView.swift in Sources */,
 				5ECCBE932B4735460042CC5F /* HealthView.swift in Sources */,
+				5E351F262B5F4DEB004A3803 /* InsulinView.swift in Sources */,
 				5E351F1C2B5DE398004A3803 /* StatisticsView.swift in Sources */,
 				5ECCBE5B2B46E6470042CC5F /* KsyCareApp.swift in Sources */,
 			);
