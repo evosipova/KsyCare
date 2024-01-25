@@ -3,101 +3,69 @@ import SwiftUI
 struct AddNoteView: View {
     @Binding var showingPopup: Bool
 
+    var body: some View {
+        VStack(alignment: .leading, spacing: 20) {
+            Text("Добавить запись")
+                .font(.custom("Amiko", size: 20).bold())
+                .foregroundColor(.black)
+                .padding(.top, 7)
+                .padding(.leading, 28)
+
+            Divider()
+                .padding(.horizontal, 28)
+                .bold()
+                .font(.custom("Amiko", size: 50))
+
+            ForEach(buttons, id: \.title) { button in
+                Button(action: { button.showingView.wrappedValue = true }) {
+                    HStack {
+                        Image(systemName: button.systemImage)
+                        Text(button.title)
+                            .font(.custom("Amiko", size: 20))
+                        Spacer()
+                    }
+                }
+                .fullScreenCover(isPresented: button.showingView) {
+                    button.destinationView
+                }
+                .frame(maxWidth: .infinity)
+            }
+            .padding(.leading, 28)
+            .padding(.bottom, 30)
+        }
+        .frame(maxWidth: .infinity)
+        .padding()
+        .background(Color.white)
+        .foregroundColor(.black)
+        .cornerRadius(40)
+    }
+
+
+    private struct ButtonInfo {
+        let title: String
+        let systemImage: String
+        let showingView: Binding<Bool>
+        let destinationView: AnyView
+    }
+
     @State private var showingFoodView = false
     @State private var showingBloodSugarView = false
     @State private var showingInsulinView = false
     @State private var showingCombinedView = false
 
-
-    var body: some View {
-        VStack(alignment: .leading) {
-            Text("Добавить запись")
-                .font(.custom("Amiko", size: 18).bold())
-                .foregroundColor(.black)
-                .padding(.top, 21)
-                .padding(.leading, 28)
-
-            Divider()
-                .padding(.vertical, 7)
-                .padding(.horizontal, 28)
-
-            Group {
-                Button(action: { showingFoodView = true }) {
-                    HStack {
-                        Image(systemName: "applelogo")
-                        Text("Еда")
-                        Spacer()
-                    }
-                }
-                .fullScreenCover(isPresented: $showingFoodView) {
-                    FoodView()
-                }
-                .padding()
-                .frame(maxWidth: .infinity)
-                .background(Color.gray.opacity(0.2))
-                .cornerRadius(10)
-
-                Button(action: { showingBloodSugarView = true }) {
-                    HStack {
-                        Image(systemName: "drop.fill")
-                        Text("Сахар крови")
-                        Spacer()
-                    }
-                }
-                .fullScreenCover(isPresented: $showingBloodSugarView) {
-                    BloodSugarView()
-                }
-                .padding()
-                .frame(maxWidth: .infinity)
-                .background(Color.gray.opacity(0.2))
-                .cornerRadius(10)
-
-                Button(action: { showingInsulinView = true }) {
-                    HStack {
-                        Image(systemName: "cross.case.fill")
-                        Text("Инсулин")
-                        Spacer()
-                    }
-                }
-                .fullScreenCover(isPresented: $showingInsulinView) {
-                    InsulinView()
-                }
-                .padding()
-                .frame(maxWidth: .infinity)
-                .background(Color.gray.opacity(0.2))
-                .cornerRadius(10)
-
-                Button(action: { showingCombinedView = true }) {
-                    HStack {
-                        Image(systemName: "tray.fill")
-                        Text("Еда, Сахар крови, Инсулин")
-                        Spacer()
-                    }
-                }
-                .fullScreenCover(isPresented: $showingCombinedView) {
-                    CombinedView()
-                }
-                .padding()
-                .frame(maxWidth: .infinity)
-                .background(Color.gray.opacity(0.2))
-                .cornerRadius(10)
-            }
-            .padding(.horizontal, 28)
-
-            Button("Закрыть") {
-                showingPopup = false
-            }
-            .padding(.leading, 28)
-        }
-        .frame(maxWidth: .infinity)
-        .padding()
-        .background(Color.white)
-        .cornerRadius(40)
+    private var buttons: [ButtonInfo] {
+        [
+            ButtonInfo(title: "Еда", systemImage: "carrot.fill", showingView: $showingFoodView, destinationView: AnyView(FoodView())),
+            ButtonInfo(title: "Сахар крови", systemImage: "atom", showingView: $showingBloodSugarView, destinationView: AnyView(BloodSugarView())),
+            ButtonInfo(title: "Инсулин", systemImage: "cross.case.fill", showingView: $showingInsulinView, destinationView: AnyView(InsulinView())),
+            ButtonInfo(title: "Еда, Сахар крови, Инсулин", systemImage: "tray.fill", showingView: $showingCombinedView, destinationView: AnyView(CombinedView()))
+        ]
     }
 }
 
 struct AddNoteView_Previews: PreviewProvider {
     static var previews: some View {
         AddNoteView(showingPopup: .constant(true))
+            .padding(.horizontal, 10)
     }
 }

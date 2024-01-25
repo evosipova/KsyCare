@@ -1,20 +1,15 @@
 import SwiftUI
 
 struct MainScreenView: View {
-    @State private var selectedTab: Int = 0
-    @State private var previousTab: Int = 0
-    @State private var showingAddNotePopup: Bool = false
-
-
     init() {
         let appearance = UITabBarAppearance()
         appearance.backgroundEffect = UIBlurEffect(style: .regular)
         appearance.backgroundColor = UIColor.white.withAlphaComponent(0.5)
-
+        
         UITabBar.appearance().standardAppearance = appearance
         UITabBar.appearance().scrollEdgeAppearance = appearance
     }
-
+    
     var body: some View {
         ZStack(alignment: .bottom) {
             TabView(selection: $selectedTab) {
@@ -52,8 +47,15 @@ struct MainScreenView: View {
                     previousTab = newValue
                 }
             }
-
+            
             if showingAddNotePopup {
+                Button(action: {
+                    showingAddNotePopup = false
+                }) {
+                    Color.clear
+                        .edgesIgnoringSafeArea(.all)
+                }
+                
                 AddNoteView(showingPopup: $showingAddNotePopup)
                     .transition(.move(edge: .bottom))
                     .animation(.default, value: showingAddNotePopup)
@@ -62,6 +64,10 @@ struct MainScreenView: View {
         }
         .edgesIgnoringSafeArea(.all)
     }
+    
+    @State private var selectedTab: Int = 0
+    @State private var previousTab: Int = 0
+    @State private var showingAddNotePopup: Bool = false
 }
 
 
@@ -71,5 +77,3 @@ struct MainScreenView_Previews: PreviewProvider {
         MainScreenView()
     }
 }
-
-
