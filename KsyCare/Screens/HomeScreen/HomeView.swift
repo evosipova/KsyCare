@@ -26,10 +26,14 @@ struct HomeView: View {
                         .frame(maxWidth: .infinity, alignment: .center)
                         .padding(.top, 20)
 
+                    
                     MealCard(mealTime: "Обед", creationTime: Date(), bloodSugar: 5, breadUnits: 5.4, insulin: 3, comments: "Все хорошо!")
                         .padding(.horizontal, 10)
 
                     MealCard(mealTime: "Ужин", creationTime: Date(), bloodSugar: 5, breadUnits: 5.4, insulin: 3)
+                        .padding(.horizontal, 10)
+
+                    MealCard(mealTime: "Обед", creationTime: Date(), bloodSugar: 5, comments: "Все хорошо!")
                         .padding(.horizontal, 10)
                 }
                 .clipShape(RoundedRectangle(cornerRadius: 30, style: .continuous))

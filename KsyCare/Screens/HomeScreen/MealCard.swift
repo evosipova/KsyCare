@@ -3,9 +3,9 @@ import SwiftUI
 struct MealCard: View {
     var mealTime: String
     var creationTime: Date
-    var bloodSugar: Double
-    var breadUnits: Double
-    var insulin: Double
+    var bloodSugar: Double?
+    var breadUnits: Double?
+    var insulin: Double?
     var comments: String?
 
     private var creationTimeString: String {
@@ -24,29 +24,34 @@ struct MealCard: View {
             }
             .padding(.top, 5)
 
-
             Divider()
                 .background(.gray)
 
-            HStack {
-                Image(systemName: "1.square.fill")
-                Text("Сахар крови")
-                Spacer()
-                Text("\(bloodSugar, specifier: "%.2f")")
+            if let bloodSugar = bloodSugar {
+                HStack {
+                    Image(systemName: "circle.fill")
+                    Text("Сахар крови")
+                    Spacer()
+                    Text("\(bloodSugar, specifier: "%.2f")")
+                }
             }
 
-            HStack {
-                Image(systemName: "2.square.fill")
-                Text("ХЕ")
-                Spacer()
-                Text("\(breadUnits, specifier: "%.2f")")
+            if let breadUnits = breadUnits {
+                HStack {
+                    Image(systemName: "circle.fill")
+                    Text("ХЕ")
+                    Spacer()
+                    Text("\(breadUnits, specifier: "%.2f")")
+                }
             }
 
-            HStack {
-                Image(systemName: "3.square.fill")
-                Text("Инсулин")
-                Spacer()
-                Text("\(insulin, specifier: "%.2f")")
+            if let insulin = insulin {
+                HStack {
+                    Image(systemName: "circle.fill")
+                    Text("Инсулин")
+                    Spacer()
+                    Text("\(insulin, specifier: "%.2f")")
+                }
             }
 
             if let comments = comments, !comments.isEmpty {

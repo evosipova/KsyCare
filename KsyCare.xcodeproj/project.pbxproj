@@ -27,6 +27,8 @@
 		5ECCBE8F2B4733560042CC5F /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ECCBE8E2B4733560042CC5F /* HomeView.swift */; };
 		5ECCBE912B4735080042CC5F /* AddNoteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ECCBE902B4735080042CC5F /* AddNoteView.swift */; };
 		5ECCBE932B4735460042CC5F /* HealthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ECCBE922B4735450042CC5F /* HealthView.swift */; };
+		5EDB7EED2B802C5D000F234D /* NoteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EDB7EEC2B802C5D000F234D /* NoteView.swift */; };
+		5EDB7EF62B814587000F234D /* Color.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5EDB7EF52B814587000F234D /* Color.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -70,6 +72,8 @@
 		5ECCBE8E2B4733560042CC5F /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		5ECCBE902B4735080042CC5F /* AddNoteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNoteView.swift; sourceTree = "<group>"; };
 		5ECCBE922B4735450042CC5F /* HealthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthView.swift; sourceTree = "<group>"; };
+		5EDB7EEC2B802C5D000F234D /* NoteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteView.swift; sourceTree = "<group>"; };
+		5EDB7EF52B814587000F234D /* Color.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Color.xcassets; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -122,10 +126,11 @@
 			isa = PBXGroup;
 			children = (
 				5ECCBE902B4735080042CC5F /* AddNoteView.swift */,
-				5E351F212B5F4DDA004A3803 /* FoodView.swift */,
 				5E351F232B5F4DE2004A3803 /* BloodSugarView.swift */,
-				5E351F252B5F4DEB004A3803 /* InsulinView.swift */,
 				5E351F272B5F4DF3004A3803 /* CombinedView.swift */,
+				5E351F212B5F4DDA004A3803 /* FoodView.swift */,
+				5E351F252B5F4DEB004A3803 /* InsulinView.swift */,
+				5EDB7EEC2B802C5D000F234D /* NoteView.swift */,
 			);
 			path = AddNoteScreen;
 			sourceTree = "<group>";
@@ -160,6 +165,7 @@
 				5ECCBE882B46FB8B0042CC5F /* MainScreenView.swift */,
 				5E351F172B476BAB004A3803 /* Screens */,
 				5ECCBE5E2B46E6480042CC5F /* Assets.xcassets */,
+				5EDB7EF52B814587000F234D /* Color.xcassets */,
 				5ECCBE602B46E6480042CC5F /* Preview Content */,
 			);
 			path = KsyCare;
@@ -296,6 +302,7 @@
 			files = (
 				5ECCBE622B46E6480042CC5F /* Preview Assets.xcassets in Resources */,
 				5ECCBE5F2B46E6480042CC5F /* Assets.xcassets in Resources */,
+				5EDB7EF62B814587000F234D /* Color.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -330,6 +337,7 @@
 				5ECCBE872B46F7500042CC5F /* LoginView.swift in Sources */,
 				5ECCBE8F2B4733560042CC5F /* HomeView.swift in Sources */,
 				5ECCBE912B4735080042CC5F /* AddNoteView.swift in Sources */,
+				5EDB7EED2B802C5D000F234D /* NoteView.swift in Sources */,
 				5ECCBE8B2B4732FE0042CC5F /* ProfileView.swift in Sources */,
 				5ECCBE932B4735460042CC5F /* HealthView.swift in Sources */,
 				5E351F262B5F4DEB004A3803 /* InsulinView.swift in Sources */,

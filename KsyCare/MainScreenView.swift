@@ -1,6 +1,9 @@
 import SwiftUI
 
 struct MainScreenView: View {
+
+
+
     init() {
         let appearance = UITabBarAppearance()
         appearance.backgroundEffect = UIBlurEffect(style: .regular)
@@ -63,7 +66,9 @@ struct MainScreenView: View {
             }
         }
         .edgesIgnoringSafeArea(.all)
+        .navigationBarHidden(true)
     }
+
     
     @State private var selectedTab: Int = 0
     @State private var previousTab: Int = 0

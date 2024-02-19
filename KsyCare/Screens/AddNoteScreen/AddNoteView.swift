@@ -2,7 +2,7 @@ import SwiftUI
 
 struct AddNoteView: View {
     @Binding var showingPopup: Bool
-
+    
     var body: some View {
         VStack(alignment: .leading, spacing: 20) {
             Text("Добавить запись")
@@ -10,12 +10,11 @@ struct AddNoteView: View {
                 .foregroundColor(.black)
                 .padding(.top, 7)
                 .padding(.leading, 28)
-
+            
             Divider()
                 .padding(.horizontal, 28)
-                .bold()
                 .font(.custom("Amiko", size: 50))
-
+            
             ForEach(buttons, id: \.title) { button in
                 Button(action: { button.showingView.wrappedValue = true }) {
                     HStack {
@@ -39,26 +38,26 @@ struct AddNoteView: View {
         .foregroundColor(.black)
         .cornerRadius(40)
     }
-
-
+    
+    
     private struct ButtonInfo {
         let title: String
         let systemImage: String
         let showingView: Binding<Bool>
         let destinationView: AnyView
     }
-
+    
     @State private var showingFoodView = false
     @State private var showingBloodSugarView = false
     @State private var showingInsulinView = false
     @State private var showingCombinedView = false
-
+    
     private var buttons: [ButtonInfo] {
         [
-            ButtonInfo(title: "Еда", systemImage: "carrot.fill", showingView: $showingFoodView, destinationView: AnyView(FoodView())),
-            ButtonInfo(title: "Сахар крови", systemImage: "atom", showingView: $showingBloodSugarView, destinationView: AnyView(BloodSugarView())),
-            ButtonInfo(title: "Инсулин", systemImage: "cross.case.fill", showingView: $showingInsulinView, destinationView: AnyView(InsulinView())),
-            ButtonInfo(title: "Еда, Сахар крови, Инсулин", systemImage: "tray.fill", showingView: $showingCombinedView, destinationView: AnyView(CombinedView()))
+            ButtonInfo(title: "Еда", systemImage: "circle.fill", showingView: $showingFoodView, destinationView: AnyView(FoodView())),
+            ButtonInfo(title: "Сахар крови", systemImage: "circle.fill", showingView: $showingBloodSugarView, destinationView: AnyView(BloodSugarView())),
+            ButtonInfo(title: "Инсулин", systemImage: "circle.fill", showingView: $showingInsulinView, destinationView: AnyView(InsulinView())),
+            ButtonInfo(title: "Еда, Сахар крови, Инсулин", systemImage: "circle.fill", showingView: $showingCombinedView, destinationView: AnyView(CombinedView())) 
         ]
     }
 }
