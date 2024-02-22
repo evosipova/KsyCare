@@ -150,7 +150,7 @@ struct NoteView: View {
                             showingNavigationBarView = true
                         }
                         .fullScreenCover(isPresented: $showingNavigationBarView) {
-                            NavigationBarView()
+                            CustomTabBarView()
                         }
 
                     }

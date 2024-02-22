@@ -1,63 +1,45 @@
 import SwiftUI
 
-struct NavigationBarView: View {
-
-    init() {
-        let appearance = UITabBarAppearance()
-        appearance.backgroundEffect = UIBlurEffect(style: .regular)
-        appearance.backgroundColor = UIColor.white.withAlphaComponent(0.5)
-
-
-        UITabBar.appearance().standardAppearance = appearance
-        UITabBar.appearance().scrollEdgeAppearance = appearance
-    }
+struct CustomTabBarView: View {
+    @State private var selectedTab: Int = 0
+    @State private var previousTab: Int = 0
+    @State private var showingAddNotePopup: Bool = false
 
     var body: some View {
         ZStack(alignment: .bottom) {
-            TabView(selection: $selectedTab) {
-                HomeView()
-                    .tabItem {
-                        Image(systemName: "house.fill")
-                            .resizable()
-                            .padding(.top, 30)
-                        Spacer()
-                        Text("Главная")
-                    }
-                    .background(.green)
-                    .tag(0)
-                HistoryView()
-                    .tabItem {
-                        Image(systemName: "heart.fill")
-                            .padding(.top, 10)
-                    }
-                    .tag(1)
-                Color.clear
-                    .tabItem {
-                        Image(systemName: "plus.circle.fill")
-                            .padding(.top, 10)
-                    }
-                    .tag(2)
-                StatisticsView()
-                    .tabItem {
-                        Image(systemName: "chart.line.uptrend.xyaxis")
-                            .padding(.top, 10)
-                    }
-                    .tag(3)
-                ProfileView()
-                    .tabItem {
-                        Image(systemName: "person.fill")
-                            .padding(.top, 10)
-                    }
-                    .tag(4)
-            }
-            .onChange(of: selectedTab) { newValue in
-                if newValue == 2 {
-                    showingAddNotePopup = true
-                    selectedTab = previousTab
-                } else {
-                    previousTab = newValue
+            VStack {
+                switch selectedTab {
+                case 0:
+                    HomeView()
+                case 1:
+                    HistoryView()
+                case 3:
+                    StatisticsView()
+                case 4:
+                    ProfileView()
+                default:
+                    Text("Остальные вкладки")
                 }
+
+                Spacer()
+
+                HStack {
+                    ForEach(0..<5) { index in
+                        CustomTabBarItem(iconName: self.getIconName(for: index), isSelected: selectedTab == index) {
+                            if index == 2 {
+                                self.showingAddNotePopup = true
+                                self.previousTab = self.selectedTab
+                            } else {
+                                self.selectedTab = index
+                            }
+                        }
+                        .padding(.horizontal, 20)
+                    }
+                }
+                .padding()
+                .background(Color(.systemBackground))
             }
+            .disabled(showingAddNotePopup)
 
             if showingAddNotePopup {
                 Button(action: {
@@ -68,24 +50,45 @@ struct NavigationBarView: View {
                 }
 
                 AddNoteView(showingPopup: $showingAddNotePopup)
+                    .padding(.bottom)
                     .transition(.move(edge: .bottom))
                     .animation(.default, value: showingAddNotePopup)
                     .zIndex(2)
             }
         }
-        .edgesIgnoringSafeArea(.all)
         .navigationBarHidden(true)
     }
 
-
-    @State private var selectedTab: Int = 0
-    @State private var previousTab: Int = 0
-    @State private var showingAddNotePopup: Bool = false
-}
-
-struct NavigationBarView_Previews: PreviewProvider {
-    static var previews: some View {
-        NavigationBarView()
+    func getIconName(for index: Int) -> String {
+        switch index {
+        case 0: return "house.fill"
+        case 1: return "heart.fill"
+        case 2: return "plus.circle.fill"
+        case 3: return "chart.line.uptrend.xyaxis"
+        case 4: return "person.fill"
+        default: return ""
+        }
     }
 }
 
+struct CustomTabBarItem: View {
+    let iconName: String
+    let isSelected: Bool
+    let action: () -> Void
+
+    var body: some View {
+        Button(action: action) {
+            VStack {
+                Image(systemName: iconName)
+                    .font(.system(size: 28))
+                    .foregroundColor(isSelected ? .blue : .gray)
+            }
+        }
+    }
+}
+
+struct CustomTabBarView_Previews: PreviewProvider {
+    static var previews: some View {
+        CustomTabBarView()
+    }
+}

@@ -23,7 +23,7 @@ struct ScreensaverView: View {
                     .background(Color.blue)
                     .cornerRadius(8)
                 
-                NavigationLink("Основной экран", destination: NavigationBarView())
+                NavigationLink("Основной экран", destination: CustomTabBarView())
                     .padding()
                     .foregroundColor(.white)
                     .background(Color.red)
