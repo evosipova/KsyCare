@@ -6,6 +6,8 @@ struct NoteView: View {
     @State private var comments: String = ""
     @State private var selectedDate = Date()
     @State private var isShowingDatePicker = false
+    @State private var navigateToNextScreen = false
+    @State private var showingNavigationBarView = false
 
     private let buttonHeight: CGFloat = 50
     private let horizontalPadding: CGFloat = 20
@@ -13,8 +15,6 @@ struct NoteView: View {
 
     @EnvironmentObject var mealCardsData: MealCardsData
     @Binding var selectedSugarLevel: Double
-
-    @State private var shouldNavigateToMainScreen = false
 
     let displayText: String
 
@@ -146,16 +146,13 @@ struct NoteView: View {
 
                         Button("Готово") {
                             let newCard = MealCardModel(mealTime: title, creationTime: selectedDate, bloodSugar: selectedSugarLevel, comments: comments)
-                                mealCardsData.cards.append(newCard)
+                            mealCardsData.cards.append(newCard)
+                            showingNavigationBarView = true
                         }
-                        .frame(minWidth: 0, maxWidth: .infinity)
+                        .fullScreenCover(isPresented: $showingNavigationBarView) {
+                            NavigationBarView()
+                        }
 
-                        .padding(.vertical, 10)
-                        .background(Color.blue)
-                        .foregroundColor(.white)
-                        .cornerRadius(10)
-                        .padding(.bottom, 30)
-                        .padding(.horizontal, 20)
                     }
                 }
             }

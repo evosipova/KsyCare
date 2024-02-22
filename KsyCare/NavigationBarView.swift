@@ -7,6 +7,7 @@ struct NavigationBarView: View {
         appearance.backgroundEffect = UIBlurEffect(style: .regular)
         appearance.backgroundColor = UIColor.white.withAlphaComponent(0.5)
 
+
         UITabBar.appearance().standardAppearance = appearance
         UITabBar.appearance().scrollEdgeAppearance = appearance
     }
@@ -17,26 +18,35 @@ struct NavigationBarView: View {
                 HomeView()
                     .tabItem {
                         Image(systemName: "house.fill")
+                            .resizable()
+                            .padding(.top, 30)
+                        Spacer()
+                        Text("Главная")
                     }
+                    .background(.green)
                     .tag(0)
                 HistoryView()
                     .tabItem {
                         Image(systemName: "heart.fill")
+                            .padding(.top, 10)
                     }
                     .tag(1)
                 Color.clear
                     .tabItem {
                         Image(systemName: "plus.circle.fill")
+                            .padding(.top, 10)
                     }
                     .tag(2)
                 StatisticsView()
                     .tabItem {
                         Image(systemName: "chart.line.uptrend.xyaxis")
+                            .padding(.top, 10)
                     }
                     .tag(3)
                 ProfileView()
                     .tabItem {
                         Image(systemName: "person.fill")
+                            .padding(.top, 10)
                     }
                     .tag(4)
             }
@@ -67,25 +77,6 @@ struct NavigationBarView: View {
         .navigationBarHidden(true)
     }
 
-    func switchToHomeView() {
-        selectedTab = 0
-    }
-
-    func switchToHistoryView() {
-        selectedTab = 1
-    }
-
-    func switchToAddNoteView() {
-        selectedTab = 2
-    }
-
-    func switchToStatisticsView() {
-        selectedTab = 3
-    }
-
-    func switchToProfileView() {
-        selectedTab = 4
-    }
 
     @State private var selectedTab: Int = 0
     @State private var previousTab: Int = 0
@@ -97,3 +88,4 @@ struct NavigationBarView_Previews: PreviewProvider {
         NavigationBarView()
     }
 }
+

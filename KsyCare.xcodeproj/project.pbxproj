@@ -107,6 +107,7 @@
 			isa = PBXGroup;
 			children = (
 				5E351F202B5F4DB5004A3803 /* AddNoteScreen */,
+				5ECCBE8E2B4733560042CC5F /* HomeView.swift */,
 				5ECCBE922B4735450042CC5F /* HealthView.swift */,
 				5ECCBE8A2B4732FE0042CC5F /* ProfileView.swift */,
 				5E351F1B2B5DE398004A3803 /* StatisticsView.swift */,
@@ -121,7 +122,6 @@
 				5ECCBE902B4735080042CC5F /* AddNoteView.swift */,
 				5EDB7EEC2B802C5D000F234D /* NoteView.swift */,
 				5E351F232B5F4DE2004A3803 /* BloodSugarView.swift */,
-				5ECCBE8E2B4733560042CC5F /* HomeView.swift */,
 				5E351F272B5F4DF3004A3803 /* CombinedView.swift */,
 				5E351F212B5F4DDA004A3803 /* FoodView.swift */,
 				5E351F252B5F4DEB004A3803 /* InsulinView.swift */,

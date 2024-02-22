@@ -33,6 +33,7 @@ struct HomeView: View {
                     ForEach(mealCardsData.cards.indices, id: \.self) { index in
                         MealCard(card: mealCardsData.cards[index])
                             .padding(.bottom, 10)
+                            .padding(.horizontal)
                     }
                     
                     
