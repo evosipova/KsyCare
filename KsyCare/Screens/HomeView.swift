@@ -3,7 +3,6 @@ import SwiftUI
 struct HomeView: View {
     @EnvironmentObject var mealCardsData: MealCardsData
     
-    
     var body: some View {
         ScrollView {
             VStack {

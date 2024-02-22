@@ -1,28 +1,28 @@
 import SwiftUI
 
 struct MealCard: View {
-    var card: MealCardModel // Используем модель данных
-
+    var card: MealCardModel
+    
     private var creationTimeString: String {
         let formatter = DateFormatter()
         formatter.dateFormat = "H:mm"
         return formatter.string(from: card.creationTime)
     }
-
+    
     var body: some View {
         VStack(alignment: .leading, spacing: 3) {
             HStack {
-                Text(card.mealTime) // Используем свойства модели
+                Text(card.mealTime)
                     .font(.headline)
                 Spacer()
                 Text(creationTimeString)
             }
             .padding(.top, 5)
-
+            
             Divider()
                 .background(.gray)
-
-            if let bloodSugar = card.bloodSugar { // Используем свойства модели
+            
+            if let bloodSugar = card.bloodSugar {
                 HStack {
                     Image(systemName: "circle.fill")
                     Text("Сахар крови")
@@ -30,8 +30,8 @@ struct MealCard: View {
                     Text("\(bloodSugar, specifier: "%.2f")")
                 }
             }
-
-            if let breadUnits = card.breadUnits { // Используем свойства модели
+            
+            if let breadUnits = card.breadUnits {
                 HStack {
                     Image(systemName: "circle.fill")
                     Text("ХЕ")
@@ -39,8 +39,8 @@ struct MealCard: View {
                     Text("\(breadUnits, specifier: "%.2f")")
                 }
             }
-
-            if let insulin = card.insulin { // Используем свойства модели
+            
+            if let insulin = card.insulin {
                 HStack {
                     Image(systemName: "circle.fill")
                     Text("Инсулин")
@@ -48,8 +48,8 @@ struct MealCard: View {
                     Text("\(insulin, specifier: "%.2f")")
                 }
             }
-
-            if let comments = card.comments, !comments.isEmpty { // Используем свойства модели
+            
+            if let comments = card.comments, !comments.isEmpty { 
                 Divider()
                     .background(.gray)
                 Text(comments)
