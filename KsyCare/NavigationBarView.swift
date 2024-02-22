@@ -1,18 +1,16 @@
 import SwiftUI
 
-struct MainScreenView: View {
-
-
+struct NavigationBarView: View {
 
     init() {
         let appearance = UITabBarAppearance()
         appearance.backgroundEffect = UIBlurEffect(style: .regular)
         appearance.backgroundColor = UIColor.white.withAlphaComponent(0.5)
-        
+
         UITabBar.appearance().standardAppearance = appearance
         UITabBar.appearance().scrollEdgeAppearance = appearance
     }
-    
+
     var body: some View {
         ZStack(alignment: .bottom) {
             TabView(selection: $selectedTab) {
@@ -21,7 +19,7 @@ struct MainScreenView: View {
                         Image(systemName: "house.fill")
                     }
                     .tag(0)
-                HealthView()
+                HistoryView()
                     .tabItem {
                         Image(systemName: "heart.fill")
                     }
@@ -50,7 +48,7 @@ struct MainScreenView: View {
                     previousTab = newValue
                 }
             }
-            
+
             if showingAddNotePopup {
                 Button(action: {
                     showingAddNotePopup = false
@@ -58,7 +56,7 @@ struct MainScreenView: View {
                     Color.clear
                         .edgesIgnoringSafeArea(.all)
                 }
-                
+
                 AddNoteView(showingPopup: $showingAddNotePopup)
                     .transition(.move(edge: .bottom))
                     .animation(.default, value: showingAddNotePopup)
@@ -69,16 +67,33 @@ struct MainScreenView: View {
         .navigationBarHidden(true)
     }
 
-    
+    func switchToHomeView() {
+        selectedTab = 0
+    }
+
+    func switchToHistoryView() {
+        selectedTab = 1
+    }
+
+    func switchToAddNoteView() {
+        selectedTab = 2
+    }
+
+    func switchToStatisticsView() {
+        selectedTab = 3
+    }
+
+    func switchToProfileView() {
+        selectedTab = 4
+    }
+
     @State private var selectedTab: Int = 0
     @State private var previousTab: Int = 0
     @State private var showingAddNotePopup: Bool = false
 }
 
-
-
-struct MainScreenView_Previews: PreviewProvider {
+struct NavigationBarView_Previews: PreviewProvider {
     static var previews: some View {
-        MainScreenView()
+        NavigationBarView()
     }
 }

@@ -1,13 +1,13 @@
 import SwiftUI
 
-struct HealthView: View {
+struct HistoryView: View {
     var body: some View {
         Text("HealthView")
     }
 }
 
-struct HealthView_Previews: PreviewProvider {
+struct HistoryView_Previews: PreviewProvider {
     static var previews: some View {
-        HealthView()
+        HistoryView()
     }
 }

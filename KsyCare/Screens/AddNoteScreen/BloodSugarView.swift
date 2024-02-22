@@ -7,6 +7,8 @@ struct ScrollViewOffsetPreferenceKey: PreferenceKey {
 
 struct BloodSugarView: View {
     @Environment(\.presentationMode) var presentationMode
+    @EnvironmentObject var mealCardsData: MealCardsData
+
 
     private let bloodSugarLevels = Array(stride(from: 3.0, through: 7.0, by: 0.1))
     @State private var selectedSugarLevel: Double = 3.0
@@ -128,7 +130,9 @@ struct BloodSugarView: View {
 
                     Spacer()
 
-                    NavigationLink(destination: NoteView(displayText: "Сахар крови")) {
+
+
+                    NavigationLink(destination: NoteView(selectedSugarLevel: $selectedSugarLevel, displayText: "Сахар крови")) {
                         Text("Далее")
                             .frame(minWidth: 0, maxWidth: .infinity)
                             .foregroundColor(.white)
@@ -139,6 +143,7 @@ struct BloodSugarView: View {
                             .padding(.horizontal, 20)
                     }
                     .padding()
+
                 }
             }
             .edgesIgnoringSafeArea(.bottom)

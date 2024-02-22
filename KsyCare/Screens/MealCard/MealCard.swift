@@ -1,23 +1,18 @@
 import SwiftUI
 
 struct MealCard: View {
-    var mealTime: String
-    var creationTime: Date
-    var bloodSugar: Double?
-    var breadUnits: Double?
-    var insulin: Double?
-    var comments: String?
+    var card: MealCardModel // Используем модель данных
 
     private var creationTimeString: String {
         let formatter = DateFormatter()
         formatter.dateFormat = "H:mm"
-        return formatter.string(from: creationTime)
+        return formatter.string(from: card.creationTime)
     }
 
     var body: some View {
         VStack(alignment: .leading, spacing: 3) {
             HStack {
-                Text(mealTime)
+                Text(card.mealTime) // Используем свойства модели
                     .font(.headline)
                 Spacer()
                 Text(creationTimeString)
@@ -27,7 +22,7 @@ struct MealCard: View {
             Divider()
                 .background(.gray)
 
-            if let bloodSugar = bloodSugar {
+            if let bloodSugar = card.bloodSugar { // Используем свойства модели
                 HStack {
                     Image(systemName: "circle.fill")
                     Text("Сахар крови")
@@ -36,7 +31,7 @@ struct MealCard: View {
                 }
             }
 
-            if let breadUnits = breadUnits {
+            if let breadUnits = card.breadUnits { // Используем свойства модели
                 HStack {
                     Image(systemName: "circle.fill")
                     Text("ХЕ")
@@ -45,7 +40,7 @@ struct MealCard: View {
                 }
             }
 
-            if let insulin = insulin {
+            if let insulin = card.insulin { // Используем свойства модели
                 HStack {
                     Image(systemName: "circle.fill")
                     Text("Инсулин")
@@ -54,7 +49,7 @@ struct MealCard: View {
                 }
             }
 
-            if let comments = comments, !comments.isEmpty {
+            if let comments = card.comments, !comments.isEmpty { // Используем свойства модели
                 Divider()
                     .background(.gray)
                 Text(comments)
@@ -70,7 +65,7 @@ struct MealCard: View {
 
 struct MealCard_Previews: PreviewProvider {
     static var previews: some View {
-        MealCard(mealTime: "Обед", creationTime: Date(), bloodSugar: 5, breadUnits: 5.4, insulin: 3, comments: "Все хорошо!")
+        MealCard(card: MealCardModel(mealTime: "Обед", creationTime: Date(), bloodSugar: 5, breadUnits: 5.4, insulin: 3, comments: "Все хорошо!"))
             .padding(.horizontal, 10)
     }
 }
