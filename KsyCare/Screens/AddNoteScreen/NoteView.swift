@@ -21,7 +21,6 @@ struct NoteView: View {
     var body: some View {
         NavigationStack {
             ZStack(alignment: .bottom) {
-
                 ScrollView {
                     VStack() {
                         HStack {
@@ -143,18 +142,29 @@ struct NoteView: View {
                             .padding(.horizontal, horizontalPadding)
 
                         Spacer()
-
-                        Button("Готово") {
-                            let newCard = MealCardModel(mealTime: title, creationTime: selectedDate, bloodSugar: selectedSugarLevel, comments: comments)
-                            mealCardsData.cards.append(newCard)
-                            showingNavigationBarView = true
-                        }
-                        .fullScreenCover(isPresented: $showingNavigationBarView) {
-                            CustomTabBarView()
-                        }
-
                     }
+
                 }
+                Button(action: {
+                    let newCard = MealCardModel(mealTime: title, creationTime: selectedDate, bloodSugar: selectedSugarLevel, comments: comments)
+                    mealCardsData.cards.append(newCard)
+                    showingNavigationBarView = true
+                }) {
+                    Text("Готово")
+                        .frame(minWidth: 0, maxWidth: .infinity)
+                        .padding()
+                        .contentShape(Rectangle())
+                }
+                .foregroundColor(.white)
+                .background(Color.blue)
+                .cornerRadius(10)
+                .padding(.bottom, 30)
+                .padding(.horizontal, 20)
+                .fullScreenCover(isPresented: $showingNavigationBarView) {
+                    CustomTabBarView()
+                }
+                .padding()
+
             }
             .edgesIgnoringSafeArea(.bottom)
             .navigationBarHidden(true)
@@ -169,3 +179,19 @@ struct NewEntryView_Previews: PreviewProvider {
             .environmentObject(MealCardsData())
     }
 }
+
+
+/*
+
+ NavigationLink(destination: NoteView(selectedSugarLevel: $selectedSugarLevel, displayText: "Сахар крови")) {
+     Text("Далее")
+         .frame(minWidth: 0, maxWidth: .infinity)
+         .foregroundColor(.white)
+         .padding()
+         .background(Color.blue)
+         .cornerRadius(10)
+         .padding(.bottom, 30)
+         .padding(.horizontal, 20)
+ }
+ .padding()
+ */

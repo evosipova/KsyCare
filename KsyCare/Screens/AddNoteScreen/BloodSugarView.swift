@@ -13,8 +13,8 @@ struct BloodSugarView: View {
     private let bloodSugarLevels = Array(stride(from: 3.0, through: 7.0, by: 0.1))
     @State private var selectedSugarLevel: Double = 3.0
     @State private var scrollViewProxy: ScrollViewProxy?
-    private let itemWidth: CGFloat = 100
-    private let itemHeight: CGFloat = 80
+    private let itemWidth: CGFloat = 120
+    private let itemHeight: CGFloat = 100
     private let frameWidth: CGFloat = 200
     private let frameHeight: CGFloat = 300
     private let spacing: CGFloat = 20
@@ -75,8 +75,6 @@ struct BloodSugarView: View {
                         .font(.system(size: 18, weight: .bold))
                         .padding(.top, 100)
 
-
-
                     GeometryReader { fullView in
                         ScrollViewReader { proxy in
                             ScrollView(.horizontal, showsIndicators: false) {
@@ -84,12 +82,11 @@ struct BloodSugarView: View {
                                     ForEach(bloodSugarLevels, id: \.self) { level in
                                         let isSelected = level == selectedSugarLevel
                                         Text("\(level, specifier: "%.1f")")
-                                            .font(.system(size: isSelected ? 64 : 52))
-                                            .foregroundColor(isSelected ? .red : .black)
+                                            .font(.system(size: isSelected ? 70 : 52))
                                             .frame(width: itemWidth, height: itemHeight)
                                             .overlay(
                                                 RoundedRectangle(cornerRadius: 5)
-                                                    .stroke(isSelected ? Color.red : Color.clear, lineWidth: 5)
+                                                    .stroke(isSelected ? Color.black : Color.clear, lineWidth: 3)
                                             )
                                             .contentShape(Rectangle())
                                             .onTapGesture {
@@ -113,7 +110,7 @@ struct BloodSugarView: View {
                                 if centerIndex >= 0 && centerIndex < bloodSugarLevels.count {
                                     let centeredItem = bloodSugarLevels[centerIndex]
                                     if selectedSugarLevel != centeredItem {
-                                        withAnimation(.easeInOut(duration: 0.5)) {
+                                        withAnimation(.easeInOut(duration: 0.7)) {
                                             selectedSugarLevel = centeredItem
                                             scrollViewProxy?.scrollTo(centeredItem, anchor: .center)
                                         }
