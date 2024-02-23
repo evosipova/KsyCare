@@ -1,54 +1,61 @@
 import SwiftUI
 
 struct HomeView: View {
-    @EnvironmentObject var mealCardsData: MealCardsData
-    
+    @EnvironmentObject var viewModel: MealCardViewModel
+
     var body: some View {
         ScrollView {
-            VStack {
-                HStack {
-                    Text("Добрый день!")
-                        .font(.custom("Amiko", size: 24))
-                        .fontWeight(.bold)
-                        .foregroundColor(Color.black)
-                        .padding(.top, 57)
-                        .padding(.leading, 27)
-                    Spacer()
-                }
-                .padding(.bottom, 38)
-                
-                Circle()
-                    .stroke(Color.gray, lineWidth: 60)
-                    .frame(width: 214, height: 214)
-                    .padding(.bottom, 45)
-                
-                VStack {
-                    Text("Сегодня")
-                        .font(.custom("Amiko", size: 24))
-                        .frame(maxWidth: .infinity, alignment: .center)
-                        .padding(.top, 20)
-                    
-                    
-                    ForEach(mealCardsData.cards.indices, id: \.self) { index in
-                        MealCard(card: mealCardsData.cards[index])
-                            .padding(.bottom, 10)
-                            .padding(.horizontal)
-                    }
-                    
-                    
-                }
-                .clipShape(RoundedRectangle(cornerRadius: 30, style: .continuous))
+            VStack(spacing: 0) {
+                greetingSection
+                circleSection
+                todaySection
             }
-            .padding(.bottom, 100)
+            .padding(.bottom, 10)
         }
         .frame(maxHeight: .infinity)
         .edgesIgnoringSafeArea(.bottom)
         .background(Color.gray.opacity(0.1))
     }
+
+    private var greetingSection: some View {
+        HStack {
+            Text("Добрый день!")
+                .font(.custom("Amiko", size: 24))
+                .fontWeight(.bold)
+                .foregroundColor(Color.black)
+                .padding(.top, 57)
+                .padding(.leading, 27)
+            Spacer()
+        }
+        .padding(.bottom, 38)
+    }
+
+    private var circleSection: some View {
+        Circle()
+            .stroke(Color.gray, lineWidth: 60)
+            .frame(width: 214, height: 214)
+            .padding(.bottom, 45)
+    }
+
+    private var todaySection: some View {
+        VStack {
+            Text("Сегодня")
+                .font(.custom("Amiko", size: 24))
+                .frame(maxWidth: .infinity, alignment: .center)
+                .padding(.top, 20)
+
+            ForEach(viewModel.cards.indices, id: \.self) { index in
+                MealCard(viewModel: viewModel, card: viewModel.cards[index])
+                    .padding(.bottom, 10)
+                    .padding(.horizontal)
+            }
+        }
+        .clipShape(RoundedRectangle(cornerRadius: 30, style: .continuous))
+    }
 }
 
 struct HomeView_Previews: PreviewProvider {
     static var previews: some View {
-        HomeView()
+        HomeView().environmentObject(MealCardViewModel())
     }
 }

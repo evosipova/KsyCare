@@ -1,14 +1,12 @@
 import SwiftUI
 
 struct CustomTabBarView: View {
-    @State private var selectedTab: Int = 0
-    @State private var previousTab: Int = 0
-    @State private var showingAddNotePopup: Bool = false
+    @ObservedObject var viewModel: CustomTabBarViewModel
 
     var body: some View {
         ZStack(alignment: .bottom) {
             VStack {
-                switch selectedTab {
+                switch viewModel.selectedTab {
                 case 0:
                     HomeView()
                 case 1:
@@ -25,12 +23,11 @@ struct CustomTabBarView: View {
 
                 HStack {
                     ForEach(0..<5) { index in
-                        CustomTabBarItem(iconName: self.getIconName(for: index), isSelected: selectedTab == index) {
+                        CustomTabBarItem(iconName: self.getIconName(for: index), isSelected: viewModel.selectedTab == index) {
                             if index == 2 {
-                                self.showingAddNotePopup = true
-                                self.previousTab = self.selectedTab
+                                viewModel.showingAddNotePopup = true
                             } else {
-                                self.selectedTab = index
+                                viewModel.selectedTab = index
                             }
                         }
                         .padding(.horizontal, 20)
@@ -39,20 +36,20 @@ struct CustomTabBarView: View {
                 .padding()
                 .background(Color(.systemBackground))
             }
-            .disabled(showingAddNotePopup)
+            .disabled(viewModel.showingAddNotePopup)
 
-            if showingAddNotePopup {
+            if viewModel.showingAddNotePopup {
                 Button(action: {
-                    showingAddNotePopup = false
+                    viewModel.showingAddNotePopup = false
                 }) {
                     Color.clear
                         .edgesIgnoringSafeArea(.all)
                 }
 
-                AddNoteView(showingPopup: $showingAddNotePopup)
+                AddNoteView(showingPopup: $viewModel.showingAddNotePopup)
                     .padding(.bottom)
                     .transition(.move(edge: .bottom))
-                    .animation(.default, value: showingAddNotePopup)
+                    .animation(.default, value: viewModel.showingAddNotePopup)
                     .zIndex(2)
             }
         }
@@ -71,24 +68,8 @@ struct CustomTabBarView: View {
     }
 }
 
-struct CustomTabBarItem: View {
-    let iconName: String
-    let isSelected: Bool
-    let action: () -> Void
-
-    var body: some View {
-        Button(action: action) {
-            VStack {
-                Image(systemName: iconName)
-                    .font(.system(size: 28))
-                    .foregroundColor(isSelected ? .blue : .gray)
-            }
-        }
-    }
-}
-
 struct CustomTabBarView_Previews: PreviewProvider {
     static var previews: some View {
-        CustomTabBarView()
+        CustomTabBarView(viewModel: CustomTabBarViewModel())
     }
 }

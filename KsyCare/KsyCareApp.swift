@@ -2,12 +2,12 @@ import SwiftUI
 
 @main
 struct KsyCareApp: App {
-    var mealCardsData = MealCardsData()
+    var viewModel = MealCardViewModel()
 
     var body: some Scene {
         WindowGroup {
            ScreensaverView()
-                .environmentObject(mealCardsData)
+                .environmentObject(viewModel)
         }
     }
 }

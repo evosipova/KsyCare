@@ -8,29 +8,23 @@ struct ScreensaverView: View {
                     .imageScale(.large)
                     .foregroundColor(.accentColor)
                     .padding(8)
-                
+
                 Text("KsyCare")
-                
-                NavigationLink("Регистрация", destination: RegistrationView())
-                    .padding()
-                    .foregroundColor(.white)
-                    .background(Color.green)
-                    .cornerRadius(8)
-                
-                NavigationLink("Авторизация", destination: LoginView())
-                    .padding()
-                    .foregroundColor(.white)
-                    .background(Color.blue)
-                    .cornerRadius(8)
-                
-                NavigationLink("Основной экран", destination: CustomTabBarView())
-                    .padding()
-                    .foregroundColor(.white)
-                    .background(Color.red)
-                    .cornerRadius(8)
+
+                navigationButton("Регистрация", destination: RegistrationView(), color: .green)
+                navigationButton("Авторизация", destination: LoginView(), color: .blue)
+                navigationButton("Основной экран", destination: CustomTabBarView(viewModel: CustomTabBarViewModel()), color: .red)
             }
             .padding()
         }
+    }
+
+    private func navigationButton<Destination: View>(_ title: String, destination: Destination, color: Color) -> some View {
+        NavigationLink(title, destination: destination)
+            .padding()
+            .foregroundColor(.white)
+            .background(color)
+            .cornerRadius(8)
     }
 }
 

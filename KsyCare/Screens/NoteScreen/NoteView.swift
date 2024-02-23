@@ -13,7 +13,7 @@ struct NoteView: View {
     private let horizontalPadding: CGFloat = 20
     private let verticalPadding: CGFloat = 30
 
-    @EnvironmentObject var mealCardsData: MealCardsData
+    @EnvironmentObject var mealCardsData: MealCardViewModel
     @Binding var selectedSugarLevel: Double
 
     let displayText: String
@@ -161,8 +161,11 @@ struct NoteView: View {
                 .padding(.bottom, 30)
                 .padding(.horizontal, 20)
                 .fullScreenCover(isPresented: $showingNavigationBarView) {
-                    CustomTabBarView()
+                    CustomTabBarView(viewModel: CustomTabBarViewModel())
                 }
+//                .fullScreenCover(isPresented: $showingNavigationBarView) {
+//                    CustomTabBarView()
+//                }
                 .padding()
 
             }
@@ -176,22 +179,5 @@ struct NoteView: View {
 struct NewEntryView_Previews: PreviewProvider {
     static var previews: some View {
         NoteView(selectedSugarLevel: .constant(5.0), displayText: "Сахар крови")
-            .environmentObject(MealCardsData())
     }
 }
-
-
-/*
-
- NavigationLink(destination: NoteView(selectedSugarLevel: $selectedSugarLevel, displayText: "Сахар крови")) {
-     Text("Далее")
-         .frame(minWidth: 0, maxWidth: .infinity)
-         .foregroundColor(.white)
-         .padding()
-         .background(Color.blue)
-         .cornerRadius(10)
-         .padding(.bottom, 30)
-         .padding(.horizontal, 20)
- }
- .padding()
- */
