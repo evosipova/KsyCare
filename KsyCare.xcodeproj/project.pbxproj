@@ -14,6 +14,8 @@
 		5E351F262B5F4DEB004A3803 /* InsulinView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E351F252B5F4DEB004A3803 /* InsulinView.swift */; };
 		5E351F282B5F4DF3004A3803 /* CombinedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E351F272B5F4DF3004A3803 /* CombinedView.swift */; };
 		5E7756012B882032007F68CB /* CustomTabBarItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E7756002B882032007F68CB /* CustomTabBarItem.swift */; };
+		5E7756042B882548007F68CB /* AddNoteViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E7756032B882548007F68CB /* AddNoteViewModel.swift */; };
+		5E77560C2B88F6A1007F68CB /* CardType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E77560B2B88F6A1007F68CB /* CardType.swift */; };
 		5EC07B452B8810F400C47EC5 /* MealCardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EC07B442B8810F400C47EC5 /* MealCardViewModel.swift */; };
 		5EC07B482B881E4600C47EC5 /* CustomTabBarViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EC07B472B881E4600C47EC5 /* CustomTabBarViewModel.swift */; };
 		5ECCBE5B2B46E6470042CC5F /* KsyCareApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ECCBE5A2B46E6470042CC5F /* KsyCareApp.swift */; };
@@ -60,6 +62,8 @@
 		5E351F252B5F4DEB004A3803 /* InsulinView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsulinView.swift; sourceTree = "<group>"; };
 		5E351F272B5F4DF3004A3803 /* CombinedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CombinedView.swift; sourceTree = "<group>"; };
 		5E7756002B882032007F68CB /* CustomTabBarItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBarItem.swift; sourceTree = "<group>"; };
+		5E7756032B882548007F68CB /* AddNoteViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNoteViewModel.swift; sourceTree = "<group>"; };
+		5E77560B2B88F6A1007F68CB /* CardType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardType.swift; sourceTree = "<group>"; };
 		5EC07B442B8810F400C47EC5 /* MealCardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealCardViewModel.swift; sourceTree = "<group>"; };
 		5EC07B472B881E4600C47EC5 /* CustomTabBarViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBarViewModel.swift; sourceTree = "<group>"; };
 		5ECCBE572B46E6470042CC5F /* KsyCare.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KsyCare.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -125,7 +129,7 @@
 		5E351F202B5F4DB5004A3803 /* NoteScreen */ = {
 			isa = PBXGroup;
 			children = (
-				5ECCBE902B4735080042CC5F /* AddNoteView.swift */,
+				5E7756022B882533007F68CB /* AddNote */,
 				5EDB7EEC2B802C5D000F234D /* NoteView.swift */,
 				5E351F232B5F4DE2004A3803 /* BloodSugarView.swift */,
 				5E351F272B5F4DF3004A3803 /* CombinedView.swift */,
@@ -133,6 +137,16 @@
 				5E351F252B5F4DEB004A3803 /* InsulinView.swift */,
 			);
 			path = NoteScreen;
+			sourceTree = "<group>";
+		};
+		5E7756022B882533007F68CB /* AddNote */ = {
+			isa = PBXGroup;
+			children = (
+				5ECCBE902B4735080042CC5F /* AddNoteView.swift */,
+				5E7756032B882548007F68CB /* AddNoteViewModel.swift */,
+				5E77560B2B88F6A1007F68CB /* CardType.swift */,
+			);
+			path = AddNote;
 			sourceTree = "<group>";
 		};
 		5EC07B462B881E3800C47EC5 /* CustomTabBar */ = {
@@ -347,6 +361,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5E7756042B882548007F68CB /* AddNoteViewModel.swift in Sources */,
 				5EC07B482B881E4600C47EC5 /* CustomTabBarViewModel.swift in Sources */,
 				5E351F222B5F4DDA004A3803 /* FoodView.swift in Sources */,
 				5EC07B452B8810F400C47EC5 /* MealCardViewModel.swift in Sources */,
@@ -367,6 +382,7 @@
 				5E351F262B5F4DEB004A3803 /* InsulinView.swift in Sources */,
 				5E351F1C2B5DE398004A3803 /* StatisticsView.swift in Sources */,
 				5ECCBE5B2B46E6470042CC5F /* KsyCareApp.swift in Sources */,
+				5E77560C2B88F6A1007F68CB /* CardType.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

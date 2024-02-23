@@ -46,7 +46,7 @@ struct CustomTabBarView: View {
                         .edgesIgnoringSafeArea(.all)
                 }
 
-                AddNoteView(showingPopup: $viewModel.showingAddNotePopup)
+                AddNoteView(viewModel: AddNoteViewModel(), showingPopup: $viewModel.showingAddNotePopup)
                     .padding(.bottom)
                     .transition(.move(edge: .bottom))
                     .animation(.default, value: viewModel.showingAddNotePopup)

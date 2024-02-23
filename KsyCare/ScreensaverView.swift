@@ -8,9 +8,9 @@ struct ScreensaverView: View {
                     .imageScale(.large)
                     .foregroundColor(.accentColor)
                     .padding(8)
-
+                
                 Text("KsyCare")
-
+                
                 navigationButton("Регистрация", destination: RegistrationView(), color: .green)
                 navigationButton("Авторизация", destination: LoginView(), color: .blue)
                 navigationButton("Основной экран", destination: CustomTabBarView(viewModel: CustomTabBarViewModel()), color: .red)
@@ -18,7 +18,7 @@ struct ScreensaverView: View {
             .padding()
         }
     }
-
+    
     private func navigationButton<Destination: View>(_ title: String, destination: Destination, color: Color) -> some View {
         NavigationLink(title, destination: destination)
             .padding()

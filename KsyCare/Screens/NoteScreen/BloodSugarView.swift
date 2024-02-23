@@ -7,7 +7,7 @@ struct ScrollViewOffsetPreferenceKey: PreferenceKey {
 
 struct BloodSugarView: View {
     @Environment(\.presentationMode) var presentationMode
-
+    
     private let bloodSugarLevels = Array(stride(from: 3.0, through: 7.0, by: 0.1))
     @State private var selectedSugarLevel: Double = 3.0
     @State private var scrollViewProxy: ScrollViewProxy?
@@ -16,17 +16,17 @@ struct BloodSugarView: View {
     private let frameWidth: CGFloat = 200
     private let frameHeight: CGFloat = 300
     private let spacing: CGFloat = 20
-
+    
     var body: some View {
         NavigationStack {
             ZStack(alignment: .bottom) {
-
+                
                 RoundedRectangle(cornerRadius: 30, style: .continuous)
                     .fill(Color("Test"))
                     .frame(maxHeight: 763)
                     .edgesIgnoringSafeArea(.bottom)
-
-
+                
+                
                 VStack {
                     HStack {
                         Button(action: {
@@ -38,9 +38,9 @@ struct BloodSugarView: View {
                                 .frame(width: 13, height: 26)
                         }
                         .padding(.leading, 13)
-
+                        
                         Spacer()
-
+                        
                         HStack {
                             Rectangle()
                                 .frame(width: 50, height: 5)
@@ -51,28 +51,28 @@ struct BloodSugarView: View {
                                 .cornerRadius(5)
                                 .foregroundColor(.gray)
                         }
-
+                        
                         Spacer()
-
+                        
                         Rectangle()
                             .foregroundColor(.clear)
                             .frame(width: 33, height: 26)
                     }
                     .padding()
-
+                    
                     HStack {
                         Text("Сахар крови")
                             .font(.system(size: 24, weight: .bold))
                         Spacer()
                     }
                     .padding(.leading, 20)
-
+                    
                     Spacer()
-
+                    
                     Text("ММОЛЬ/Л")
                         .font(.system(size: 18, weight: .bold))
                         .padding(.top, 100)
-
+                    
                     GeometryReader { fullView in
                         ScrollViewReader { proxy in
                             ScrollView(.horizontal, showsIndicators: false) {
@@ -104,7 +104,7 @@ struct BloodSugarView: View {
                             .onPreferenceChange(ScrollViewOffsetPreferenceKey.self) { offset in
                                 let center = offset - (fullView.size.width / 2 - itemWidth / 2) + (itemWidth / 2)
                                 let centerIndex = Int(round(center / (itemWidth + spacing)))
-
+                                
                                 if centerIndex >= 0 && centerIndex < bloodSugarLevels.count {
                                     let centeredItem = bloodSugarLevels[centerIndex]
                                     if selectedSugarLevel != centeredItem {
@@ -122,12 +122,12 @@ struct BloodSugarView: View {
                         .frame(height: fullView.size.height / 2)
                     }
                     .frame(height: frameHeight)
-
+                    
                     Spacer()
-
-
-
-                    NavigationLink(destination: NoteView(selectedSugarLevel: $selectedSugarLevel, displayText: "Сахар крови")) {
+                    
+                    
+                    
+                    NavigationLink(destination: NoteView(selectedSugarLevel: $selectedSugarLevel, displayText: "Сахар крови", cardType: .bloodSugar)) {
                         Text("Далее")
                             .frame(minWidth: 0, maxWidth: .infinity)
                             .foregroundColor(.white)
@@ -137,8 +137,6 @@ struct BloodSugarView: View {
                             .padding(.bottom, 30)
                             .padding(.horizontal, 20)
                     }
-                    .padding()
-
                 }
             }
             .edgesIgnoringSafeArea(.bottom)
