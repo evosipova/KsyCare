@@ -2,36 +2,26 @@ import SwiftUI
 
 struct HomeView: View {
     @EnvironmentObject var mealCardsData: MealCardViewModel
+    @State private var lastCheckedDate = Date()
 
     private var todaysCards: [MealCardModel] {
-         mealCardsData.allCards.filter { Calendar.current.isDateInToday($0.creationTime) }
-     }
+        mealCardsData.allCards.filter { Calendar.current.isDateInToday($0.creationTime) }
+    }
 
     var body: some View {
         ScrollView {
-            VStack(spacing: 0) {
-                greetingSection
+            VStack() {
                 circleSection
                 todaySection
             }
-            .padding(.bottom, 10)
+            .padding(.top, 30)
         }
         .frame(maxHeight: .infinity)
         .edgesIgnoringSafeArea(.bottom)
         .background(Color.gray.opacity(0.1))
-    }
-
-    private var greetingSection: some View {
-        HStack {
-            Text("Добрый день!")
-                .font(.custom("Amiko", size: 24))
-                .fontWeight(.bold)
-                .foregroundColor(Color.black)
-                .padding(.top, 57)
-                .padding(.leading, 27)
-            Spacer()
+        .onAppear {
+            setUpTimer()
         }
-        .padding(.bottom, 38)
     }
 
     private var circleSection: some View {
@@ -55,6 +45,16 @@ struct HomeView: View {
             }
         }
         .clipShape(RoundedRectangle(cornerRadius: 30, style: .continuous))
+    }
+
+    private func setUpTimer() {
+        Timer.scheduledTimer(withTimeInterval: 60, repeats: true) { timer in
+            let currentDate = Date()
+            if !Calendar.current.isDate(lastCheckedDate, inSameDayAs: currentDate) {
+                mealCardsData.updateTodaysCards()
+                lastCheckedDate = currentDate
+            }
+        }
     }
 }
 

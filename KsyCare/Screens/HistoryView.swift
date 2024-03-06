@@ -3,8 +3,6 @@ import SwiftUI
 struct HistoryView: View {
     @EnvironmentObject var mealCardsData: MealCardViewModel
     var body: some View {
-
-
         ScrollView {
             VStack() {
                 headingSection
@@ -41,7 +39,7 @@ struct HistoryView: View {
         return VStack {
             ForEach(groupedCards.keys.sorted(), id: \.self) { date in
                 let cardsForDate = groupedCards[date]!
-                Section(header: Text("\(date, formatter: itemFormatter)")) {
+                Section(header: headerView(for: date)) {
                     ForEach(cardsForDate, id: \.id) { card in
                         MealCard(viewModel: mealCardsData, card: card)
                             .padding(.bottom, 10)
@@ -53,13 +51,19 @@ struct HistoryView: View {
         .clipShape(RoundedRectangle(cornerRadius: 30, style: .continuous))
     }
 
-    private var itemFormatter: DateFormatter {
-        let formatter = DateFormatter()
-        formatter.dateStyle = .long
-        formatter.timeStyle = .none
-        return formatter
+    private func headerView(for date: Date) -> some View {
+        Text(date, formatter: itemFormatter)
+            .font(.custom("Amiko-Bold", size: 18))
+            .frame(height: 24)
+            .padding(.leading, 27)
+            .frame(maxWidth: .infinity, alignment: .leading)
     }
 
+    private var itemFormatter: DateFormatter {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "dd.MM.yy"
+        return formatter
+    }
 }
 
 struct HistoryView_Previews: PreviewProvider {
