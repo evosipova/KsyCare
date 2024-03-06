@@ -19,6 +19,7 @@ struct NoteView: View {
         NavigationStack {
             ZStack(alignment: .bottom) {
                 content
+
                 VStack {
                     doneButton
                 }
@@ -27,7 +28,6 @@ struct NoteView: View {
             .edgesIgnoringSafeArea(.bottom)
             .navigationBarHidden(true)
             .environment(\.locale, Locale(identifier: "ru_RU"))
-
         }
     }
 
@@ -86,7 +86,7 @@ struct NoteView: View {
     private var titleField: some View {
         VStack(alignment: .leading, spacing: 10) {
             Text("Заголовок").font(.system(size: 20)).padding(.leading, 20)
-            TextField("Без зоголовка", text: $title)
+            TextField("Без заголовка", text: $title)
                 .padding()
                 .background(Color.gray.opacity(0.2))
                 .cornerRadius(5)
@@ -101,11 +101,11 @@ struct NoteView: View {
                 .font(.system(size: 20))
                 .frame(width: 150, alignment: .leading)
 
-           Spacer(minLength: 20)
+            Spacer(minLength: 20)
 
             DatePicker("", selection: $selectedDate, displayedComponents: .date)
-                   .datePickerStyle(.compact)
-                   .frame(width: 120, alignment: .trailing)
+                .datePickerStyle(.automatic)
+                .frame(width: 120, alignment: .trailing)
 
             DatePicker("", selection: $selectedDate, displayedComponents: .hourAndMinute)
                 .datePickerStyle(.compact)
@@ -131,19 +131,6 @@ struct NoteView: View {
         .padding()
         .background(Color.gray.opacity(0.2))
         .cornerRadius(5)
-    }
-
-
-    private var datePicker: some View {
-        DatePicker(
-            "",
-            selection: $selectedDate,
-            in: ...Date(),
-            displayedComponents: [.date, .hourAndMinute]
-        )
-        .datePickerStyle(GraphicalDatePickerStyle())
-
-        .fixedSize(horizontal: false, vertical: true)
     }
 
     private var commentField: some View {
@@ -188,4 +175,3 @@ struct NoteView_Previews: PreviewProvider {
         NoteView(selectedSugarLevel: .constant(5.0), displayText: "Сахар крови", cardType: .bloodSugar).environmentObject(MealCardViewModel())
     }
 }
-
