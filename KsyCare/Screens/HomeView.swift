@@ -1,7 +1,11 @@
 import SwiftUI
 
 struct HomeView: View {
-    @EnvironmentObject var viewModel: MealCardViewModel
+    @EnvironmentObject var mealCardsData: MealCardViewModel
+
+    private var todaysCards: [MealCardModel] {
+         mealCardsData.allCards.filter { Calendar.current.isDateInToday($0.creationTime) }
+     }
 
     var body: some View {
         ScrollView {
@@ -44,8 +48,8 @@ struct HomeView: View {
                 .frame(maxWidth: .infinity, alignment: .center)
                 .padding(.top, 20)
 
-            ForEach(viewModel.cards.indices, id: \.self) { index in
-                MealCard(viewModel: viewModel, card: viewModel.cards[index])
+            ForEach(mealCardsData.cards, id: \.id) { card in
+                MealCard(viewModel: mealCardsData, card: card)
                     .padding(.bottom, 10)
                     .padding(.horizontal)
             }

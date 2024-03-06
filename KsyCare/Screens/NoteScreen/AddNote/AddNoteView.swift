@@ -37,7 +37,6 @@ struct AddNoteView: View {
         .background(Color.white)
         .foregroundColor(.black)
         .cornerRadius(40)
-        .padding(.horizontal, 20)
     }
 }
 
