@@ -56,7 +56,7 @@ struct MealCardDetailView: View {
                     Text(card.mealTime)
                         .font(.headline)
                     Spacer()
-                    Text(card.creationTime.description)
+                    Text(formatDate(card.creationTime))
                         .font(.body)
                 }
                 .padding(.top, 5)
@@ -144,6 +144,12 @@ struct MealCardDetailView: View {
             }
         }
         .background(Color.white)
+    }
+
+    private func formatDate(_ date: Date) -> String {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "H:mm"
+        return formatter.string(from: date)
     }
 }
 
