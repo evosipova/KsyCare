@@ -9,21 +9,23 @@ struct HomeView: View {
     }
 
     var body: some View {
-        ScrollView {
-            VStack() {
-                circleSection
-                todaySection
+        NavigationView {
+            ScrollView {
+                VStack() {
+                    circleSection
+                    todaySection
+                }
+                .padding(.top, 30)
             }
-            .padding(.top, 30)
-        }
-        .frame(maxHeight: .infinity)
-        .edgesIgnoringSafeArea(.bottom)
-        .background(Color.gray.opacity(0.1))
-        .onAppear {
-            setUpTimer()
+            .frame(maxHeight: .infinity)
+            .edgesIgnoringSafeArea(.bottom)
+            .background(Color.gray.opacity(0.1))
+            .onAppear {
+                setUpTimer()
+            }
         }
     }
-
+    
     private var circleSection: some View {
         Circle()
             .stroke(Color.gray, lineWidth: 60)
@@ -39,9 +41,11 @@ struct HomeView: View {
                 .padding(.top, 20)
 
             ForEach(mealCardsData.cards, id: \.id) { card in
-                MealCard(viewModel: mealCardsData, card: card)
-                    .padding(.bottom, 10)
-                    .padding(.horizontal)
+                NavigationLink(destination: MealCardDetailView(card: card)) {
+                    MealCard(viewModel: mealCardsData, card: card)
+                        .padding(.bottom, 10)
+                        .padding(.horizontal)
+                }
             }
         }
         .clipShape(RoundedRectangle(cornerRadius: 30, style: .continuous))
