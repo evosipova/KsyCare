@@ -13,6 +13,16 @@ class MealCardViewModel: ObservableObject {
         }
     }
 
+    func deleteCard(_ card: MealCardModel) {
+        if let index = allCards.firstIndex(where: { $0.id == card.id }) {
+            allCards.remove(at: index)
+        }
+
+        if let todayIndex = cards.firstIndex(where: { $0.id == card.id }) {
+            cards.remove(at: todayIndex)
+        }
+    }
+
     func updateTodaysCards() {
         cards = allCards.filter { Calendar.current.isDateInToday($0.creationTime) }
     }

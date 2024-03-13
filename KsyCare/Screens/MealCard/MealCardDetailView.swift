@@ -3,12 +3,14 @@ import SwiftUI
 struct MealCardDetailView: View {
     var card: MealCardModel
     @Environment(\.presentationMode) var presentationMode
+    @EnvironmentObject var mealCardsData: MealCardViewModel
 
     var body: some View {
         NavigationStack {
             ZStack(alignment: .bottom) {
                 content
                 Spacer()
+                actionButtons
             }
         }
         .edgesIgnoringSafeArea(.bottom)
@@ -16,13 +18,12 @@ struct MealCardDetailView: View {
     }
 
     private var content: some View {
-        ScrollView {
+        VStack {
             VStack() {
                 header
-                Spacer()
                 info
+                Spacer()
             }
-            Spacer()
         }
     }
 
@@ -49,7 +50,7 @@ struct MealCardDetailView: View {
     }
 
     private var info: some View {
-        ScrollView {
+        HStack {
             VStack(alignment: .leading, spacing: 10) {
                 HStack {
                     Text(card.mealTime)
@@ -106,8 +107,45 @@ struct MealCardDetailView: View {
                 .font(.body)
         }
     }
-}
 
+    private var actionButtons: some View {
+        HStack(spacing: -20) {
+            Button(action: {
+                withAnimation {
+                    mealCardsData.deleteCard(card)
+                    presentationMode.wrappedValue.dismiss()
+                }
+            }) {
+                HStack {
+                    Image(systemName: "trash")
+                        .foregroundColor(.gray)
+                }
+                .padding()
+                .overlay(
+                    RoundedRectangle(cornerRadius: 10)
+                        .stroke(Color.gray, lineWidth: 1)
+                )
+                .padding(.bottom, 30)
+                .padding(.horizontal, 20)
+            }
+
+
+            Button(action: {
+                // Implement edit action
+            }) {
+                Text("Изменить запись")
+                    .frame(minWidth: 0, maxWidth: .infinity)
+                    .foregroundColor(.white)
+                    .padding()
+                    .background(Color.gray)
+                    .cornerRadius(10)
+                    .padding(.bottom, 30)
+                    .padding(.horizontal, 20)
+            }
+        }
+        .background(Color.white)
+    }
+}
 
 struct MealCardDetailView_Previews: PreviewProvider {
     static var previews: some View {
