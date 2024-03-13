@@ -3,11 +3,11 @@ import SwiftUI
 struct HomeView: View {
     @EnvironmentObject var mealCardsData: MealCardViewModel
     @State private var lastCheckedDate = Date()
-
+    
     private var todaysCards: [MealCardModel] {
         mealCardsData.allCards.filter { Calendar.current.isDateInToday($0.creationTime) }
     }
-
+    
     var body: some View {
         NavigationView {
             ScrollView {
@@ -27,19 +27,33 @@ struct HomeView: View {
     }
     
     private var circleSection: some View {
-        Circle()
-            .stroke(Color.gray, lineWidth: 60)
-            .frame(width: 214, height: 214)
-            .padding(.bottom, 45)
+        ZStack {
+            Circle()
+                .stroke(lineWidth: 10)
+                .frame(width: 214, height: 214)
+                .foregroundColor(mealCardsData.hasInsulinInfoToday ? .blue : Color.gray.opacity(0.5))
+            Circle()
+                .stroke(lineWidth: 10)
+                .frame(width: 174, height: 174)
+                .foregroundColor(mealCardsData.hasBloodInfoToday ? .red : Color.gray.opacity(0.5))
+            Circle()
+                .stroke(lineWidth: 10)
+                .frame(width: 134, height: 134)
+                .foregroundColor(mealCardsData.hasFoodInfoToday ? Color("FoodColor") : Color.gray.opacity(0.5))
+            Image(systemName: "heart.fill")
+                .font(.system(size: 60))
+                .foregroundColor(.secondary)
+        }
+        .padding(.bottom, 20)
     }
-
+    
     private var todaySection: some View {
         VStack {
             Text("Сегодня")
                 .font(.custom("Amiko", size: 24))
                 .frame(maxWidth: .infinity, alignment: .center)
                 .padding(.top, 20)
-
+            
             ForEach(mealCardsData.cards, id: \.id) { card in
                 NavigationLink(destination: MealCardDetailView(card: card)) {
                     MealCard(viewModel: mealCardsData, card: card)
@@ -50,7 +64,7 @@ struct HomeView: View {
         }
         .clipShape(RoundedRectangle(cornerRadius: 30, style: .continuous))
     }
-
+    
     private func setUpTimer() {
         Timer.scheduledTimer(withTimeInterval: 60, repeats: true) { timer in
             let currentDate = Date()
@@ -59,6 +73,20 @@ struct HomeView: View {
                 lastCheckedDate = currentDate
             }
         }
+    }
+}
+
+extension MealCardViewModel {
+    var hasInsulinInfoToday: Bool {
+        cards.contains { $0.insulin != nil }
+    }
+    
+    var hasBloodInfoToday: Bool {
+        cards.contains { $0.bloodSugar != nil }
+    }
+    
+    var hasFoodInfoToday: Bool {
+        cards.contains { $0.breadUnits != nil }
     }
 }
 

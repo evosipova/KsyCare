@@ -136,7 +136,6 @@
 				5ECCBE922B4735450042CC5F /* HistoryView.swift */,
 				5E351F1B2B5DE398004A3803 /* StatisticsView.swift */,
 				5EDB7EF92B854942000F234D /* MealCard */,
-				5EC2A6F32BA2563A007D4188 /* NotificationsView.swift */,
 			);
 			path = Screens;
 			sourceTree = "<group>";
@@ -181,6 +180,8 @@
 				5EC2A6EC2BA23519007D4188 /* UserProfileModel.swift */,
 				5EC2A6F12BA23551007D4188 /* ProfileViewModel.swift */,
 				5EC2A6F52BA2567F007D4188 /* ImagePicker.swift */,
+				5EC2A6F32BA2563A007D4188 /* NotificationsView.swift */,
+				5E951DE42B952D1800CF5016 /* TeamScreen.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -213,7 +214,6 @@
 				5ECCBE842B46F70F0042CC5F /* RegistrationView.swift */,
 				5ECCBE862B46F7500042CC5F /* LoginView.swift */,
 				5E951DE22B8FCBBE00CF5016 /* WarningScreen.swift */,
-				5E951DE42B952D1800CF5016 /* TeamScreen.swift */,
 				5EC07B462B881E3800C47EC5 /* CustomTabBar */,
 				5E351F172B476BAB004A3803 /* Screens */,
 				5ECCBE5E2B46E6480042CC5F /* Assets.xcassets */,
