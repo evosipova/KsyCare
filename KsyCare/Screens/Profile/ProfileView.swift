@@ -10,11 +10,19 @@ struct ProfileView: View {
     @State private var inputImage: UIImage?
 
     private func navigationButton<Destination: View>(_ title: String, destination: Destination, color: Color) -> some View {
-        NavigationLink(title, destination: destination)
+        NavigationLink(destination: destination) {
+            HStack {
+                Text(title)
+                    .foregroundColor(.black)
+                Spacer()
+                Image(systemName: "arrow.right")
+                    .foregroundColor(.black)
+            }
             .padding()
-            .foregroundColor(.white)
+            .frame(maxWidth: .infinity, alignment: .leading)
             .background(color)
             .cornerRadius(8)
+        }
     }
 
     var body: some View {
@@ -179,15 +187,8 @@ struct ProfileView: View {
                 Text(viewModel.userProfile.bloodSugarNorm)
                     .foregroundColor(.gray)
             }
-            //            Button("Уведомления") {
-            //                // Переход к экрану уведомлений NotificationView()
-            //            }
-            //            .padding()
-            //            .background(Color.blue)
-            //            .foregroundColor(.white)
-            //            .cornerRadius(8)
 
-            navigationButton("Основной экран", destination: NotificationsView(), color: .red)
+            navigationButton("Уведомления", destination: NotificationsView(), color: Color("Test"))
         }
         .padding()
     }
