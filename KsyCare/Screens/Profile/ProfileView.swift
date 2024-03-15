@@ -5,6 +5,9 @@ struct ProfileView: View {
     @State private var showTeamScreen = false
     @State private var showScreensaverView = false
 
+    @State private var showNotificationsView = false
+
+
     @StateObject private var viewModel = ProfileViewModel()
     @State private var showingImagePicker = false
     @State private var inputImage: UIImage?
@@ -49,6 +52,9 @@ struct ProfileView: View {
         }
         .fullScreenCover(isPresented: $showScreensaverView) {
             ScreensaverView()
+        }
+        .fullScreenCover(isPresented: $showNotificationsView) {
+            NotificationsView(viewModel: NotificationsViewModel())
         }
     }
 
@@ -188,7 +194,17 @@ struct ProfileView: View {
                     .foregroundColor(.gray)
             }
 
-            navigationButton("Уведомления", destination: NotificationsView(), color: Color("Test"))
+            Button(action: {
+                showNotificationsView.toggle()
+            }) {
+
+                    Text("Уведомления")
+                Spacer()
+            }
+            .padding()
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .background(Color("Test"))
+            .cornerRadius(8)
         }
         .padding()
     }

@@ -13,6 +13,11 @@
 		5E351F242B5F4DE2004A3803 /* BloodSugarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E351F232B5F4DE2004A3803 /* BloodSugarView.swift */; };
 		5E351F262B5F4DEB004A3803 /* InsulinView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E351F252B5F4DEB004A3803 /* InsulinView.swift */; };
 		5E351F282B5F4DF3004A3803 /* CombinedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E351F272B5F4DF3004A3803 /* CombinedView.swift */; };
+		5E48BCAF2BA4A91D00D364A7 /* AddNotificationsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E48BCAE2BA4A91D00D364A7 /* AddNotificationsView.swift */; };
+		5E48BCB12BA4AD5600D364A7 /* NotificationsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E48BCB02BA4AD5600D364A7 /* NotificationsViewModel.swift */; };
+		5E48BCB52BA4DDE500D364A7 /* RepeatOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E48BCB42BA4DDE500D364A7 /* RepeatOption.swift */; };
+		5E48BCB72BA4E01700D364A7 /* NotificationCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E48BCB62BA4E01700D364A7 /* NotificationCard.swift */; };
+		5E48BCB92BA4E09000D364A7 /* NotificationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E48BCB82BA4E09000D364A7 /* NotificationModel.swift */; };
 		5E7018192B9A049D00874E5B /* MealCardDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E7018182B9A049D00874E5B /* MealCardDetailView.swift */; };
 		5E7756012B882032007F68CB /* CustomTabBarItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E7756002B882032007F68CB /* CustomTabBarItem.swift */; };
 		5E7756042B882548007F68CB /* AddNoteViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E7756032B882548007F68CB /* AddNoteViewModel.swift */; };
@@ -25,6 +30,10 @@
 		5EC2A6F22BA23551007D4188 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EC2A6F12BA23551007D4188 /* ProfileViewModel.swift */; };
 		5EC2A6F42BA2563A007D4188 /* NotificationsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EC2A6F32BA2563A007D4188 /* NotificationsView.swift */; };
 		5EC2A6F62BA2567F007D4188 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EC2A6F52BA2567F007D4188 /* ImagePicker.swift */; };
+		5EC2A6FB2BA3D2C8007D4188 /* LineChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EC2A6FA2BA3D2C8007D4188 /* LineChartView.swift */; };
+		5EC2A6FD2BA3D33F007D4188 /* Line.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EC2A6FC2BA3D33F007D4188 /* Line.swift */; };
+		5EC2A6FF2BA3D375007D4188 /* IndicatorPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EC2A6FE2BA3D375007D4188 /* IndicatorPoint.swift */; };
+		5EC2A7012BA3D3D3007D4188 /* Path+QuadCurve.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EC2A7002BA3D3D3007D4188 /* Path+QuadCurve.swift */; };
 		5ECCBE5B2B46E6470042CC5F /* KsyCareApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ECCBE5A2B46E6470042CC5F /* KsyCareApp.swift */; };
 		5ECCBE5D2B46E6470042CC5F /* ScreensaverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ECCBE5C2B46E6470042CC5F /* ScreensaverView.swift */; };
 		5ECCBE5F2B46E6480042CC5F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5ECCBE5E2B46E6480042CC5F /* Assets.xcassets */; };
@@ -68,6 +77,11 @@
 		5E351F232B5F4DE2004A3803 /* BloodSugarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BloodSugarView.swift; sourceTree = "<group>"; };
 		5E351F252B5F4DEB004A3803 /* InsulinView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsulinView.swift; sourceTree = "<group>"; };
 		5E351F272B5F4DF3004A3803 /* CombinedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CombinedView.swift; sourceTree = "<group>"; };
+		5E48BCAE2BA4A91D00D364A7 /* AddNotificationsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNotificationsView.swift; sourceTree = "<group>"; };
+		5E48BCB02BA4AD5600D364A7 /* NotificationsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsViewModel.swift; sourceTree = "<group>"; };
+		5E48BCB42BA4DDE500D364A7 /* RepeatOption.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepeatOption.swift; sourceTree = "<group>"; };
+		5E48BCB62BA4E01700D364A7 /* NotificationCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationCard.swift; sourceTree = "<group>"; };
+		5E48BCB82BA4E09000D364A7 /* NotificationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationModel.swift; sourceTree = "<group>"; };
 		5E7018182B9A049D00874E5B /* MealCardDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealCardDetailView.swift; sourceTree = "<group>"; };
 		5E7756002B882032007F68CB /* CustomTabBarItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBarItem.swift; sourceTree = "<group>"; };
 		5E7756032B882548007F68CB /* AddNoteViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNoteViewModel.swift; sourceTree = "<group>"; };
@@ -80,6 +94,10 @@
 		5EC2A6F12BA23551007D4188 /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
 		5EC2A6F32BA2563A007D4188 /* NotificationsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsView.swift; sourceTree = "<group>"; };
 		5EC2A6F52BA2567F007D4188 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
+		5EC2A6FA2BA3D2C8007D4188 /* LineChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineChartView.swift; sourceTree = "<group>"; };
+		5EC2A6FC2BA3D33F007D4188 /* Line.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Line.swift; sourceTree = "<group>"; };
+		5EC2A6FE2BA3D375007D4188 /* IndicatorPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IndicatorPoint.swift; sourceTree = "<group>"; };
+		5EC2A7002BA3D3D3007D4188 /* Path+QuadCurve.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Path+QuadCurve.swift"; sourceTree = "<group>"; };
 		5ECCBE572B46E6470042CC5F /* KsyCare.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KsyCare.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5ECCBE5A2B46E6470042CC5F /* KsyCareApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KsyCareApp.swift; sourceTree = "<group>"; };
 		5ECCBE5C2B46E6470042CC5F /* ScreensaverView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreensaverView.swift; sourceTree = "<group>"; };
@@ -130,11 +148,11 @@
 		5E351F172B476BAB004A3803 /* Screens */ = {
 			isa = PBXGroup;
 			children = (
+				5EC2A7022BA3D5DE007D4188 /* Statistics */,
 				5EC2A6EB2BA234FF007D4188 /* Profile */,
 				5E351F202B5F4DB5004A3803 /* NoteScreen */,
 				5ECCBE8E2B4733560042CC5F /* HomeView.swift */,
 				5ECCBE922B4735450042CC5F /* HistoryView.swift */,
-				5E351F1B2B5DE398004A3803 /* StatisticsView.swift */,
 				5EDB7EF92B854942000F234D /* MealCard */,
 			);
 			path = Screens;
@@ -176,14 +194,39 @@
 		5EC2A6EB2BA234FF007D4188 /* Profile */ = {
 			isa = PBXGroup;
 			children = (
+				5EC2A7032BA49AFB007D4188 /* Notifications */,
 				5ECCBE8A2B4732FE0042CC5F /* ProfileView.swift */,
 				5EC2A6EC2BA23519007D4188 /* UserProfileModel.swift */,
 				5EC2A6F12BA23551007D4188 /* ProfileViewModel.swift */,
 				5EC2A6F52BA2567F007D4188 /* ImagePicker.swift */,
-				5EC2A6F32BA2563A007D4188 /* NotificationsView.swift */,
 				5E951DE42B952D1800CF5016 /* TeamScreen.swift */,
 			);
 			path = Profile;
+			sourceTree = "<group>";
+		};
+		5EC2A7022BA3D5DE007D4188 /* Statistics */ = {
+			isa = PBXGroup;
+			children = (
+				5E351F1B2B5DE398004A3803 /* StatisticsView.swift */,
+				5EC2A6FA2BA3D2C8007D4188 /* LineChartView.swift */,
+				5EC2A6FC2BA3D33F007D4188 /* Line.swift */,
+				5EC2A6FE2BA3D375007D4188 /* IndicatorPoint.swift */,
+				5EC2A7002BA3D3D3007D4188 /* Path+QuadCurve.swift */,
+			);
+			path = Statistics;
+			sourceTree = "<group>";
+		};
+		5EC2A7032BA49AFB007D4188 /* Notifications */ = {
+			isa = PBXGroup;
+			children = (
+				5EC2A6F32BA2563A007D4188 /* NotificationsView.swift */,
+				5E48BCB82BA4E09000D364A7 /* NotificationModel.swift */,
+				5E48BCB62BA4E01700D364A7 /* NotificationCard.swift */,
+				5E48BCB02BA4AD5600D364A7 /* NotificationsViewModel.swift */,
+				5E48BCAE2BA4A91D00D364A7 /* AddNotificationsView.swift */,
+				5E48BCB42BA4DDE500D364A7 /* RepeatOption.swift */,
+			);
+			path = Notifications;
 			sourceTree = "<group>";
 		};
 		5ECCBE4E2B46E6470042CC5F = {
@@ -275,6 +318,8 @@
 			dependencies = (
 			);
 			name = KsyCare;
+			packageProductDependencies = (
+			);
 			productName = KsyCare;
 			productReference = 5ECCBE572B46E6470042CC5F /* KsyCare.app */;
 			productType = "com.apple.product-type.application";
@@ -347,6 +392,8 @@
 				Base,
 			);
 			mainGroup = 5ECCBE4E2B46E6470042CC5F;
+			packageReferences = (
+			);
 			productRefGroup = 5ECCBE582B46E6470042CC5F /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -390,6 +437,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5E48BCB12BA4AD5600D364A7 /* NotificationsViewModel.swift in Sources */,
 				5E7756042B882548007F68CB /* AddNoteViewModel.swift in Sources */,
 				5EC07B482B881E4600C47EC5 /* CustomTabBarViewModel.swift in Sources */,
 				5E351F222B5F4DDA004A3803 /* FoodView.swift in Sources */,
@@ -398,9 +446,14 @@
 				5E7018192B9A049D00874E5B /* MealCardDetailView.swift in Sources */,
 				5EC2A6F22BA23551007D4188 /* ProfileViewModel.swift in Sources */,
 				5E351F1F2B5DFD7B004A3803 /* MealCard.swift in Sources */,
+				5E48BCB52BA4DDE500D364A7 /* RepeatOption.swift in Sources */,
+				5E48BCB72BA4E01700D364A7 /* NotificationCard.swift in Sources */,
 				5ECCBE892B46FB8B0042CC5F /* CustomTabBarView.swift in Sources */,
+				5E48BCAF2BA4A91D00D364A7 /* AddNotificationsView.swift in Sources */,
+				5EC2A7012BA3D3D3007D4188 /* Path+QuadCurve.swift in Sources */,
 				5ECCBE5D2B46E6470042CC5F /* ScreensaverView.swift in Sources */,
 				5E351F282B5F4DF3004A3803 /* CombinedView.swift in Sources */,
+				5EC2A6FB2BA3D2C8007D4188 /* LineChartView.swift in Sources */,
 				5E351F242B5F4DE2004A3803 /* BloodSugarView.swift in Sources */,
 				5E951DE52B952D1800CF5016 /* TeamScreen.swift in Sources */,
 				5EC2A6ED2BA23519007D4188 /* UserProfileModel.swift in Sources */,
@@ -409,7 +462,10 @@
 				5ECCBE912B4735080042CC5F /* AddNoteView.swift in Sources */,
 				5EC2A6F42BA2563A007D4188 /* NotificationsView.swift in Sources */,
 				5EDB7EED2B802C5D000F234D /* NoteView.swift in Sources */,
+				5E48BCB92BA4E09000D364A7 /* NotificationModel.swift in Sources */,
 				5ECCBE8B2B4732FE0042CC5F /* ProfileView.swift in Sources */,
+				5EC2A6FD2BA3D33F007D4188 /* Line.swift in Sources */,
+				5EC2A6FF2BA3D375007D4188 /* IndicatorPoint.swift in Sources */,
 				5ECCBE932B4735460042CC5F /* HistoryView.swift in Sources */,
 				5E951DE32B8FCBBE00CF5016 /* WarningScreen.swift in Sources */,
 				5E7756012B882032007F68CB /* CustomTabBarItem.swift in Sources */,
