@@ -1,7 +1,8 @@
 import SwiftUI
 
-struct NotificationModel: Hashable {
+struct NotificationModel: Hashable, Identifiable {
+    let id = UUID() 
     var title: String
-    var time: String
-    var repeatInterval: String
+    var time: Date
+    var repeatOption: RepeatOption
 }

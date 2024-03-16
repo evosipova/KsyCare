@@ -1,12 +1,46 @@
 import Foundation
+import UserNotifications
 
 class NotificationsViewModel: ObservableObject {
     @Published var showingAddNotificationsPopup: Bool = false
-    @Published var notifications: [NotificationModel] = [
-        NotificationModel(title: "Название напоминания", time: "12:30", repeatInterval: "Каждый день"),
-    ]
+    @Published var notifications: [NotificationModel] = []
 
-    func addNotification(notification: NotificationModel) {
-        notifications.append(notification)
+    func addNotification(title: String, time: Date, repeatOption: RepeatOption) {
+        let newNotification = NotificationModel(title: title, time: time, repeatOption: repeatOption)
+        notifications.append(newNotification)
+        scheduleNotification(for: newNotification)
+    }
+
+    func scheduleNotification(for model: NotificationModel) {
+        let content = UNMutableNotificationContent()
+        content.title = "Напоминание"
+        content.body = model.title
+        content.sound = .default
+
+        var dateComponents = Calendar.current.dateComponents([.hour, .minute], from: model.time)
+
+        switch model.repeatOption {
+        case .daily:
+            break
+        case .everyMonday, .everyTuesday, .everyWednesday, .everyThursday, .everyFriday, .everySaturday, .everySunday:
+            let weekday = model.repeatOption.weekday
+            dateComponents.weekday = weekday
+        case .never:
+            break
+        }
+
+        let trigger: UNNotificationTrigger
+        if model.repeatOption == .never {
+            trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: false)
+        } else {
+            trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: true)
+        }
+
+        let request = UNNotificationRequest(identifier: model.id.uuidString, content: content, trigger: trigger)
+        UNUserNotificationCenter.current().add(request) { error in
+            if let error = error {
+                print(" \(error.localizedDescription)")
+            }
+        }
     }
 }

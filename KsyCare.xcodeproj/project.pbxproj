@@ -18,6 +18,7 @@
 		5E48BCB52BA4DDE500D364A7 /* RepeatOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E48BCB42BA4DDE500D364A7 /* RepeatOption.swift */; };
 		5E48BCB72BA4E01700D364A7 /* NotificationCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E48BCB62BA4E01700D364A7 /* NotificationCard.swift */; };
 		5E48BCB92BA4E09000D364A7 /* NotificationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E48BCB82BA4E09000D364A7 /* NotificationModel.swift */; };
+		5E48BCBB2BA50EA800D364A7 /* NotificationDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E48BCBA2BA50EA800D364A7 /* NotificationDelegate.swift */; };
 		5E7018192B9A049D00874E5B /* MealCardDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E7018182B9A049D00874E5B /* MealCardDetailView.swift */; };
 		5E7756012B882032007F68CB /* CustomTabBarItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E7756002B882032007F68CB /* CustomTabBarItem.swift */; };
 		5E7756042B882548007F68CB /* AddNoteViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E7756032B882548007F68CB /* AddNoteViewModel.swift */; };
@@ -82,6 +83,7 @@
 		5E48BCB42BA4DDE500D364A7 /* RepeatOption.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepeatOption.swift; sourceTree = "<group>"; };
 		5E48BCB62BA4E01700D364A7 /* NotificationCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationCard.swift; sourceTree = "<group>"; };
 		5E48BCB82BA4E09000D364A7 /* NotificationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationModel.swift; sourceTree = "<group>"; };
+		5E48BCBA2BA50EA800D364A7 /* NotificationDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationDelegate.swift; sourceTree = "<group>"; };
 		5E7018182B9A049D00874E5B /* MealCardDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealCardDetailView.swift; sourceTree = "<group>"; };
 		5E7756002B882032007F68CB /* CustomTabBarItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBarItem.swift; sourceTree = "<group>"; };
 		5E7756032B882548007F68CB /* AddNoteViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNoteViewModel.swift; sourceTree = "<group>"; };
@@ -221,8 +223,8 @@
 			children = (
 				5EC2A6F32BA2563A007D4188 /* NotificationsView.swift */,
 				5E48BCB82BA4E09000D364A7 /* NotificationModel.swift */,
-				5E48BCB62BA4E01700D364A7 /* NotificationCard.swift */,
 				5E48BCB02BA4AD5600D364A7 /* NotificationsViewModel.swift */,
+				5E48BCB62BA4E01700D364A7 /* NotificationCard.swift */,
 				5E48BCAE2BA4A91D00D364A7 /* AddNotificationsView.swift */,
 				5E48BCB42BA4DDE500D364A7 /* RepeatOption.swift */,
 			);
@@ -253,6 +255,7 @@
 			isa = PBXGroup;
 			children = (
 				5ECCBE5A2B46E6470042CC5F /* KsyCareApp.swift */,
+				5E48BCBA2BA50EA800D364A7 /* NotificationDelegate.swift */,
 				5ECCBE5C2B46E6470042CC5F /* ScreensaverView.swift */,
 				5ECCBE842B46F70F0042CC5F /* RegistrationView.swift */,
 				5ECCBE862B46F7500042CC5F /* LoginView.swift */,
@@ -444,6 +447,7 @@
 				5EC07B452B8810F400C47EC5 /* MealCardViewModel.swift in Sources */,
 				5ECCBE852B46F70F0042CC5F /* RegistrationView.swift in Sources */,
 				5E7018192B9A049D00874E5B /* MealCardDetailView.swift in Sources */,
+				5E48BCBB2BA50EA800D364A7 /* NotificationDelegate.swift in Sources */,
 				5EC2A6F22BA23551007D4188 /* ProfileViewModel.swift in Sources */,
 				5E351F1F2B5DFD7B004A3803 /* MealCard.swift in Sources */,
 				5E48BCB52BA4DDE500D364A7 /* RepeatOption.swift in Sources */,

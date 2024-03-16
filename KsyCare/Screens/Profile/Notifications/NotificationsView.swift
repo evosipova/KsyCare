@@ -15,9 +15,10 @@ struct NotificationsView: View {
                         VStack(spacing: 10) {
                             ForEach(viewModel.notifications, id: \.self) { notification in
                                 NotificationCard(title: notification.title,
-                                                 time: notification.time,
-                                                 repeatInterval: notification.repeatInterval)
+                                                 time: formatTime(notification.time),
+                                                 repeatInterval: notification.repeatOption.rawValue)
                             }
+                            .padding(.top)
                         }
                         .padding(.top)
                     }
@@ -37,14 +38,22 @@ struct NotificationsView: View {
         .navigationBarHidden(true)
     }
 
+    private func formatTime(_ date: Date) -> String {
+        let formatter = DateFormatter()
+        formatter.timeStyle = .short
+        return formatter.string(from: date)
+    }
+
+
     private var header: some View {
         HStack {
             backButton
             Spacer()
-            Text("Уведомления").font(.title2)
+            Text("Уведомления")
+                .font(.title2)
+                .frame(maxWidth: .infinity, alignment: .center)
             Spacer()
             actionButtons
-            Rectangle().foregroundColor(.clear).frame(width: 33, height: 26)
         }
         .padding()
     }
@@ -60,7 +69,7 @@ struct NotificationsView: View {
         }
         .padding(.leading, 13)
     }
-    
+
     private var actionButtons: some View {
         Button(action: {
             viewModel.showingAddNotificationsPopup = true
@@ -70,10 +79,6 @@ struct NotificationsView: View {
                 .padding(10)
                 .background(Color.blue)
                 .cornerRadius(5)
-                .overlay(
-                    RoundedRectangle(cornerRadius: 5)
-                        .stroke(Color.blue, lineWidth: 2)
-                )
         }
         .background(Color.white)
         .frame(width: 40, height: 40)
@@ -90,10 +95,6 @@ struct NotificationsView: View {
         }
         .edgesIgnoringSafeArea(.all)
     }
-
-
-
-
 }
 
 struct NotificationsView_Previews: PreviewProvider {

@@ -24,10 +24,7 @@ struct AddNotificationsView: View {
             repeatField
 
             Button(action: {
-                let newNotification = NotificationModel(title: title,
-                                                        time: dateFormatter.string(from: time),
-                                                        repeatInterval: repeatOption.rawValue)
-                viewModel.addNotification(notification: newNotification)
+                viewModel.addNotification(title: title, time: time, repeatOption: repeatOption)
                 showingPopup = false
             }) {
                 HStack {
@@ -96,6 +93,8 @@ struct AddNotificationsView: View {
             .padding(.horizontal, 20)
         }
     }
+
+    
 }
 
 struct AddNotificationsView_Previews: PreviewProvider {
