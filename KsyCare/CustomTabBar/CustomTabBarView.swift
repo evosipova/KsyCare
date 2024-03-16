@@ -2,7 +2,7 @@ import SwiftUI
 
 struct CustomTabBarView: View {
     @ObservedObject var viewModel: CustomTabBarViewModel
-
+    
     var body: some View {
         ZStack(alignment: .bottom) {
             VStack {
@@ -18,9 +18,9 @@ struct CustomTabBarView: View {
                 default:
                     Text("Остальные вкладки")
                 }
-
+                
                 Spacer()
-
+                
                 HStack {
                     ForEach(0..<5) { index in
                         CustomTabBarItem(iconName: self.getIconName(for: index), isSelected: viewModel.selectedTab == index) {
@@ -37,7 +37,7 @@ struct CustomTabBarView: View {
                 .background(Color(.systemBackground))
             }
             .disabled(viewModel.showingAddNotePopup)
-
+            
             if viewModel.showingAddNotePopup {
                 Button(action: {
                     viewModel.showingAddNotePopup = false
@@ -45,7 +45,7 @@ struct CustomTabBarView: View {
                     Color.clear
                         .edgesIgnoringSafeArea(.all)
                 }
-
+                
                 AddNoteView(viewModel: AddNoteViewModel(), showingPopup: $viewModel.showingAddNotePopup)
                     .padding(.bottom)
                     .transition(.move(edge: .bottom))
@@ -55,7 +55,7 @@ struct CustomTabBarView: View {
         }
         .navigationBarHidden(true)
     }
-
+    
     func getIconName(for index: Int) -> String {
         switch index {
         case 0: return "house.fill"
@@ -65,11 +65,5 @@ struct CustomTabBarView: View {
         case 4: return "person.fill"
         default: return ""
         }
-    }
-}
-
-struct CustomTabBarView_Previews: PreviewProvider {
-    static var previews: some View {
-        CustomTabBarView(viewModel: CustomTabBarViewModel())
     }
 }
