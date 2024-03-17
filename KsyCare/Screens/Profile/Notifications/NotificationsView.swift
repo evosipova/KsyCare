@@ -4,27 +4,39 @@ struct NotificationsView: View {
     @Environment(\.presentationMode) var presentationMode
     @ObservedObject var viewModel: NotificationsViewModel
 
+
     var body: some View {
         NavigationStack {
             ZStack(alignment: .bottom) {
                 VStack {
                     header
-                    Divider().background(Color.gray)
 
-                    ScrollView {
-                        VStack(spacing: 10) {
-                            ForEach(viewModel.notifications, id: \.self) { notification in
-                                NotificationCard(title: notification.title,
-                                                 time: formatTime(notification.time),
-                                                 repeatInterval: notification.repeatOption.rawValue)
+                    Rectangle()
+                        .frame(height: 3)
+                        .padding(.horizontal)
+                        .padding(.top, -10)
+                        .foregroundColor(Color("divider"))
+
+                    if viewModel.notifications.isEmpty {
+                        Spacer()
+                        Text("пока нет уведомлений :(")
+                            .foregroundColor(Color("lightDetail"))
+                            .font(.title2)
+                        Spacer()
+                    } else {
+                        ScrollView {
+                            VStack(spacing: 10) {
+                                ForEach(viewModel.notifications, id: \.self) { notification in
+                                    NotificationCard(title: notification.title,
+                                                     time: formatTime(notification.time),
+                                                     repeatInterval: notification.repeatOption.rawValue)
+                                }
                             }
-                            .padding(.top)
                         }
-                        .padding(.top)
                     }
-
                     Spacer()
                 }
+                .padding(.bottom, 10)
 
                 if viewModel.showingAddNotificationsPopup {
                     addNotificationPopup
@@ -34,6 +46,7 @@ struct NotificationsView: View {
             }
             .navigationBarHidden(true)
             .edgesIgnoringSafeArea(.bottom)
+            .background(Color("backgroundApp"))
         }
         .navigationBarHidden(true)
     }
@@ -44,18 +57,19 @@ struct NotificationsView: View {
         return formatter.string(from: date)
     }
 
-
     private var header: some View {
         HStack {
             backButton
             Spacer()
-            Text("Уведомления")
-                .font(.title2)
-                .frame(maxWidth: .infinity, alignment: .center)
-            Spacer()
             actionButtons
         }
         .padding()
+        .overlay(
+            Text("Уведомления")
+                .font(.title2)
+                .foregroundColor(Color("lightDetail")),
+            alignment: .center
+        )
     }
 
     private var backButton: some View {
@@ -64,10 +78,11 @@ struct NotificationsView: View {
         }) {
             Image(systemName: "chevron.left")
                 .resizable()
+                .foregroundColor(Color("chevron.left"))
                 .aspectRatio(contentMode: .fit)
                 .frame(width: 13, height: 26)
         }
-        .padding(.leading, 13)
+        .padding(.leading, 0)
     }
 
     private var actionButtons: some View {
@@ -75,12 +90,12 @@ struct NotificationsView: View {
             viewModel.showingAddNotificationsPopup = true
         }) {
             Image(systemName: "plus")
-                .foregroundColor(.white)
+                .foregroundColor(Color("backgroundApp"))
+                .frame(width: 13, height: 13)
                 .padding(10)
-                .background(Color.blue)
+                .background(Color("chevron.left"))
                 .cornerRadius(5)
         }
-        .background(Color.white)
         .frame(width: 40, height: 40)
     }
 

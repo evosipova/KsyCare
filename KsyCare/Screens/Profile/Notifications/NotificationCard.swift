@@ -9,17 +9,19 @@ struct NotificationCard: View {
         HStack {
             VStack(alignment: .leading, spacing: 4) {
                 Text(title)
+                    .foregroundColor(Color("lightDetail"))
                     .font(.headline)
                 Text(repeatInterval)
                     .font(.subheadline)
-                    .foregroundColor(.gray)
+                    .foregroundColor(Color("additionalDetail"))
             }
             Spacer()
             Text(time)
                 .font(.headline)
+                .foregroundColor(Color("lightDetail"))
         }
         .padding()
-        .background(Color.white)
+        .background(Color("notificationCard"))
         .cornerRadius(10)
         .shadow(radius: 2)
         .padding(.horizontal)

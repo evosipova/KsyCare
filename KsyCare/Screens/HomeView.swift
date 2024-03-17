@@ -3,29 +3,41 @@ import SwiftUI
 struct HomeView: View {
     @EnvironmentObject var mealCardsData: MealCardViewModel
     @State private var lastCheckedDate = Date()
-    
+
     private var todaysCards: [MealCardModel] {
         mealCardsData.allCards.filter { Calendar.current.isDateInToday($0.creationTime) }
     }
-    
+
     var body: some View {
         NavigationView {
-            ScrollView {
-                VStack() {
-                    circleSection
-                    todaySection
+            ZStack {
+                LinearGradient(gradient: Gradient(colors: [Color(red: 0.349, green: 0.624, blue: 0.859),
+                                                           Color(red: 0.549, green: 0.832, blue: 0.921),
+                                                           Color(red: 0.8, green: 0.965, blue: 1)
+                                                          ]),
+                               startPoint: .top, endPoint: .bottom)
+                .edgesIgnoringSafeArea(.all)
+
+                ScrollView {
+                    VStack() {
+                        circleSection
+                        todaySection
+                    }
+                    .padding(.top, 30)
                 }
-                .padding(.top, 30)
+                .frame(maxHeight: .infinity)
+                .edgesIgnoringSafeArea(.bottom)
+                .background(Color.gray.opacity(0.1))
+                .onAppear {
+                    setUpTimer()
+                }
             }
-            .frame(maxHeight: .infinity)
-            .edgesIgnoringSafeArea(.bottom)
-            .background(Color.gray.opacity(0.1))
-            .onAppear {
-                setUpTimer()
-            }
+            .navigationBarHidden(true)
         }
+        .navigationBarHidden(true)
     }
-    
+
+
     private var circleSection: some View {
         ZStack {
             Circle()
@@ -46,14 +58,14 @@ struct HomeView: View {
         }
         .padding(.bottom, 20)
     }
-    
+
     private var todaySection: some View {
         VStack {
             Text("Сегодня")
                 .font(.custom("Amiko", size: 24))
                 .frame(maxWidth: .infinity, alignment: .center)
                 .padding(.top, 20)
-            
+
             ForEach(mealCardsData.cards, id: \.id) { card in
                 NavigationLink(destination: MealCardDetailView(card: card)) {
                     MealCard(viewModel: mealCardsData, card: card)
@@ -64,7 +76,7 @@ struct HomeView: View {
         }
         .clipShape(RoundedRectangle(cornerRadius: 30, style: .continuous))
     }
-    
+
     private func setUpTimer() {
         Timer.scheduledTimer(withTimeInterval: 60, repeats: true) { timer in
             let currentDate = Date()
@@ -80,11 +92,11 @@ extension MealCardViewModel {
     var hasInsulinInfoToday: Bool {
         cards.contains { $0.insulin != nil }
     }
-    
+
     var hasBloodInfoToday: Bool {
         cards.contains { $0.bloodSugar != nil }
     }
-    
+
     var hasFoodInfoToday: Bool {
         cards.contains { $0.breadUnits != nil }
     }
