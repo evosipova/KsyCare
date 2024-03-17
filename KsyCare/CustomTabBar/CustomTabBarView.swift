@@ -35,6 +35,7 @@ struct CustomTabBarView: View {
                 }
                 .padding()
                 .background(Color(.systemBackground))
+
             }
             .disabled(viewModel.showingAddNotePopup)
             
@@ -55,7 +56,7 @@ struct CustomTabBarView: View {
         }
         .navigationBarHidden(true)
     }
-    
+
     func getIconName(for index: Int) -> String {
         switch index {
         case 0: return "house.fill"

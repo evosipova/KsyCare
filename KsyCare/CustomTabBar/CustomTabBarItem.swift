@@ -10,7 +10,7 @@ struct CustomTabBarItem: View {
             VStack {
                 Image(systemName: iconName)
                     .font(.system(size: 28))
-                    .foregroundColor(isSelected ? .blue : .gray)
+                    .foregroundColor(isSelected ? Color("startButton") : .gray)
             }
         }
     }
