@@ -126,6 +126,16 @@ struct ProfileView: View {
 
     private var personalInfoSection: some View {
         VStack(alignment: .leading, spacing: 10) {
+
+            HStack(alignment: .center) {
+                Text(viewModel.userProfile.name)
+                    .font(.headline)
+
+                Text(viewModel.userProfile.surname)
+                    .font(.headline)
+            }
+            .frame(maxWidth: .infinity)
+
             HStack {
                 Text("Личная информация")
                     .font(.headline)
@@ -185,12 +195,6 @@ struct ProfileView: View {
                 Text("Тип диабета:")
                 Spacer()
                 Text(viewModel.userProfile.diabetesType)
-                    .foregroundColor(.gray)
-            }
-            HStack {
-                Text("Норма сахара:")
-                Spacer()
-                Text(viewModel.userProfile.bloodSugarNorm)
                     .foregroundColor(.gray)
             }
 

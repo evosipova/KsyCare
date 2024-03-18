@@ -60,15 +60,14 @@ struct AddNotificationsView: View {
 
                     Spacer()
 
-                    VStack {
+                    HStack {
                         if notificationToEdit != nil {
                             deleteButton
+                                .padding(.trailing, -20)
                         }
                         doneButton
                     }
                     .padding(.bottom, 30)
-
-
                 }
             }
             .background(Color("backgroundApp"))
@@ -82,43 +81,44 @@ struct AddNotificationsView: View {
             if let model = notificationToEdit {
                 viewModel.deleteNotification(model)
                 showingPopup = false
-
                 self.presentationMode.wrappedValue.dismiss()
                 onDismiss?()
             }
         }) {
-            Text("Удалить")
-                .frame(minWidth: 0, maxWidth: .infinity)
-                .padding()
-                .foregroundColor(.white)
-                .background(Color.red)
-                .cornerRadius(10)
+            Image(systemName: "trash")
+                .font(Font.title.weight(.bold))
+                .foregroundColor(Color("ABF1ED-84EBE5"))
+                .frame(width: 44, height: 44)
+                .overlay(
+                    RoundedRectangle(cornerRadius: 5)
+                        .stroke(Color("ABF1ED-84EBE5"), lineWidth: 4)
+                )
+                .cornerRadius(5)
         }
-        .padding(.horizontal, 20)
+        .padding(.leading, 20)
     }
 
     private var doneButton: some View {
         Button(action: {
+            let finalTitle = title.isEmpty ? "Без названия" : title
 
             if let model = notificationToEdit {
-                viewModel.updateNotification(model, title: title, time: time, repeatOption: repeatOption)
+                viewModel.updateNotification(model, title: finalTitle, time: time, repeatOption: repeatOption)
             } else {
-                viewModel.addNotification(title: title, time: time, repeatOption: repeatOption)
+                viewModel.addNotification(title: finalTitle, time: time, repeatOption: repeatOption)
             }
             showingPopup = false
-
             self.presentationMode.wrappedValue.dismiss()
             onDismiss?()
         }) {
             Text(notificationToEdit != nil ? "Обновить" : "Добавить")
+                .foregroundColor(Color("2A2931-CCF6FF"))
                 .frame(minWidth: 0, maxWidth: .infinity)
                 .padding()
-                .contentShape(Rectangle())
+                .background(Color("58EEE5-27D8CD"))
+                .cornerRadius(10)
+                .padding(.horizontal, 20)
         }
-        .foregroundColor(Color("2A2931-CCF6FF"))
-        .background(Color("58EEE5-27D8CD"))
-        .cornerRadius(10)
-        .padding(.horizontal, 20)
     }
 
     private var dateFormatter: DateFormatter {
