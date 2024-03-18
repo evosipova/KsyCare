@@ -15,9 +15,15 @@ struct InsulinView: View {
     var body: some View {
         NavigationStack {
             ZStack(alignment: .bottom) {
+                LinearGradient(gradient: Gradient(colors: [Color(red: 0.349, green: 0.624, blue: 0.859),
+                                                           Color(red: 0.549, green: 0.832, blue: 0.921),
+                                                           Color(red: 0.8, green: 0.965, blue: 1)
+                                                          ]),
+                               startPoint: .top, endPoint: .bottom)
+                .edgesIgnoringSafeArea(.all)
 
                 RoundedRectangle(cornerRadius: 30, style: .continuous)
-                    .fill(Color("Test"))
+                    .fill(Color("F1FDFB-365E7A"))
                     .frame(maxHeight: 763)
                     .edgesIgnoringSafeArea(.bottom)
 
@@ -31,22 +37,13 @@ struct InsulinView: View {
                                 .resizable()
                                 .aspectRatio(contentMode: .fit)
                                 .frame(width: 13, height: 26)
+                                .foregroundColor(Color("4579A5-B5E3EE"))
                         }
-                        .padding(.leading, 13)
+                        .padding(.leading, 8)
 
                         Spacer()
 
-                        HStack {
-                            Rectangle()
-                                .frame(width: 50, height: 5)
-                                .cornerRadius(5)
-                                .foregroundColor(.blue)
-                            Rectangle()
-                                .frame(width: 50, height: 5)
-                                .cornerRadius(5)
-                                .foregroundColor(.gray)
-                        }
-
+                        twoRectangles
                         Spacer()
 
                         Rectangle()
@@ -58,6 +55,7 @@ struct InsulinView: View {
                     HStack {
                         Text("Инсулин")
                             .font(.system(size: 24, weight: .bold))
+                            .foregroundColor(Color("2A2931-CCF6FF"))
                         Spacer()
                     }
                     .padding(.leading, 20)
@@ -66,6 +64,7 @@ struct InsulinView: View {
 
                     Text("Единицы")
                         .font(.system(size: 18, weight: .bold))
+                        .foregroundColor(Color("2A2931-CCF6FF"))
                         .padding(.top, 100)
 
                     GeometryReader { fullView in
@@ -76,10 +75,11 @@ struct InsulinView: View {
                                         let isSelected = level == selectedInsulinLevel
                                         Text("\(level, specifier: "%.1f")")
                                             .font(.system(size: isSelected ? 70 : 52))
+                                            .foregroundColor(Color("2A2931-CCF6FF"))
                                             .frame(width: itemWidth, height: itemHeight)
                                             .overlay(
                                                 RoundedRectangle(cornerRadius: 5)
-                                                    .stroke(isSelected ? Color.black : Color.clear, lineWidth: 3)
+                                                    .stroke(isSelected ? Color("2BBEBE-B6E4EF") : Color.clear, lineWidth: 3)
                                             )
                                             .contentShape(Rectangle())
                                             .onTapGesture {
@@ -123,9 +123,9 @@ struct InsulinView: View {
                     NavigationLink(destination: NoteView(selectedSugarLevel: $selectedInsulinLevel, displayText: "Инсулин", cardType: .insulin)) {
                         Text("Далее")
                             .frame(minWidth: 0, maxWidth: .infinity)
-                            .foregroundColor(.white)
+                            .foregroundColor(Color("2A2931-CCF6FF"))
                             .padding()
-                            .background(Color.blue)
+                            .background(Color("58EEE5-27D8CD"))
                             .cornerRadius(10)
                             .padding(.bottom, 30)
                             .padding(.horizontal, 20)
@@ -133,6 +133,19 @@ struct InsulinView: View {
                 }
             }
             .edgesIgnoringSafeArea(.bottom)
+        }
+    }
+
+    private var twoRectangles: some View {
+        HStack {
+            Rectangle()
+                .frame(width: 50, height: 5)
+                .cornerRadius(2.5)
+                .foregroundColor(Color("rectanglesStroke"))
+            Rectangle()
+                .frame(width: 50, height: 5)
+                .cornerRadius(2.5)
+                .foregroundColor(Color("registrationStroke"))
         }
     }
 }

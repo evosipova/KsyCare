@@ -12,21 +12,30 @@ struct HistoryView: View {
         return formatter
     }()
 
-
     var body: some View {
         NavigationView {
-            ScrollView {
-                VStack() {
-                    headingSection
-                    filterSection
-                    cardsSection
+            ZStack {
+                LinearGradient(gradient: Gradient(colors: [Color(red: 0.349, green: 0.624, blue: 0.859),
+                                                           Color(red: 0.549, green: 0.832, blue: 0.921),
+                                                           Color(red: 0.8, green: 0.965, blue: 1)
+                                                          ]),
+                               startPoint: .top, endPoint: .bottom)
+                .edgesIgnoringSafeArea(.all)
+
+                if mealCardsData.allCards.isEmpty {
+                    Text("пока нет записей :(")
+                } else {
+                    ScrollView {
+                        VStack {
+                            headingSection
+                            filterSection
+                            cardsSection
+                        }
+                    }
                 }
-                .padding(.bottom, 10)
             }
-            .frame(maxHeight: .infinity)
-            .edgesIgnoringSafeArea(.bottom)
-            .background(Color.gray.opacity(0.1))
         }
+        .navigationBarHidden(true)
     }
 
     private var headingSection: some View {
@@ -83,7 +92,7 @@ struct HistoryView: View {
                 Section(header: headerView(for: month)) {
                     ForEach(cardsForMonth, id: \.id) { card in
                         NavigationLink(destination: MealCardDetailView(card: card)) {
-                            MealCard(viewModel: mealCardsData, card: card)
+                            MealCardView(viewModel: mealCardsData, card: card)
                                 .padding(.bottom, 10)
                                 .padding(.horizontal)
                         }

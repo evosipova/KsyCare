@@ -1,51 +1,124 @@
 import SwiftUI
 
 struct AddNotificationsView: View {
+    @Environment(\.presentationMode) var presentationMode
     @EnvironmentObject var viewModel: NotificationsViewModel
     @Binding var showingPopup: Bool
     @State private var title: String = ""
     @State private var time: Date = Date()
     @State private var repeatOption: RepeatOption = .never
 
+    var notificationToEdit: NotificationModel?
+    var onDismiss: (() -> Void)?
+
+    init(showingPopup: Binding<Bool>, notificationToEdit: NotificationModel?, onDismiss: (() -> Void)? = nil) {
+        self._showingPopup = showingPopup
+        self.notificationToEdit = notificationToEdit
+        self.onDismiss = onDismiss
+        if let notificationToEdit = notificationToEdit {
+            self._title = State(initialValue: notificationToEdit.title)
+            self._time = State(initialValue: notificationToEdit.time)
+            self._repeatOption = State(initialValue: notificationToEdit.repeatOption)
+        }
+    }
 
     var body: some View {
-        VStack(alignment: .leading, spacing: 20) {
-            Text("Новое напоминание")
-                .font(.custom("Amiko", size: 20).bold())
-                .foregroundColor(.black)
-                .padding(.top, 7)
-                .padding(.leading, 20)
+        NavigationStack {
+            ZStack(alignment: .bottom) {
+                VStack {
+                    HStack {
+                        Spacer()
+                        Text("Новое напоминание")
+                            .font(.title2)
+                            .frame(maxWidth: .infinity, alignment: .center)
+                        Spacer()
+                    }
+                    .padding()
+                    .overlay(
+                        Button(action: {
+                            self.presentationMode.wrappedValue.dismiss()
+                        }) {
+                            Image(systemName: "chevron.left")
+                                .resizable()
+                                .aspectRatio(contentMode: .fit)
+                                .frame(width: 13, height: 26)
+                                .foregroundColor(Color("chevron.left"))
+                        }
+                            .padding(.leading, 15),
+                        alignment: .leading
+                    )
 
-            Divider()
-                .padding(.horizontal, 20)
+                    Rectangle()
+                        .frame(height: 3)
+                        .padding(.horizontal)
+                        .padding(.top, -10)
+                        .foregroundColor(Color("divider"))
 
-            titleField
-            timeField
-            repeatField
+                    titleField
+                    timeField
+                    repeatField
 
-            Button(action: {
-                viewModel.addNotification(title: title, time: time, repeatOption: repeatOption)
-                showingPopup = false
-            }) {
-                HStack {
                     Spacer()
-                    Text("Добавить")
-                    Spacer()
+
+                    VStack {
+                        if notificationToEdit != nil {
+                            deleteButton
+                        }
+                        doneButton
+                    }
+                    .padding(.bottom, 30)
+
+
                 }
             }
-            .padding()
-            .background(Color.blue)
-            .foregroundColor(.white)
-            .cornerRadius(10)
-            .frame(height: 50)
-            .padding(.horizontal, 20)
-
+            .background(Color("backgroundApp"))
+            .navigationBarHidden(true)
+            .edgesIgnoringSafeArea(.bottom)
         }
-        .frame(maxWidth: .infinity)
-        .padding()
-        .background(Color.white)
-        .foregroundColor(.black)
-        .cornerRadius(40)
+    }
+
+    private var deleteButton: some View {
+        Button(action: {
+            if let model = notificationToEdit {
+                viewModel.deleteNotification(model)
+                showingPopup = false
+
+                self.presentationMode.wrappedValue.dismiss()
+                onDismiss?()
+            }
+        }) {
+            Text("Удалить")
+                .frame(minWidth: 0, maxWidth: .infinity)
+                .padding()
+                .foregroundColor(.white)
+                .background(Color.red)
+                .cornerRadius(10)
+        }
+        .padding(.horizontal, 20)
+    }
+
+    private var doneButton: some View {
+        Button(action: {
+
+            if let model = notificationToEdit {
+                viewModel.updateNotification(model, title: title, time: time, repeatOption: repeatOption)
+            } else {
+                viewModel.addNotification(title: title, time: time, repeatOption: repeatOption)
+            }
+            showingPopup = false
+
+            self.presentationMode.wrappedValue.dismiss()
+            onDismiss?()
+        }) {
+            Text(notificationToEdit != nil ? "Обновить" : "Добавить")
+                .frame(minWidth: 0, maxWidth: .infinity)
+                .padding()
+                .contentShape(Rectangle())
+        }
+        .foregroundColor(Color("2A2931-CCF6FF"))
+        .background(Color("58EEE5-27D8CD"))
+        .cornerRadius(10)
+        .padding(.horizontal, 20)
     }
 
     private var dateFormatter: DateFormatter {
@@ -93,12 +166,10 @@ struct AddNotificationsView: View {
             .padding(.horizontal, 20)
         }
     }
-
-    
 }
 
 struct AddNotificationsView_Previews: PreviewProvider {
     static var previews: some View {
-        AddNotificationsView(showingPopup: .constant(true))
+        AddNotificationsView(showingPopup: .constant(true), notificationToEdit: nil)
     }
 }

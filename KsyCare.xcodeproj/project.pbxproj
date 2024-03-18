@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		5E2E1D162BA7345E00D1C9BF /* RegistrationSecondView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E2E1D152BA7345E00D1C9BF /* RegistrationSecondView.swift */; };
 		5E351F1C2B5DE398004A3803 /* StatisticsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E351F1B2B5DE398004A3803 /* StatisticsView.swift */; };
-		5E351F1F2B5DFD7B004A3803 /* MealCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E351F1E2B5DFD7B004A3803 /* MealCard.swift */; };
+		5E351F1F2B5DFD7B004A3803 /* MealCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E351F1E2B5DFD7B004A3803 /* MealCardView.swift */; };
 		5E351F222B5F4DDA004A3803 /* FoodView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E351F212B5F4DDA004A3803 /* FoodView.swift */; };
 		5E351F242B5F4DE2004A3803 /* BloodSugarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E351F232B5F4DE2004A3803 /* BloodSugarView.swift */; };
 		5E351F262B5F4DEB004A3803 /* InsulinView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E351F252B5F4DEB004A3803 /* InsulinView.swift */; };
@@ -75,7 +75,7 @@
 /* Begin PBXFileReference section */
 		5E2E1D152BA7345E00D1C9BF /* RegistrationSecondView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationSecondView.swift; sourceTree = "<group>"; };
 		5E351F1B2B5DE398004A3803 /* StatisticsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticsView.swift; sourceTree = "<group>"; };
-		5E351F1E2B5DFD7B004A3803 /* MealCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealCard.swift; sourceTree = "<group>"; };
+		5E351F1E2B5DFD7B004A3803 /* MealCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealCardView.swift; sourceTree = "<group>"; };
 		5E351F212B5F4DDA004A3803 /* FoodView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodView.swift; sourceTree = "<group>"; };
 		5E351F232B5F4DE2004A3803 /* BloodSugarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BloodSugarView.swift; sourceTree = "<group>"; };
 		5E351F252B5F4DEB004A3803 /* InsulinView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsulinView.swift; sourceTree = "<group>"; };
@@ -235,10 +235,10 @@
 			isa = PBXGroup;
 			children = (
 				5EC2A6F32BA2563A007D4188 /* NotificationsView.swift */,
-				5E48BCB82BA4E09000D364A7 /* NotificationModel.swift */,
-				5E48BCB02BA4AD5600D364A7 /* NotificationsViewModel.swift */,
-				5E48BCB62BA4E01700D364A7 /* NotificationCard.swift */,
 				5E48BCAE2BA4A91D00D364A7 /* AddNotificationsView.swift */,
+				5E48BCB02BA4AD5600D364A7 /* NotificationsViewModel.swift */,
+				5E48BCB82BA4E09000D364A7 /* NotificationModel.swift */,
+				5E48BCB62BA4E01700D364A7 /* NotificationCard.swift */,
 				5E48BCB42BA4DDE500D364A7 /* RepeatOption.swift */,
 			);
 			path = Notifications;
@@ -308,7 +308,7 @@
 		5EDB7EF92B854942000F234D /* MealCard */ = {
 			isa = PBXGroup;
 			children = (
-				5E351F1E2B5DFD7B004A3803 /* MealCard.swift */,
+				5E351F1E2B5DFD7B004A3803 /* MealCardView.swift */,
 				5EDB7EFA2B8549E7000F234D /* MealCardModel.swift */,
 				5EC07B442B8810F400C47EC5 /* MealCardViewModel.swift */,
 				5E7018182B9A049D00874E5B /* MealCardDetailView.swift */,
@@ -461,7 +461,7 @@
 				5E48BCBB2BA50EA800D364A7 /* NotificationDelegate.swift in Sources */,
 				5EC2A6F22BA23551007D4188 /* ProfileViewModel.swift in Sources */,
 				5E2E1D162BA7345E00D1C9BF /* RegistrationSecondView.swift in Sources */,
-				5E351F1F2B5DFD7B004A3803 /* MealCard.swift in Sources */,
+				5E351F1F2B5DFD7B004A3803 /* MealCardView.swift in Sources */,
 				5E48BCB52BA4DDE500D364A7 /* RepeatOption.swift in Sources */,
 				5E48BCB72BA4E01700D364A7 /* NotificationCard.swift in Sources */,
 				5ECCBE892B46FB8B0042CC5F /* CustomTabBarView.swift in Sources */,
