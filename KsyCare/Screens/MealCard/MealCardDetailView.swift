@@ -8,6 +8,14 @@ struct MealCardDetailView: View {
     var body: some View {
         NavigationStack {
             ZStack(alignment: .bottom) {
+                LinearGradient(gradient: Gradient(colors: [Color(red: 0.349, green: 0.624, blue: 0.859),
+                                                           Color(red: 0.8, green: 0.965, blue: 1),
+                                                           Color(red: 0.948, green: 0.992, blue: 0.985)
+
+                                                          ]),
+                               startPoint: .top, endPoint: .bottom)
+                .edgesIgnoringSafeArea(.all)
+
                 content
                 Spacer()
                 actionButtons
@@ -45,8 +53,9 @@ struct MealCardDetailView: View {
                 .resizable()
                 .aspectRatio(contentMode: .fit)
                 .frame(width: 13, height: 26)
+                .foregroundColor(Color("4579A5-B5E3EE"))
         }
-        .padding(.leading, 13)
+        .padding(.leading, 8)
     }
 
     private var info: some View {
@@ -54,40 +63,77 @@ struct MealCardDetailView: View {
             VStack(alignment: .leading, spacing: 10) {
                 HStack {
                     Text(card.mealTime)
-                        .font(.headline)
+                        .font(.largeTitle)
+                        .foregroundColor(Color("2A2931-CCF6FF"))
+
                     Spacer()
+
                     Text(formatDate(card.creationTime))
-                        .font(.body)
+                        .font(.title)
+                        .foregroundColor(Color("2A2931-CCF6FF"))
                 }
                 .padding(.top, 5)
 
-                Divider().background(Color.gray)
+                Rectangle()
+                    .frame(height: 3)
+                    .foregroundColor(Color("B6E4EF-548493"))
 
                 if let bloodSugar = card.bloodSugar {
                     VStack(alignment: .leading, spacing: 20) {
-                        Text("Сахар крови")
-                            .padding(.trailing, 40)
-                        infoRow(label: "Сахар крови", value: String(format: "%.2f", bloodSugar), color: .black)
+                        HStack {
+                            Image(systemName: "circle.fill")
+                                .foregroundColor(Color("58EEE5-27D8CD"))
+                            Text("Сахар крови")
+                                .font(.title2)
+                                .padding(.trailing, 40)
+                                .foregroundColor(Color("2A2931-CCF6FF"))
+                        }
+                        infoRow(label: "Ммоль/л", value: String(format: "%.2f", bloodSugar))
+                            .padding()
+                            .background(RoundedRectangle(cornerRadius: 15).fill(Color("CCF6FF")))
                     }
+                    .clipShape(RoundedRectangle(cornerRadius: 15))
+                    .padding(.top, 30)
                 }
 
                 if let insulin = card.insulin {
-
                     VStack(alignment: .leading, spacing: 20) {
-                        Text("Инсулин")
-                            .padding(.trailing, 40)
-                        infoRow(label: "Инсулин", value: String(format: "%.2f", insulin), color: .black)
+                        HStack {
+                            Image(systemName: "circle.fill")
+                                .foregroundColor(Color("58EEE5-27D8CD"))
+                            Text("Инсулин")
+                                .font(.title2)
+                                .padding(.trailing, 40)
+                                .foregroundColor(Color("2A2931-CCF6FF"))
+                        }
+                        infoRow(label: "Единицы", value: String(format: "%.2f", insulin))
+                            .padding()
+                            .background(RoundedRectangle(cornerRadius: 15).fill(Color("CCF6FF")))
                     }
+                    .clipShape(RoundedRectangle(cornerRadius: 15))
+                    .padding(.top, 30)
                 }
-
 
                 if let breadUnits = card.breadUnits {
                     Text("Еда: \(breadUnits, specifier: "%.2f")")
                 }
 
                 if let comments = card.comments, !comments.isEmpty {
-                    Divider().background(Color.gray)
-                    Text(comments).font(.body)
+                    Rectangle()
+                        .frame(height: 3)
+                        .foregroundColor(Color("B6E4EF-548493"))
+
+                    VStack(alignment: .leading, spacing: 20) {
+                        Text("Комментарий")
+                            .font(.title2)
+
+                        Text(comments)
+                            .font(.title2)
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                            .foregroundColor(Color("2A2931-CCF6FF"))
+                            .padding()
+                            .background(RoundedRectangle(cornerRadius: 15).fill(Color("CCF6FF")))
+                    }
                 }
             }
             .padding()
@@ -96,54 +142,33 @@ struct MealCardDetailView: View {
         .navigationBarHidden(true)
     }
 
-    private func infoRow(label: String, value: String, color: Color) -> some View {
+    private func infoRow(label: String, value: String) -> some View {
         HStack {
-            Image(systemName: "circle.fill")
-                .foregroundColor(color)
             Text(label)
-                .font(.body)
+                .font(.title2)
+                .foregroundColor(Color("2A2931-CCF6FF"))
             Spacer()
+
             Text(value)
-                .font(.body)
+                .font(.title2)
+                .foregroundColor(Color("2A2931-CCF6FF"))
         }
     }
 
     private var actionButtons: some View {
-        HStack(spacing: -20) {
-            Button(action: {
-                withAnimation {
-                    mealCardsData.deleteCard(card)
-                    presentationMode.wrappedValue.dismiss()
-                }
-            }) {
-                HStack {
-                    Image(systemName: "trash")
-                        .foregroundColor(.gray)
-                }
+        Button(action: {
+            withAnimation {
+                mealCardsData.deleteCard(card)
+                presentationMode.wrappedValue.dismiss()
+            }
+        }) {
+            Text("Удалить запись")
+                .foregroundColor(Color("2A2931-CCF6FF"))
                 .padding()
-                .overlay(
-                    RoundedRectangle(cornerRadius: 10)
-                        .stroke(Color.gray, lineWidth: 1)
-                )
-                .padding(.bottom, 30)
+                .frame(minWidth: 0, maxWidth: .infinity)
+                .background(RoundedRectangle(cornerRadius: 10).fill(Color("58EEE5-27D8CD")))
                 .padding(.horizontal, 20)
-            }
-
-
-            Button(action: {
-                // Implement edit action
-            }) {
-                Text("Изменить запись")
-                    .frame(minWidth: 0, maxWidth: .infinity)
-                    .foregroundColor(.white)
-                    .padding()
-                    .background(Color.gray)
-                    .cornerRadius(10)
-                    .padding(.bottom, 30)
-                    .padding(.horizontal, 20)
-            }
         }
-        .background(Color.white)
     }
 
     private func formatDate(_ date: Date) -> String {

@@ -3,7 +3,7 @@ import SwiftUI
 struct HistoryView: View {
     @EnvironmentObject var mealCardsData: MealCardViewModel
     @State private var selectedMonth = Date()
-
+    
     let calendar = Calendar.current
     let dateFormatter: DateFormatter = {
         let formatter = DateFormatter()
@@ -11,18 +11,24 @@ struct HistoryView: View {
         formatter.dateFormat = "LLLL yyyy"
         return formatter
     }()
-
+    
     var body: some View {
         NavigationView {
             ZStack {
                 LinearGradient(gradient: Gradient(colors: [Color(red: 0.349, green: 0.624, blue: 0.859),
-                                                           Color(red: 0.549, green: 0.832, blue: 0.921),
-                                                           Color(red: 0.8, green: 0.965, blue: 1)
+                                                           Color(red: 0.8, green: 0.965, blue: 1),
+                                                           Color(red: 0.948, green: 0.992, blue: 0.985)
+                                                           
                                                           ]),
                                startPoint: .top, endPoint: .bottom)
                 .edgesIgnoringSafeArea(.all)
-
+                
                 if mealCardsData.allCards.isEmpty {
+                    ScrollView {
+                        VStack {
+                            headingSection
+                        }
+                    }
                     Text("пока нет записей :(")
                 } else {
                     ScrollView {
@@ -37,7 +43,7 @@ struct HistoryView: View {
         }
         .navigationBarHidden(true)
     }
-
+    
     private var headingSection: some View {
         HStack {
             Text("История")
@@ -48,44 +54,52 @@ struct HistoryView: View {
             Spacer()
         }
     }
-
+    
     private var filterSection: some View {
-        HStack(alignment: .center) {
+        HStack() {
             Spacer()
-                .padding()
-
+            
             Button(action: {
                 if let newMonth = calendar.date(byAdding: .month, value: -1, to: selectedMonth) {
                     selectedMonth = newMonth
                 }
             }) {
-                Image(systemName: "chevron.left")
+                Image(systemName: "arrowshape.left.fill")
+                    .foregroundColor(Color("4579A5-B5E3EE"))
+                    .font(.largeTitle)
             }
-
+            .padding([.leading, .trailing], 0)
+            
             Text(dateFormatter.string(from: selectedMonth).capitalizingFirstLetter())
                 .lineLimit(1)
-                .minimumScaleFactor(0.5)
+            
                 .frame(minWidth: 0, maxWidth: .infinity, alignment: .center)
-
+                .font(.largeTitle)
+                .foregroundColor(Color("2A2931-CCF6FF"))
+                .padding()
+            
             Button(action: {
                 if let newMonth = calendar.date(byAdding: .month, value: 1, to: selectedMonth) {
                     selectedMonth = newMonth
                 }
             }) {
-                Image(systemName: "chevron.right")
+                Image(systemName: "arrowshape.right.fill")
+                    .foregroundColor(Color("4579A5-B5E3EE"))
+                    .font(.largeTitle)
             }
+            .padding([.leading, .trailing], 0)
+            
             Spacer()
-                .padding()
         }
         .padding()
     }
-
+    
     private var cardsSection: some View {
         let filteredCards = mealCardsData.allCards.filter {
             Calendar.current.isDate($0.creationTime, equalTo: selectedMonth, toGranularity: .month)
         }
         let groupedCards = mealCardsData.cardsGroupedByDate(from: filteredCards)
-
+        
         return VStack {
             ForEach(groupedCards.keys.sorted(), id: \.self) { month in
                 let cardsForMonth = groupedCards[month]!
@@ -102,19 +116,19 @@ struct HistoryView: View {
         }
         .clipShape(RoundedRectangle(cornerRadius: 30, style: .continuous))
     }
-
+    
     private func filterCardsByMonth(cards: [MealCardModel], month: Date) -> [Date: [MealCardModel]] {
         let calendar = Calendar.current
         let startOfMonth = calendar.startOfMonth(for: month)
         let endOfMonth = calendar.endOfMonth(for: month)
-
+        
         let filteredCards = cards.filter {
             $0.creationTime >= startOfMonth && $0.creationTime <= endOfMonth
         }
-
+        
         return mealCardsData.cardsGroupedByDate(from: filteredCards)
     }
-
+    
     private func headerView(for date: Date) -> some View {
         Text(date, formatter: itemFormatter)
             .font(.custom("Amiko-Bold", size: 18))
@@ -122,7 +136,7 @@ struct HistoryView: View {
             .padding(.leading, 27)
             .frame(maxWidth: .infinity, alignment: .leading)
     }
-
+    
     private var itemFormatter: DateFormatter {
         let formatter = DateFormatter()
         formatter.dateFormat = "dd.MM.yy"
@@ -135,7 +149,7 @@ extension Calendar {
         let components = dateComponents([.year, .month], from: date)
         return self.date(from: components)!
     }
-
+    
     func endOfMonth(for date: Date) -> Date {
         var components = DateComponents()
         components.month = 1
@@ -148,7 +162,7 @@ extension String {
     func capitalizingFirstLetter() -> String {
         return prefix(1).capitalized + dropFirst()
     }
-
+    
     mutating func capitalizeFirstLetter() {
         self = self.capitalizingFirstLetter()
     }

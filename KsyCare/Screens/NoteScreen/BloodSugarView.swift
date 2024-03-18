@@ -81,7 +81,7 @@ struct BloodSugarView: View {
                                         let isSelected = level == selectedSugarLevel
                                         Text("\(level, specifier: "%.1f")")
                                         // .padding()
-                                            .font(.system(size: isSelected ? 70 : 52))
+                                            .font(.system(size: isSelected ? 70 : 50))
                                             .foregroundColor(Color("2A2931-CCF6FF"))
                                             .overlay(
                                                 RoundedRectangle(cornerRadius: 5)

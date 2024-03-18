@@ -78,7 +78,7 @@ struct ProfileView: View {
                 }
             } label: {
                 Image(systemName: "gear")
-                    .font(.system(size: 28))
+                    .font(.system(size: 24))
                     .foregroundColor(Color.black)
                     .padding(.trailing, 27)
             }
