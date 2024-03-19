@@ -112,26 +112,34 @@ struct NoteView: View {
     }
     
     private var datePickerSection: some View {
-        HStack {
+        HStack() {
             Text("Дата и время")
                 .foregroundColor(Color("2A2931-CCF6FF"))
                 .font(.system(size: 20))
-                .frame(width: 150, alignment: .leading)
             
-            Spacer(minLength: 20)
-            
+            Spacer()
             DatePicker("", selection: $selectedDate, displayedComponents: .date)
-                .datePickerStyle(.automatic)
-                .frame(width: 120, alignment: .trailing)
+                .datePickerStyle(CompactDatePickerStyle())
+                .labelsHidden()
+                .foregroundColor(Color("2A2931-CCF6FF"))
+                .accentColor(Color("2A2931-CCF6FF"))
+                .overlay(
+                    RoundedRectangle(cornerRadius: 5)
+                        .stroke(Color("B6E4EF-548493"), lineWidth: 2)
+                )
             
             DatePicker("", selection: $selectedDate, displayedComponents: .hourAndMinute)
-                .datePickerStyle(.compact)
-                .frame(width: 60)
+                .labelsHidden()
+                .foregroundColor(Color("2A2931-CCF6FF"))
+                .accentColor(Color("2A2931-CCF6FF"))
+                .overlay(
+                    RoundedRectangle(cornerRadius: 5)
+                        .stroke(Color("B6E4EF-548493"), lineWidth: 2)
+                    
+                )
         }
         .padding(.top, 10)
-        .padding(.trailing, 30)
-        .padding(.leading, 20)
-        
+        .padding(.horizontal, 20)
     }
     
     private var datePickerButton: some View {
@@ -203,3 +211,4 @@ struct NoteView_Previews: PreviewProvider {
         NoteView(selectedSugarLevel: .constant(5.0), displayText: "Сахар крови", cardType: .bloodSugar).environmentObject(MealCardViewModel())
     }
 }
+

@@ -38,6 +38,7 @@ struct MealCardView: View {
                     .frame(height: 3)
                     .foregroundColor(Color("B6E4EF-548493"))
                 Text(comments).font(.body)
+                    .foregroundColor(Color("ABF1ED-84EBE5"))
             }
         }
         .padding(.horizontal, 10)

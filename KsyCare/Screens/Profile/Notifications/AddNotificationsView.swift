@@ -7,10 +7,10 @@ struct AddNotificationsView: View {
     @State private var title: String = ""
     @State private var time: Date = Date()
     @State private var repeatOption: RepeatOption = .never
-
+    
     var notificationToEdit: NotificationModel?
     var onDismiss: (() -> Void)?
-
+    
     init(showingPopup: Binding<Bool>, notificationToEdit: NotificationModel?, onDismiss: (() -> Void)? = nil) {
         self._showingPopup = showingPopup
         self.notificationToEdit = notificationToEdit
@@ -21,7 +21,7 @@ struct AddNotificationsView: View {
             self._repeatOption = State(initialValue: notificationToEdit.repeatOption)
         }
     }
-
+    
     var body: some View {
         NavigationStack {
             ZStack(alignment: .bottom) {
@@ -47,19 +47,19 @@ struct AddNotificationsView: View {
                             .padding(.leading, 15),
                         alignment: .leading
                     )
-
+                    
                     Rectangle()
                         .frame(height: 3)
                         .padding(.horizontal)
                         .padding(.top, -10)
                         .foregroundColor(Color("divider"))
-
+                    
                     titleField
                     timeField
                     repeatField
-
+                    
                     Spacer()
-
+                    
                     HStack {
                         if notificationToEdit != nil {
                             deleteButton
@@ -75,7 +75,7 @@ struct AddNotificationsView: View {
             .edgesIgnoringSafeArea(.bottom)
         }
     }
-
+    
     private var deleteButton: some View {
         Button(action: {
             if let model = notificationToEdit {
@@ -97,11 +97,11 @@ struct AddNotificationsView: View {
         }
         .padding(.leading, 20)
     }
-
+    
     private var doneButton: some View {
         Button(action: {
             let finalTitle = title.isEmpty ? "Без названия" : title
-
+            
             if let model = notificationToEdit {
                 viewModel.updateNotification(model, title: finalTitle, time: time, repeatOption: repeatOption)
             } else {
@@ -120,49 +120,74 @@ struct AddNotificationsView: View {
                 .padding(.horizontal, 20)
         }
     }
-
+    
     private var dateFormatter: DateFormatter {
         let formatter = DateFormatter()
         formatter.timeStyle = .short
         return formatter
     }
-
+    
     private var titleField: some View {
         VStack(alignment: .leading, spacing: 10) {
-            Text("Название напоминания").font(.system(size: 20)).padding(.leading, 20)
+            Text("Название напоминания")
+                .font(.system(size: 20))
+                .foregroundColor(Color("2A2931-CCF6FF"))
+                .padding(.leading, 20)
             TextField("Название", text: $title)
                 .padding()
                 .background(Color.gray.opacity(0.2))
                 .cornerRadius(5)
+                .overlay(
+                    RoundedRectangle(cornerRadius: 5)
+                        .stroke(Color("B6E4EF-548493"), lineWidth: 2)
+                )
                 .padding(.horizontal, 20)
+            
         }
         .padding(.top, 10)
     }
-
+    
     private var timeField: some View {
         HStack() {
-            Text("Время").font(.system(size: 20)).padding(.leading, 20)
+            Text("Время")
+                .font(.system(size: 20))
+                .foregroundColor(Color("2A2931-CCF6FF"))
+                .padding(.leading, 20)
             Spacer()
             DatePicker("Выбрать время", selection: $time, displayedComponents: .hourAndMinute)
                 .labelsHidden()
-                .padding(EdgeInsets(top: 8, leading: 12, bottom: 8, trailing: 12))
+                .foregroundColor(Color("2A2931-CCF6FF"))
+                .accentColor(Color("2A2931-CCF6FF"))
+                .overlay(
+                    RoundedRectangle(cornerRadius: 5)
+                        .stroke(Color("B6E4EF-548493"), lineWidth: 2)
+                    
+                )
                 .padding(.horizontal, 20)
         }
     }
-
+    
     private var repeatField: some View {
         HStack() {
-            Text("Повтор").font(.system(size: 20)).padding(.leading, 20)
+            Text("Повтор")
+                .font(.system(size: 20))
+                .foregroundColor(Color("2A2931-CCF6FF"))
+                .padding(.leading, 20)
             Spacer()
             Picker("Повтор", selection: $repeatOption) {
                 ForEach(RepeatOption.allCases, id: \.self) { option in
-                    Text(option.rawValue).tag(option)
+                    Text(option.rawValue)
+                        .tag(option)
                 }
             }
+            .accentColor(Color("2A2931-CCF6FF"))
             .pickerStyle(MenuPickerStyle())
-            .padding(EdgeInsets(top: 8, leading: 12, bottom: 8, trailing: 12))
             .background(Color.gray.opacity(0.2))
             .cornerRadius(5)
+            .overlay(
+                RoundedRectangle(cornerRadius: 5)
+                    .stroke(Color("B6E4EF-548493"), lineWidth: 2)
+            )
             .padding(.horizontal, 20)
         }
     }
