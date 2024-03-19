@@ -83,14 +83,17 @@ struct BloodSugarView: View {
                                     ForEach(bloodSugarLevels, id: \.self) { level in
                                         let isSelected = level == selectedSugarLevel
                                         Text("\(level, specifier: "%.1f")")
+
+
                                             .font(.system(size: isSelected ? 70 : 40))
                                             .foregroundColor(isSelected ? Color("2A2931-CCF6FF") : Color("7A9DA8"))
                                             .frame(width: itemWidth, height: itemHeight)
                                             .overlay(
                                                 RoundedRectangle(cornerRadius: 5)
+
                                                     .stroke(isSelected ? Color("2BBEBE-B6E4EF") : Color.clear, lineWidth: 3)
+                                                    .padding(5)
                                             )
-                                            .contentShape(Rectangle())
                                             .onTapGesture {
                                                 selectedSugarLevel = level
                                                 scrollViewProxy?.scrollTo(level, anchor: .center)

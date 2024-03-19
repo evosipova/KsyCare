@@ -79,7 +79,9 @@ struct InsulinView: View {
                                             .frame(width: itemWidth, height: itemHeight)
                                             .overlay(
                                                 RoundedRectangle(cornerRadius: 5)
+
                                                     .stroke(isSelected ? Color("2BBEBE-B6E4EF") : Color.clear, lineWidth: 3)
+                                                    .padding(5)
                                             )
                                             .contentShape(Rectangle())
                                             .onTapGesture {
@@ -97,7 +99,7 @@ struct InsulinView: View {
                             }
                             .coordinateSpace(name: "scrollView")
                             .onPreferenceChange(ScrollViewOffsetPreferenceKey.self) { offset in
-                                let center = offset - (fullView.size.width / 2 - itemWidth / 2) + (itemWidth / 2)
+                                let center = offset - fullView.size.width  + itemWidth
                                 let centerIndex = Int(round(center / (itemWidth + spacing)))
 
                                 if centerIndex >= 0 && centerIndex < InsulinLevels.count {
