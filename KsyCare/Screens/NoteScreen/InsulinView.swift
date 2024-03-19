@@ -94,7 +94,7 @@ struct InsulinView: View {
                                 .padding(.horizontal, fullView.size.width / 2 - itemWidth / 2)
                                 .background(GeometryReader {
                                     Color.clear.preference(key: ScrollViewOffsetPreferenceKey.self,
-                                                           value: -$0.frame(in: .named("scrollView")).origin.x + fullView.size.width / 2 - itemWidth / 2)
+                                                           value: -$0.frame(in: .named("scrollView")).origin.x + fullView.size.width / 2 + itemWidth / 2)
                                 })
                             }
                             .coordinateSpace(name: "scrollView")
