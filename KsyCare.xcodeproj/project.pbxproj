@@ -160,7 +160,6 @@
 				5EC2A6EB2BA234FF007D4188 /* Profile */,
 				5E351F202B5F4DB5004A3803 /* NoteScreen */,
 				5ECCBE8E2B4733560042CC5F /* HomeView.swift */,
-				5E2E1D1E2BA8D56700D1C9BF /* RingView.swift */,
 				5ECCBE922B4735450042CC5F /* HistoryView.swift */,
 				5EDB7EF92B854942000F234D /* MealCard */,
 			);
@@ -176,6 +175,7 @@
 				5E351F252B5F4DEB004A3803 /* InsulinView.swift */,
 				5E351F272B5F4DF3004A3803 /* CombinedView.swift */,
 				5E351F212B5F4DDA004A3803 /* FoodView.swift */,
+				5E2E1D1E2BA8D56700D1C9BF /* RingView.swift */,
 			);
 			path = NoteScreen;
 			sourceTree = "<group>";
@@ -193,6 +193,7 @@
 		5EBFE8A02BA661E200572A7F /* Registration */ = {
 			isa = PBXGroup;
 			children = (
+				5ECCBE5C2B46E6470042CC5F /* ScreensaverView.swift */,
 				5ECCBE862B46F7500042CC5F /* LoginView.swift */,
 				5ECCBE842B46F70F0042CC5F /* RegistrationFIrstView.swift */,
 				5E2E1D152BA7345E00D1C9BF /* RegistrationSecondView.swift */,
@@ -273,15 +274,14 @@
 		5ECCBE592B46E6470042CC5F /* KsyCare */ = {
 			isa = PBXGroup;
 			children = (
-				5ECCBE5A2B46E6470042CC5F /* KsyCareApp.swift */,
-				5E48BCBA2BA50EA800D364A7 /* NotificationDelegate.swift */,
-				5ECCBE5C2B46E6470042CC5F /* ScreensaverView.swift */,
-				5EBFE8A02BA661E200572A7F /* Registration */,
-				5EC07B462B881E3800C47EC5 /* CustomTabBar */,
-				5E351F172B476BAB004A3803 /* Screens */,
 				5ECCBE5E2B46E6480042CC5F /* Assets.xcassets */,
 				5EDB7EF52B814587000F234D /* Color.xcassets */,
+				5EC07B462B881E3800C47EC5 /* CustomTabBar */,
+				5ECCBE5A2B46E6470042CC5F /* KsyCareApp.swift */,
+				5E48BCBA2BA50EA800D364A7 /* NotificationDelegate.swift */,
 				5ECCBE602B46E6480042CC5F /* Preview Content */,
+				5EBFE8A02BA661E200572A7F /* Registration */,
+				5E351F172B476BAB004A3803 /* Screens */,
 			);
 			path = KsyCare;
 			sourceTree = "<group>";

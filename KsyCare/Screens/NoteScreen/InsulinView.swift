@@ -3,14 +3,14 @@ import SwiftUI
 struct InsulinView: View {
     @Environment(\.presentationMode) var presentationMode
 
-    private let InsulinLevels = Array(stride(from: 3.0, through: 7.0, by: 0.1))
-    @State private var selectedInsulinLevel: Double = 3.0
+    private let InsulinLevels = Array(stride(from: 0.0, through: 50.0, by: 0.1))
+    @State private var selectedInsulinLevel: Double = 0.0
     @State private var scrollViewProxy: ScrollViewProxy?
-    private let itemWidth: CGFloat = 120
-    private let itemHeight: CGFloat = 100
-    private let frameWidth: CGFloat = 200
-    private let frameHeight: CGFloat = 300
-    private let spacing: CGFloat = 20
+    private let itemWidth: CGFloat = 150
+    private let itemHeight: CGFloat = 150
+    private let frameWidth: CGFloat = 300
+    private let frameHeight: CGFloat = 450
+    private let spacing: CGFloat = 5
 
     var body: some View {
         NavigationStack {
@@ -74,8 +74,8 @@ struct InsulinView: View {
                                     ForEach(InsulinLevels, id: \.self) { level in
                                         let isSelected = level == selectedInsulinLevel
                                         Text("\(level, specifier: "%.1f")")
-                                            .font(.system(size: isSelected ? 70 : 52))
-                                            .foregroundColor(Color("2A2931-CCF6FF"))
+                                            .font(.system(size: isSelected ? 70 : 40))
+                                            .foregroundColor(isSelected ? Color("2A2931-CCF6FF") : Color("7A9DA8"))
                                             .frame(width: itemWidth, height: itemHeight)
                                             .overlay(
                                                 RoundedRectangle(cornerRadius: 5)

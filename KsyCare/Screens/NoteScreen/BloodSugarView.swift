@@ -2,20 +2,23 @@ import SwiftUI
 
 struct ScrollViewOffsetPreferenceKey: PreferenceKey {
     static var defaultValue: CGFloat = .zero
-    static func reduce(value: inout CGFloat, nextValue: () -> CGFloat) {}
+
+    static func reduce(value: inout CGFloat, nextValue: () -> CGFloat) {
+        value += nextValue()
+    }
+
 }
 
 struct BloodSugarView: View {
     @Environment(\.presentationMode) var presentationMode
-
-    private let bloodSugarLevels = Array(stride(from: 3.0, through: 7.0, by: 0.1))
-    @State private var selectedSugarLevel: Double = 3.0
+    private let bloodSugarLevels = Array(stride(from: 0.0, through: 30.0, by: 0.1))
+    @State private var selectedSugarLevel: Double = 5.0
     @State private var scrollViewProxy: ScrollViewProxy?
-    private let itemWidth: CGFloat = 120
-    private let itemHeight: CGFloat = 100
-    private let frameWidth: CGFloat = 200
-    private let frameHeight: CGFloat = 300
-    private let spacing: CGFloat = 20
+    private let itemWidth: CGFloat = 150
+    private let itemHeight: CGFloat = 150
+    private let frameWidth: CGFloat = 300
+    private let frameHeight: CGFloat = 450
+    private let spacing: CGFloat = 5
 
     var body: some View {
         NavigationStack {
@@ -80,14 +83,13 @@ struct BloodSugarView: View {
                                     ForEach(bloodSugarLevels, id: \.self) { level in
                                         let isSelected = level == selectedSugarLevel
                                         Text("\(level, specifier: "%.1f")")
-                                        // .padding()
-                                            .font(.system(size: isSelected ? 70 : 50))
-                                            .foregroundColor(Color("2A2931-CCF6FF"))
+                                            .font(.system(size: isSelected ? 70 : 40))
+                                            .foregroundColor(isSelected ? Color("2A2931-CCF6FF") : Color("7A9DA8"))
+                                            .frame(width: itemWidth, height: itemHeight)
                                             .overlay(
                                                 RoundedRectangle(cornerRadius: 5)
                                                     .stroke(isSelected ? Color("2BBEBE-B6E4EF") : Color.clear, lineWidth: 3)
                                             )
-                                            .frame(width: itemWidth, height: itemHeight)
                                             .contentShape(Rectangle())
                                             .onTapGesture {
                                                 selectedSugarLevel = level
@@ -99,12 +101,12 @@ struct BloodSugarView: View {
                                 .padding(.horizontal, fullView.size.width / 2 - itemWidth / 2)
                                 .background(GeometryReader {
                                     Color.clear.preference(key: ScrollViewOffsetPreferenceKey.self,
-                                                           value: -$0.frame(in: .named("scrollView")).origin.x + fullView.size.width / 2 - itemWidth / 2)
+                                                           value: -$0.frame(in: .named("scrollView")).origin.x + fullView.size.width / 2 + itemWidth / 2)
                                 })
                             }
                             .coordinateSpace(name: "scrollView")
                             .onPreferenceChange(ScrollViewOffsetPreferenceKey.self) { offset in
-                                let center = offset - (fullView.size.width / 2 - itemWidth / 2) + (itemWidth / 2)
+                                let center = offset - fullView.size.width  + itemWidth
                                 let centerIndex = Int(round(center / (itemWidth + spacing)))
 
                                 if centerIndex >= 0 && centerIndex < bloodSugarLevels.count {
@@ -119,7 +121,11 @@ struct BloodSugarView: View {
                             }
                             .onAppear {
                                 scrollViewProxy = proxy
+                                DispatchQueue.main.async {
+                                    scrollViewProxy?.scrollTo(5.0, anchor: .center)
+                                }
                             }
+
                         }
                         .frame(height: fullView.size.height / 2)
                     }
