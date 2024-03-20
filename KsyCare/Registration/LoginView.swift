@@ -5,8 +5,12 @@ struct LoginView: View {
     @State private var email: String = ""
     @State private var password: String = ""
     @State private var inputImage: UIImage?
+    @State var user: User?
     @StateObject private var viewModel = ProfileViewModel()
-    
+
+
+    @State private var showCustomTabBarView = false
+
     var body: some View {
         NavigationView {
             ZStack {
@@ -21,14 +25,30 @@ struct LoginView: View {
                 
                 VStack {
                     Spacer()
-                    NavigationLink(destination: CustomTabBarView(viewModel: CustomTabBarViewModel())) {
+//                    NavigationLink(destination: CustomTabBarView(viewModel: CustomTabBarViewModel())) {
+//                        Text("Войти")
+//                            .bold()
+//                            .frame(minWidth: 0, maxWidth: .infinity)
+//                            .padding()
+//                            .foregroundColor(Color("startText"))
+//                            .background(Color("startButton"))
+//                            .cornerRadius(10)
+//                    }
+
+                    Button(action: {
+                        Task {
+                            do {
+                                self.user = try await NetworkService.shared.auth(login: email, password: password)
+                                showCustomTabBarView = true
+                            } catch {
+                                print("Ошибка аутентификации: \(error)")
+                            }
+                        }
+                    }) {
                         Text("Войти")
-                            .bold()
-                            .frame(minWidth: 0, maxWidth: .infinity)
-                            .padding()
-                            .foregroundColor(Color("startText"))
-                            .background(Color("startButton"))
-                            .cornerRadius(10)
+                    }
+                    .sheet(isPresented: $showCustomTabBarView) {
+                        CustomTabBarView(viewModel: CustomTabBarViewModel())
                     }
                 }
                 .padding()
