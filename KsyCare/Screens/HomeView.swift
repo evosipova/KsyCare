@@ -88,7 +88,7 @@ struct HomeView: View {
                 }) {
                     MealCardView(viewModel: mealCardsData, card: card)
                         .padding(.bottom, 10)
-                        .padding(.horizontal)
+                        .padding(.horizontal, 20)
                 }
             }
             .fullScreenCover(item: $selectedCard) { card in

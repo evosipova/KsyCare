@@ -118,7 +118,7 @@ struct HistoryView: View {
                         NavigationLink(destination: MealCardDetailView(card: card)) {
                             MealCardView(viewModel: mealCardsData, card: card)
                                 .padding(.bottom, 10)
-                                .padding(.horizontal)
+                                .padding(.horizontal, 20)
                         }
                     }
                 }
