@@ -55,6 +55,8 @@
 		5EDB7EED2B802C5D000F234D /* NoteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EDB7EEC2B802C5D000F234D /* NoteView.swift */; };
 		5EDB7EF62B814587000F234D /* Color.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5EDB7EF52B814587000F234D /* Color.xcassets */; };
 		5EDB7EFB2B8549E7000F234D /* MealCardModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EDB7EFA2B8549E7000F234D /* MealCardModel.swift */; };
+		FAEF242A2BA651F300BF6347 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEF24292BA651F300BF6347 /* NetworkService.swift */; };
+		FAEF242C2BA653EF00BF6347 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEF242B2BA653EF00BF6347 /* User.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -126,6 +128,8 @@
 		5EDB7EEC2B802C5D000F234D /* NoteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteView.swift; sourceTree = "<group>"; };
 		5EDB7EF52B814587000F234D /* Color.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Color.xcassets; sourceTree = "<group>"; };
 		5EDB7EFA2B8549E7000F234D /* MealCardModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealCardModel.swift; sourceTree = "<group>"; };
+		FAEF24292BA651F300BF6347 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
+		FAEF242B2BA653EF00BF6347 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -254,6 +258,8 @@
 		5ECCBE4E2B46E6470042CC5F = {
 			isa = PBXGroup;
 			children = (
+				FAEF242D2BA6544000BF6347 /* Services */,
+				FAEF242E2BA6545400BF6347 /* Model */,
 				5ECCBE592B46E6470042CC5F /* KsyCare */,
 				5ECCBE6A2B46E6480042CC5F /* KsyCareTests */,
 				5ECCBE742B46E6480042CC5F /* KsyCareUITests */,
@@ -322,6 +328,22 @@
 			path = MealCard;
 			sourceTree = "<group>";
 		};
+		FAEF242D2BA6544000BF6347 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				FAEF24292BA651F300BF6347 /* NetworkService.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		FAEF242E2BA6545400BF6347 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				FAEF242B2BA653EF00BF6347 /* User.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -388,7 +410,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1430;
-				LastUpgradeCheck = 1430;
+				LastUpgradeCheck = 1530;
 				TargetAttributes = {
 					5ECCBE562B46E6470042CC5F = {
 						CreatedOnToolsVersion = 14.3.1;
@@ -468,7 +490,8 @@
 				5E48BCBB2BA50EA800D364A7 /* NotificationDelegate.swift in Sources */,
 				5EC2A6F22BA23551007D4188 /* ProfileViewModel.swift in Sources */,
 				5E2E1D162BA7345E00D1C9BF /* RegistrationSecondView.swift in Sources */,
-				5E351F1F2B5DFD7B004A3803 /* MealCardView.swift in Sources */,
+				5E351F1F2B5DFD7B004A3803 /* MealCard.swift in Sources */,
+				FAEF242A2BA651F300BF6347 /* NetworkService.swift in Sources */,
 				5E48BCB52BA4DDE500D364A7 /* RepeatOption.swift in Sources */,
 				5E48BCB72BA4E01700D364A7 /* NotificationCard.swift in Sources */,
 				5ECCBE892B46FB8B0042CC5F /* CustomTabBarView.swift in Sources */,
@@ -476,6 +499,7 @@
 				5EC2A7012BA3D3D3007D4188 /* Path+QuadCurve.swift in Sources */,
 				5ECCBE5D2B46E6470042CC5F /* ScreensaverView.swift in Sources */,
 				5E351F282B5F4DF3004A3803 /* CombinedView.swift in Sources */,
+				FAEF242C2BA653EF00BF6347 /* User.swift in Sources */,
 				5EC2A6FB2BA3D2C8007D4188 /* LineChartView.swift in Sources */,
 				5E351F242B5F4DE2004A3803 /* BloodSugarView.swift in Sources */,
 				5E951DE52B952D1800CF5016 /* TeamScreen.swift in Sources */,
@@ -571,6 +595,7 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -631,6 +656,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
