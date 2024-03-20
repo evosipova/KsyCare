@@ -204,13 +204,13 @@ struct ProfileView: View {
             Button(action: {
                 showNotificationsView.toggle()
             }) {
-
-                    Text("Уведомления")
+                Text("Уведомления")
+                    .foregroundColor(Color("2A2931-CCF6FF"))
                 Spacer()
             }
             .padding()
             .frame(maxWidth: .infinity, alignment: .leading)
-            .background(Color("Test"))
+            .background(Color("ABF1ED"))
             .cornerRadius(8)
         }
         .padding()
