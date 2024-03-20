@@ -10,26 +10,29 @@ struct StatisticsView: View {
         formatter.dateFormat = "LLLL yyyy"
         return formatter
     }()
-
+    
     var body: some View {
         ScrollView {
-
+            
             VStack {
                 headingSection
-
+                
                 filterSection
-
+                
                 LineChartView(data: insulinDataForChart(month: selectedMonth),
-                              title: "Инсулин", legend: selectedMonth.description,
+                              title: "Инсулин",
                               form: ChartForm.large, rateValue: calculateRateValue(data: insulinDataForChart(month: selectedMonth)))
                 .frame(maxWidth: .infinity)
-
+                
                 Spacer()
                     .padding(.top, 20)
-
-                LineChartView(data: bloodSugarDataForChart(month: selectedMonth),
+                //
+                //                LineChartView(data: bloodSugarDataForChart(month: selectedMonth),
+                
+                LineChartView(data: [282.502, 284.495, 283.51, 285.019, 285.197, 286.118, 288.737, 288.455, 289.391, 287.691, 285.878, 286.46, 286.252, 284.652, 284.129, 284.188],
                               title: "Кровь",
-                              form: ChartForm.large, rateValue: calculateRateValue(data: bloodSugarDataForChart(month: selectedMonth)))
+                              form: ChartForm.large,
+                              rateValue: calculateRateValue(data: bloodSugarDataForChart(month: selectedMonth)))
                 .frame(maxWidth: .infinity)
             }
         }
@@ -40,7 +43,7 @@ struct StatisticsView: View {
         )
         .navigationTitle("Статистика")
     }
-
+    
     private var headingSection: some View {
         HStack {
             Text("Статистика")
@@ -51,12 +54,12 @@ struct StatisticsView: View {
             Spacer()
         }
     }
-
+    
     private func calculateRateValue(data: [Double]) -> Int? {
         guard data.count >= 2 else { return nil }
         let lastValue = data.last!
         let secondLastValue = data[data.count - 2]
-
+        
         if secondLastValue == 0 {
             return lastValue == 0 ? 0 : nil
         } else {
@@ -64,11 +67,11 @@ struct StatisticsView: View {
             return Int(rateChange * 100)
         }
     }
-
+    
     private var filterSection: some View {
         HStack() {
             Spacer()
-
+            
             Button(action: {
                 if let newMonth = calendar.date(byAdding: .month, value: -1, to: selectedMonth) {
                     selectedMonth = newMonth
@@ -79,15 +82,15 @@ struct StatisticsView: View {
                     .font(.largeTitle)
             }
             .padding([.leading, .trailing], 0)
-
+            
             Text(dateFormatter.string(from: selectedMonth).capitalizingFirstLetter())
                 .lineLimit(1)
-
+            
                 .frame(minWidth: 0, maxWidth: .infinity, alignment: .center)
                 .font(.largeTitle)
                 .foregroundColor(Color("2A2931-CCF6FF"))
                 .padding()
-
+            
             Button(action: {
                 if let newMonth = calendar.date(byAdding: .month, value: 1, to: selectedMonth) {
                     selectedMonth = newMonth
@@ -98,19 +101,19 @@ struct StatisticsView: View {
                     .font(.largeTitle)
             }
             .padding([.leading, .trailing], 0)
-
+            
             Spacer()
         }
         .padding()
     }
-
+    
     private func insulinDataForChart(month: Date) -> [Double] {
         let insulinData = mealCardsData.allCards
             .filter { calendar.isDate($0.creationTime, equalTo: month, toGranularity: .month) }
             .compactMap { $0.insulin }
         return insulinData.isEmpty ? [0.0] : insulinData
     }
-
+    
     private func bloodSugarDataForChart(month: Date) -> [Double] {
         let bloodSugarData = mealCardsData.allCards
             .filter { calendar.isDate($0.creationTime, equalTo: month, toGranularity: .month) }

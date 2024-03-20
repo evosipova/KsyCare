@@ -78,7 +78,6 @@ public struct LineChartView: View {
                         }
                     }
                     .transition(.opacity)
-                 //   .animation(.easeIn(duration: 0.1))
                     .padding([.leading, .top])
                 }else{
                     HStack{
@@ -134,7 +133,7 @@ public struct LineChartView: View {
 struct WidgetView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
-            LineChartView(data: [8,23,54,32,12,37,7,23,43], title: "Line chart", legend: "Basic")
+            LineChartView(data: [8,23,54,32,12,37,7,23,43], title: "Line chart", legend: "Basic", form: ChartForm.large)
                 .environment(\.colorScheme, .light)
 
             LineChartView(data: [282.502, 284.495, 283.51, 285.019, 285.197, 286.118, 288.737, 288.455, 289.391, 287.691, 285.878, 286.46, 286.252, 284.652, 284.129, 284.188], title: "Line chart", legend: "Basic")
