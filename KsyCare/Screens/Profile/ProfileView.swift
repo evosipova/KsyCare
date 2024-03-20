@@ -1,16 +1,15 @@
 import SwiftUI
+import PhotosUI
 
 struct ProfileView: View {
     @State private var showTeamView = false
     @State private var showTeamScreen = false
     @State private var showScreensaverView = false
-    
     @State private var showNotificationsView = false
-    
-    
     @StateObject private var viewModel = ProfileViewModel()
-    @State private var showingImagePicker = false
     @State private var inputImage: UIImage?
+    @State private var isShowingPhotosPicker = false
+    @State private var selectedPhotoItem: PhotosPickerItem? = nil
     
     private func navigationButton<Destination: View>(_ title: String, destination: Destination, color: Color) -> some View {
         NavigationLink(destination: destination) {
@@ -84,10 +83,10 @@ struct ProfileView: View {
             } label: {
                 Image("settings-pdf")
                     .resizable()
-                    .frame(width: 28, height: 28)
-                    .font(.system(size: 24))
-                    .foregroundColor(Color.black)
-                    .padding(.trailing, 27)
+                    .aspectRatio(contentMode: .fit)
+                    .frame(width: 30, height: 30)
+                    .foregroundColor(Color("2A2931"))
+                    .padding(.trailing, 20)
             }
         }
     }
@@ -95,7 +94,7 @@ struct ProfileView: View {
     private var avatarSection: some View {
         VStack {
             Button(action: {
-                showingImagePicker = true
+                isShowingPhotosPicker = true
             }) {
                 ZStack {
                     Circle()
@@ -117,15 +116,21 @@ struct ProfileView: View {
                     }
                 }
             }
+            .photosPicker(isPresented: $isShowingPhotosPicker, selection: $selectedPhotoItem, matching: .images)
+            .onChange(of: selectedPhotoItem) { newItem in
+                Task {
+                    guard let selectedItem = newItem,
+                          let data = try? await selectedItem.loadTransferable(type: Data.self),
+                          let image = UIImage(data: data) else { return }
+                    
+                    inputImage = image
+                    loadImage()
+                }
+            }
             .overlay(Circle().stroke(Color.white, lineWidth: 4))
             .padding(.top)
-            .sheet(isPresented: $showingImagePicker, onDismiss: loadImage) {
-                ImagePicker(image: $inputImage)
-                    .padding(.bottom)
-            }
         }
     }
-    
     
     private func loadImage() {
         guard let inputImage = inputImage else { return }
@@ -139,7 +144,7 @@ struct ProfileView: View {
                 Text(viewModel.userProfile.name)
                     .font(.headline)
                     .foregroundColor(Color("2A2931"))
-
+                
                 Text(viewModel.userProfile.surname)
                     .font(.headline)
                     .foregroundColor(Color("2A2931"))
@@ -159,7 +164,7 @@ struct ProfileView: View {
                 RoundedRectangle(cornerRadius: 5)
                     .stroke(Color("B6E4EF-548493"), lineWidth: 2)
             )
-
+            
             HStack {
                 Text("Почта:")
                     .foregroundColor(Color("2A2931"))
@@ -216,7 +221,7 @@ struct ProfileView: View {
                 RoundedRectangle(cornerRadius: 5)
                     .stroke(Color("B6E4EF-548493"), lineWidth: 2)
             )
-
+            
             HStack {
                 Text("Тип диабета:")
                     .foregroundColor(Color("2A2931-CCF6FF"))
@@ -231,7 +236,7 @@ struct ProfileView: View {
                 Text("Уведомления")
                     .foregroundColor(Color("2A2931"))
                 Spacer()
-
+                
                 Image(systemName: "arrowshape.right.fill")
                     .foregroundColor(Color("2A2931"))
             }
