@@ -165,7 +165,6 @@ struct NoteView: View {
                 .padding(.leading, 20)
                 .foregroundColor(Color("2A2931-CCF6FF"))
             
-            
             TextField("", text: $comments, prompt: Text("Введи комментарий")
                 .foregroundColor(Color("7A9DA8")))
             .padding()

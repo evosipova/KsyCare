@@ -4,14 +4,14 @@ struct ProfileView: View {
     @State private var showTeamView = false
     @State private var showTeamScreen = false
     @State private var showScreensaverView = false
-
+    
     @State private var showNotificationsView = false
-
-
+    
+    
     @StateObject private var viewModel = ProfileViewModel()
     @State private var showingImagePicker = false
     @State private var inputImage: UIImage?
-
+    
     private func navigationButton<Destination: View>(_ title: String, destination: Destination, color: Color) -> some View {
         NavigationLink(destination: destination) {
             HStack {
@@ -27,7 +27,7 @@ struct ProfileView: View {
             .cornerRadius(8)
         }
     }
-
+    
     var body: some View {
         NavigationView {
             ScrollView {
@@ -43,8 +43,12 @@ struct ProfileView: View {
             .padding(.horizontal, 7)
             .frame(maxHeight: .infinity)
             .edgesIgnoringSafeArea(.bottom)
-            .background(Color.gray.opacity(0.1))
+            .background(            LinearGradient(gradient: Gradient(colors: [Color(red: 0.349, green: 0.624, blue: 0.859),
+                                                                               Color(red: 0.8, green: 0.965, blue: 1),
+                                                                               Color(red: 0.948, green: 0.992, blue: 0.985)]),
+                                                   startPoint: .top, endPoint: .bottom))
         }
+        
         .fullScreenCover(isPresented: $showTeamView) {
             TeamScreen()
         }
@@ -58,13 +62,13 @@ struct ProfileView: View {
             NotificationsView(viewModel: NotificationsViewModel())
         }
     }
-
+    
     private var headingSection: some View {
         HStack {
             Text("Профиль")
                 .font(.system(size: 24, weight: .bold))
                 .fontWeight(.bold)
-                .foregroundColor(Color.black)
+                .foregroundColor(Color("2A2931"))
                 .padding(.leading, 20)
             Spacer()
             Menu {
@@ -87,7 +91,7 @@ struct ProfileView: View {
             }
         }
     }
-
+    
     private var avatarSection: some View {
         VStack {
             Button(action: {
@@ -97,7 +101,7 @@ struct ProfileView: View {
                     Circle()
                         .foregroundColor(.gray)
                         .frame(width: 190, height: 190)
-
+                    
                     if let inputImage = inputImage {
                         Image(uiImage: inputImage)
                             .resizable()
@@ -117,63 +121,76 @@ struct ProfileView: View {
             .padding(.top)
             .sheet(isPresented: $showingImagePicker, onDismiss: loadImage) {
                 ImagePicker(image: $inputImage)
+                    .padding(.bottom)
             }
         }
     }
-
-
+    
+    
     private func loadImage() {
         guard let inputImage = inputImage else { return }
         viewModel.userProfile.avatar = inputImage
     }
-
+    
     private var personalInfoSection: some View {
         VStack(alignment: .leading, spacing: 10) {
-
+            
             HStack(alignment: .center) {
                 Text(viewModel.userProfile.name)
                     .font(.headline)
+                    .foregroundColor(Color("2A2931"))
 
                 Text(viewModel.userProfile.surname)
                     .font(.headline)
+                    .foregroundColor(Color("2A2931"))
             }
             .frame(maxWidth: .infinity)
-
+            
             HStack {
                 Text("Личная информация")
+                    .foregroundColor(Color("F1FDFB-365E7A"))
                     .font(.headline)
                     .padding()
                 Spacer()
             }
-            .background(Color.secondary)
-            .cornerRadius(15)
+            .background(Color("599FDB-B6E4EF"))
+            .cornerRadius(5)
+            .overlay(
+                RoundedRectangle(cornerRadius: 5)
+                    .stroke(Color("B6E4EF-548493"), lineWidth: 2)
+            )
 
             HStack {
                 Text("Почта:")
+                    .foregroundColor(Color("2A2931"))
                 Spacer()
                 Text(viewModel.userProfile.email)
                     .foregroundColor(.gray)
             }
             HStack {
                 Text("Дата рождения:")
+                    .foregroundColor(Color("2A2931"))
                 Spacer()
                 Text("\(viewModel.userProfile.birthDate, formatter: dateFormatter)")
                     .foregroundColor(.gray)
             }
             HStack {
                 Text("Пол:")
+                    .foregroundColor(Color("2A2931"))
                 Spacer()
                 Text(viewModel.userProfile.gender)
                     .foregroundColor(.gray)
             }
             HStack {
                 Text("Вес:")
+                    .foregroundColor(Color("2A2931"))
                 Spacer()
                 Text("\(viewModel.userProfile.weight, specifier: "%.1f") кг")
                     .foregroundColor(.gray)
             }
             HStack {
                 Text("Рост:")
+                    .foregroundColor(Color("2A2931"))
                 Spacer()
                 Text("\(viewModel.userProfile.height, specifier: "%.0f") см")
                     .foregroundColor(.gray)
@@ -181,41 +198,55 @@ struct ProfileView: View {
         }
         .padding()
     }
-
-
+    
+    
     private var therapySection: some View {
         VStack(alignment: .leading, spacing: 10) {
             HStack {
                 Text("Терапия")
                     .font(.headline)
+                    .foregroundColor(Color("F1FDFB-365E7A"))
                     .padding()
                 Spacer()
             }
-            .background(Color.secondary)
-            .cornerRadius(15)
+            .background(Color("599FDB-B6E4EF"))
+            .cornerRadius(5)
+            .cornerRadius(5)
+            .overlay(
+                RoundedRectangle(cornerRadius: 5)
+                    .stroke(Color("B6E4EF-548493"), lineWidth: 2)
+            )
 
             HStack {
                 Text("Тип диабета:")
+                    .foregroundColor(Color("2A2931-CCF6FF"))
                 Spacer()
                 Text(viewModel.userProfile.diabetesType)
                     .foregroundColor(.gray)
             }
-
+            
             Button(action: {
                 showNotificationsView.toggle()
             }) {
                 Text("Уведомления")
-                    .foregroundColor(Color("2A2931-CCF6FF"))
+                    .foregroundColor(Color("2A2931"))
                 Spacer()
+
+                Image(systemName: "arrowshape.right.fill")
+                    .foregroundColor(Color("2A2931"))
             }
             .padding()
             .frame(maxWidth: .infinity, alignment: .leading)
             .background(Color("ABF1ED"))
-            .cornerRadius(8)
+            .cornerRadius(5)
+            .overlay(
+                RoundedRectangle(cornerRadius: 5)
+                    .stroke(Color("B6E4EF-548493"), lineWidth: 2)
+            )
         }
         .padding()
     }
-
+    
     private let dateFormatter: DateFormatter = {
         let formatter = DateFormatter()
         formatter.dateStyle = .long
