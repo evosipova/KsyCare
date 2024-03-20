@@ -9,6 +9,7 @@ struct RegistrationFirstView: View {
     @State private var showingImagePicker = false
     @State private var inputImage: UIImage?
     @StateObject private var viewModel = ProfileViewModel()
+    @State private var showSuccessScreen = false
 
     var body: some View {
         NavigationView {
@@ -40,7 +41,30 @@ struct RegistrationFirstView: View {
 
                 Spacer()
 
-                NavigationLink(destination: RegistrationSecondView()) {
+//                NavigationLink(destination: RegistrationSecondView()) {
+//                    Text("Продолжить")
+//                        .bold()
+//                        .frame(minWidth: 0, maxWidth: .infinity)
+//                        .padding()
+//                        .foregroundColor(Color("startText"))
+//                        .background(Color("startButton"))
+//                        .cornerRadius(10)
+//                }
+//                .padding()
+                Button(action: {
+                    Task {
+                        do {
+                            let user = try await NetworkService.shared.register(name: name, login: email, password: password, role: surname)
+//                            viewModel.user = user
+
+                            // Переключаемся на экран успешной регистрации или любой другой экран по вашему выбору
+                            showSuccessScreen = true
+                        } catch {
+                            // Обработка ошибок регистрации
+                            print("Ошибка регистрации: \(error)")
+                        }
+                    }
+                }) {
                     Text("Продолжить")
                         .bold()
                         .frame(minWidth: 0, maxWidth: .infinity)
@@ -49,7 +73,12 @@ struct RegistrationFirstView: View {
                         .background(Color("startButton"))
                         .cornerRadius(10)
                 }
-                .padding()
+                .sheet(isPresented: $showSuccessScreen) {
+                    // Предположим, что после успешной регистрации вы хотите показать CustomTabBarView
+                    // Или измените на другой экран, который сочтете нужным
+                    CustomTabBarView(viewModel: CustomTabBarViewModel())
+                }
+
             }
             Spacer()
         }
