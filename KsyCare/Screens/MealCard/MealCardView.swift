@@ -7,9 +7,17 @@ struct MealCardView: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 3) {
             HStack {
-                Text(card.mealTime)
-                    .font(.headline)
-                    .foregroundColor(Color("2A2931-CCF6FF"))
+                if !card.mealTime.isEmpty {
+                    Image("mainPlus-pdf")
+                        .resizable()
+                        .frame(width: 20, height: 20)
+                        .foregroundColor(Color("58EEE5"))
+
+                    Text(card.mealTime)
+                        .font(.headline)
+                        .foregroundColor(Color("2A2931-CCF6FF"))
+                }
+
                 Spacer()
                 Text(viewModel.formatCreationTime(for: card))
                     .font(.body)
@@ -21,12 +29,12 @@ struct MealCardView: View {
                 .frame(height: 3)
                 .foregroundColor(Color("B6E4EF-548493"))
 
-            if let bloodSugar = card.bloodSugar {
-                infoRow(label: "Сахар крови", value: String(format: "%.2f", bloodSugar), color:  Color("ABF1ED-84EBE5"))
-            }
-
             if let breadUnits = card.breadUnits {
                 infoRow(label: "ХЕ", value: String(format: "%.2f", breadUnits), color:  Color("ABF1ED-84EBE5"))
+            }
+
+            if let bloodSugar = card.bloodSugar {
+                infoRow(label: "Сахар крови", value: String(format: "%.2f", bloodSugar), color:  Color("ABF1ED-84EBE5"))
             }
 
             if let insulin = card.insulin {
@@ -38,7 +46,7 @@ struct MealCardView: View {
                     .frame(height: 3)
                     .foregroundColor(Color("B6E4EF-548493"))
                 Text(comments).font(.body)
-                    .foregroundColor(Color("ABF1ED-84EBE5"))
+                    .foregroundColor(Color("2A2931-CCF6FF"))
             }
         }
         .padding(.horizontal, 10)
@@ -50,7 +58,10 @@ struct MealCardView: View {
 
     private func infoRow(label: String, value: String, color: Color) -> some View {
         HStack {
-            Image(systemName: "circle.fill")
+            Image(iconName(forLabel: label))
+                .resizable()
+                .scaledToFit()
+                .frame(width: 20, height: 20)
                 .foregroundColor(color)
             Text(label)
                 .font(.body)
@@ -59,6 +70,19 @@ struct MealCardView: View {
             Text(value)
                 .font(.body)
                 .foregroundColor(Color("2A2931-CCF6FF"))
+        }
+    }
+
+    private func iconName(forLabel label: String) -> String {
+        switch label {
+        case "Сахар крови":
+            return "bloodPlus-pdf"
+        case "ХЕ":
+            return "foodPlus-pdf"
+        case "Инсулин":
+            return "insulinPlus-pdf"
+        default:
+            return "circle.fill"
         }
     }
 }

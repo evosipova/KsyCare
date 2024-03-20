@@ -18,7 +18,10 @@ struct AddNoteView: View {
             ForEach(viewModel.getButtons(), id: \.title) { button in
                 Button(action: { button.showingView.wrappedValue = true }) {
                     HStack {
-                        Image(systemName: button.systemImage)
+                        Image(button.imageName)
+                            .resizable()
+                            .aspectRatio(contentMode: .fit)
+                            .frame(width: 28, height: 28)
                         Text(button.title)
                             .font(.custom("Amiko", size: 20))
                         Spacer()

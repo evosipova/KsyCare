@@ -5,7 +5,7 @@ struct NotificationsView: View {
     @ObservedObject var viewModel: NotificationsViewModel
     @State private var showingAddNotificationView = false
 
-    @State private var selectedNotification: NotificationModel? 
+    @State private var selectedNotification: NotificationModel?
 
     var body: some View {
         NavigationStack {
@@ -20,13 +20,19 @@ struct NotificationsView: View {
                         .foregroundColor(Color("divider"))
 
                     if viewModel.notifications.isEmpty {
-                        GeometryReader { geometry in
+                        ScrollView {
                             VStack {
-                                Text("пока нет уведомлений :(")
-                                    .foregroundColor(Color("lightDetail"))
-                                    .font(.title2)
-                                    .frame(width: geometry.size.width, height: geometry.size.height, alignment: .center)
+                                Image("noRecord-pdf")
+                                    .resizable()
+                                    .aspectRatio(contentMode: .fit)
+                                    .frame(width: 250, height: 250)
+                                    .foregroundColor(Color("5AA0DB"))
+
+                                Text("Нет уведомлений")
+                                    .font(.system(size: 24))
+                                    .foregroundColor(Color("2A2931"))
                             }
+                            .padding(.top, 150)
                         }
                     } else {
                         ScrollView {

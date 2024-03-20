@@ -81,7 +81,9 @@ struct MealCardDetailView: View {
                 if let bloodSugar = card.bloodSugar {
                     VStack(alignment: .leading, spacing: 20) {
                         HStack {
-                            Image(systemName: "circle.fill")
+                            Image("bloodPlus-pdf")
+                                .resizable()
+                                .frame(width: 30, height: 30)
                                 .foregroundColor(Color("58EEE5-27D8CD"))
                             Text("Сахар крови")
                                 .font(.title2)
@@ -99,7 +101,9 @@ struct MealCardDetailView: View {
                 if let insulin = card.insulin {
                     VStack(alignment: .leading, spacing: 20) {
                         HStack {
-                            Image(systemName: "circle.fill")
+                            Image("insulinPlus-pdf")
+                                .resizable()
+                                .frame(width: 30, height: 30)
                                 .foregroundColor(Color("58EEE5-27D8CD"))
                             Text("Инсулин")
                                 .font(.title2)

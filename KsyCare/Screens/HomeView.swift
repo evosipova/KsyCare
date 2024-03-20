@@ -5,7 +5,7 @@ struct HomeView: View {
     @State private var lastCheckedDate = Date()
 
     @State private var showingDetail = false
-       @State private var selectedCard: MealCardModel?
+    @State private var selectedCard: MealCardModel?
 
     private var todaysCards: [MealCardModel] {
         mealCardsData.allCards.filter { Calendar.current.isDateInToday($0.creationTime) }
@@ -23,7 +23,21 @@ struct HomeView: View {
                 .edgesIgnoringSafeArea(.all)
 
                 if todaysCards.isEmpty {
-                    Text("Нет записей")
+                    ScrollView {
+                        VStack {
+                            Spacer()
+                            Image("noRecord-pdf")
+                                .resizable()
+                                .aspectRatio(contentMode: .fit)
+                                .frame(width: 250, height: 250)
+                                .foregroundColor(Color("5AA0DB"))
+
+                            Text("Нет записей")
+                                .font(.system(size: 24))
+                                .foregroundColor(Color("2A2931"))
+                        }
+                        .padding(.top, 200)
+                    }
                 } else {
                     ScrollView {
                         VStack {
@@ -38,6 +52,7 @@ struct HomeView: View {
                 setUpTimer()
             }
         }
+        .padding(.bottom, 80)
         .navigationBarHidden(true)
     }
 
@@ -54,7 +69,7 @@ struct HomeView: View {
 
             Image(systemName: "heart")
                 .font(.system(size: 60))
-                .foregroundColor(.secondary)
+                .foregroundColor(Color("58EEE5"))
         }
         .padding(.bottom, 20)
     }

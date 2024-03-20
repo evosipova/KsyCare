@@ -40,6 +40,7 @@ struct ProfileView: View {
                 }
                 .padding(.bottom, 10)
             }
+            .padding(.horizontal, 7)
             .frame(maxHeight: .infinity)
             .edgesIgnoringSafeArea(.bottom)
             .background(Color.gray.opacity(0.1))
@@ -64,7 +65,7 @@ struct ProfileView: View {
                 .font(.system(size: 24, weight: .bold))
                 .fontWeight(.bold)
                 .foregroundColor(Color.black)
-                .padding(.leading, 27)
+                .padding(.leading, 20)
             Spacer()
             Menu {
                 Button("Редактировать профиль") {
@@ -77,7 +78,9 @@ struct ProfileView: View {
                     showScreensaverView.toggle()
                 }
             } label: {
-                Image(systemName: "gear")
+                Image("settings-pdf")
+                    .resizable()
+                    .frame(width: 28, height: 28)
                     .font(.system(size: 24))
                     .foregroundColor(Color.black)
                     .padding(.trailing, 27)
