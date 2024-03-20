@@ -1,6 +1,6 @@
 import Foundation
 
-struct MealCardModel {
+struct MealCardModel: Identifiable {
     let id: UUID = UUID() 
     var mealTime: String
     var creationTime: Date

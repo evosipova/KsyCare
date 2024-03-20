@@ -43,4 +43,20 @@ class NotificationsViewModel: ObservableObject {
             }
         }
     }
+
+    func deleteNotification(_ model: NotificationModel) {
+        notifications.removeAll { $0.id == model.id }
+    }
+
+    func updateNotification(_ model: NotificationModel, title: String, time: Date, repeatOption: RepeatOption) {
+        if let index = notifications.firstIndex(where: { $0.id == model.id }) {
+            notifications[index].title = title
+            notifications[index].time = time
+            notifications[index].repeatOption = repeatOption
+
+            UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: [model.id.uuidString])
+
+            scheduleNotification(for: notifications[index])
+        }
+    }
 }

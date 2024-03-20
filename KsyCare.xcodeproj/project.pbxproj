@@ -8,8 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		5E2E1D162BA7345E00D1C9BF /* RegistrationSecondView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E2E1D152BA7345E00D1C9BF /* RegistrationSecondView.swift */; };
+		5E2E1D1F2BA8D56700D1C9BF /* RingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E2E1D1E2BA8D56700D1C9BF /* RingView.swift */; };
+		5E2E1D212BA8EBEE00D1C9BF /* LineHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E2E1D202BA8EBEE00D1C9BF /* LineHelpers.swift */; };
 		5E351F1C2B5DE398004A3803 /* StatisticsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E351F1B2B5DE398004A3803 /* StatisticsView.swift */; };
-		5E351F1F2B5DFD7B004A3803 /* MealCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E351F1E2B5DFD7B004A3803 /* MealCard.swift */; };
+		5E351F1F2B5DFD7B004A3803 /* MealCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E351F1E2B5DFD7B004A3803 /* MealCardView.swift */; };
 		5E351F222B5F4DDA004A3803 /* FoodView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E351F212B5F4DDA004A3803 /* FoodView.swift */; };
 		5E351F242B5F4DE2004A3803 /* BloodSugarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E351F232B5F4DE2004A3803 /* BloodSugarView.swift */; };
 		5E351F262B5F4DEB004A3803 /* InsulinView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E351F252B5F4DEB004A3803 /* InsulinView.swift */; };
@@ -76,8 +78,10 @@
 
 /* Begin PBXFileReference section */
 		5E2E1D152BA7345E00D1C9BF /* RegistrationSecondView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationSecondView.swift; sourceTree = "<group>"; };
+		5E2E1D1E2BA8D56700D1C9BF /* RingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RingView.swift; sourceTree = "<group>"; };
+		5E2E1D202BA8EBEE00D1C9BF /* LineHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineHelpers.swift; sourceTree = "<group>"; };
 		5E351F1B2B5DE398004A3803 /* StatisticsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticsView.swift; sourceTree = "<group>"; };
-		5E351F1E2B5DFD7B004A3803 /* MealCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealCard.swift; sourceTree = "<group>"; };
+		5E351F1E2B5DFD7B004A3803 /* MealCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealCardView.swift; sourceTree = "<group>"; };
 		5E351F212B5F4DDA004A3803 /* FoodView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodView.swift; sourceTree = "<group>"; };
 		5E351F232B5F4DE2004A3803 /* BloodSugarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BloodSugarView.swift; sourceTree = "<group>"; };
 		5E351F252B5F4DEB004A3803 /* InsulinView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsulinView.swift; sourceTree = "<group>"; };
@@ -175,6 +179,7 @@
 				5E351F252B5F4DEB004A3803 /* InsulinView.swift */,
 				5E351F272B5F4DF3004A3803 /* CombinedView.swift */,
 				5E351F212B5F4DDA004A3803 /* FoodView.swift */,
+				5E2E1D1E2BA8D56700D1C9BF /* RingView.swift */,
 			);
 			path = NoteScreen;
 			sourceTree = "<group>";
@@ -192,6 +197,7 @@
 		5EBFE8A02BA661E200572A7F /* Registration */ = {
 			isa = PBXGroup;
 			children = (
+				5ECCBE5C2B46E6470042CC5F /* ScreensaverView.swift */,
 				5ECCBE862B46F7500042CC5F /* LoginView.swift */,
 				5ECCBE842B46F70F0042CC5F /* RegistrationFIrstView.swift */,
 				5E2E1D152BA7345E00D1C9BF /* RegistrationSecondView.swift */,
@@ -231,6 +237,7 @@
 				5EC2A6FC2BA3D33F007D4188 /* Line.swift */,
 				5EC2A6FE2BA3D375007D4188 /* IndicatorPoint.swift */,
 				5EC2A7002BA3D3D3007D4188 /* Path+QuadCurve.swift */,
+				5E2E1D202BA8EBEE00D1C9BF /* LineHelpers.swift */,
 			);
 			path = Statistics;
 			sourceTree = "<group>";
@@ -239,10 +246,10 @@
 			isa = PBXGroup;
 			children = (
 				5EC2A6F32BA2563A007D4188 /* NotificationsView.swift */,
-				5E48BCB82BA4E09000D364A7 /* NotificationModel.swift */,
-				5E48BCB02BA4AD5600D364A7 /* NotificationsViewModel.swift */,
-				5E48BCB62BA4E01700D364A7 /* NotificationCard.swift */,
 				5E48BCAE2BA4A91D00D364A7 /* AddNotificationsView.swift */,
+				5E48BCB02BA4AD5600D364A7 /* NotificationsViewModel.swift */,
+				5E48BCB82BA4E09000D364A7 /* NotificationModel.swift */,
+				5E48BCB62BA4E01700D364A7 /* NotificationCard.swift */,
 				5E48BCB42BA4DDE500D364A7 /* RepeatOption.swift */,
 			);
 			path = Notifications;
@@ -273,15 +280,14 @@
 		5ECCBE592B46E6470042CC5F /* KsyCare */ = {
 			isa = PBXGroup;
 			children = (
-				5ECCBE5A2B46E6470042CC5F /* KsyCareApp.swift */,
-				5E48BCBA2BA50EA800D364A7 /* NotificationDelegate.swift */,
-				5ECCBE5C2B46E6470042CC5F /* ScreensaverView.swift */,
-				5EBFE8A02BA661E200572A7F /* Registration */,
-				5EC07B462B881E3800C47EC5 /* CustomTabBar */,
-				5E351F172B476BAB004A3803 /* Screens */,
 				5ECCBE5E2B46E6480042CC5F /* Assets.xcassets */,
 				5EDB7EF52B814587000F234D /* Color.xcassets */,
+				5EC07B462B881E3800C47EC5 /* CustomTabBar */,
+				5ECCBE5A2B46E6470042CC5F /* KsyCareApp.swift */,
+				5E48BCBA2BA50EA800D364A7 /* NotificationDelegate.swift */,
 				5ECCBE602B46E6480042CC5F /* Preview Content */,
+				5EBFE8A02BA661E200572A7F /* Registration */,
+				5E351F172B476BAB004A3803 /* Screens */,
 			);
 			path = KsyCare;
 			sourceTree = "<group>";
@@ -314,7 +320,7 @@
 		5EDB7EF92B854942000F234D /* MealCard */ = {
 			isa = PBXGroup;
 			children = (
-				5E351F1E2B5DFD7B004A3803 /* MealCard.swift */,
+				5E351F1E2B5DFD7B004A3803 /* MealCardView.swift */,
 				5EDB7EFA2B8549E7000F234D /* MealCardModel.swift */,
 				5EC07B442B8810F400C47EC5 /* MealCardViewModel.swift */,
 				5E7018182B9A049D00874E5B /* MealCardDetailView.swift */,
@@ -474,6 +480,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5E48BCB12BA4AD5600D364A7 /* NotificationsViewModel.swift in Sources */,
+				5E2E1D1F2BA8D56700D1C9BF /* RingView.swift in Sources */,
 				5E7756042B882548007F68CB /* AddNoteViewModel.swift in Sources */,
 				5EC07B482B881E4600C47EC5 /* CustomTabBarViewModel.swift in Sources */,
 				5E351F222B5F4DDA004A3803 /* FoodView.swift in Sources */,
@@ -499,6 +506,7 @@
 				5EC2A6ED2BA23519007D4188 /* UserProfileModel.swift in Sources */,
 				5ECCBE872B46F7500042CC5F /* LoginView.swift in Sources */,
 				5ECCBE8F2B4733560042CC5F /* HomeView.swift in Sources */,
+				5E2E1D212BA8EBEE00D1C9BF /* LineHelpers.swift in Sources */,
 				5ECCBE912B4735080042CC5F /* AddNoteView.swift in Sources */,
 				5EC2A6F42BA2563A007D4188 /* NotificationsView.swift in Sources */,
 				5EDB7EED2B802C5D000F234D /* NoteView.swift in Sources */,

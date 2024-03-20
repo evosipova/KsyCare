@@ -3,7 +3,9 @@ import SwiftUI
 struct NotificationsView: View {
     @Environment(\.presentationMode) var presentationMode
     @ObservedObject var viewModel: NotificationsViewModel
+    @State private var showingAddNotificationView = false
 
+    @State private var selectedNotification: NotificationModel?
 
     var body: some View {
         NavigationStack {
@@ -18,11 +20,20 @@ struct NotificationsView: View {
                         .foregroundColor(Color("divider"))
 
                     if viewModel.notifications.isEmpty {
-                        Spacer()
-                        Text("пока нет уведомлений :(")
-                            .foregroundColor(Color("lightDetail"))
-                            .font(.title2)
-                        Spacer()
+                        ScrollView {
+                            VStack {
+                                Image("noRecord-pdf")
+                                    .resizable()
+                                    .aspectRatio(contentMode: .fit)
+                                    .frame(width: 250, height: 250)
+                                    .foregroundColor(Color("5AA0DB"))
+
+                                Text("Нет уведомлений")
+                                    .font(.system(size: 24))
+                                    .foregroundColor(Color("2A2931"))
+                            }
+                            .padding(.top, 150)
+                        }
                     } else {
                         ScrollView {
                             VStack(spacing: 10) {
@@ -30,18 +41,28 @@ struct NotificationsView: View {
                                     NotificationCard(title: notification.title,
                                                      time: formatTime(notification.time),
                                                      repeatInterval: notification.repeatOption.rawValue)
+                                    .onTapGesture {
+                                        selectedNotification = notification
+                                        showingAddNotificationView = true
+                                    }
                                 }
                             }
                         }
                     }
                     Spacer()
                 }
-                .padding(.bottom, 10)
-
-                if viewModel.showingAddNotificationsPopup {
-                    addNotificationPopup
-                        .frame(height: UIScreen.main.bounds.height / 2)
-                        .transition(.move(edge: .bottom))
+            }
+            .fullScreenCover(isPresented: $showingAddNotificationView) {
+                if let notificationToEdit = selectedNotification {
+                    AddNotificationsView(showingPopup: $showingAddNotificationView, notificationToEdit: notificationToEdit, onDismiss: {
+                        self.selectedNotification = nil
+                    })
+                    .environmentObject(viewModel)
+                } else {
+                    AddNotificationsView(showingPopup: $showingAddNotificationView, notificationToEdit: nil, onDismiss: {
+                        self.selectedNotification = nil
+                    })
+                    .environmentObject(viewModel)
                 }
             }
             .navigationBarHidden(true)
@@ -88,6 +109,7 @@ struct NotificationsView: View {
     private var actionButtons: some View {
         Button(action: {
             viewModel.showingAddNotificationsPopup = true
+            showingAddNotificationView = true
         }) {
             Image(systemName: "plus")
                 .foregroundColor(Color("backgroundApp"))
@@ -98,18 +120,6 @@ struct NotificationsView: View {
         }
         .frame(width: 40, height: 40)
     }
-
-    private var addNotificationPopup: some View {
-        VStack {
-            Spacer()
-            AddNotificationsView(showingPopup: $viewModel.showingAddNotificationsPopup)
-                .environmentObject(viewModel)
-                .frame(maxWidth: .infinity)
-                .transition(.move(edge: .bottom))
-                .animation(.default, value: viewModel.showingAddNotificationsPopup)
-        }
-        .edgesIgnoringSafeArea(.all)
-    }
 }
 
 struct NotificationsView_Previews: PreviewProvider {
@@ -117,4 +127,3 @@ struct NotificationsView_Previews: PreviewProvider {
         NotificationsView(viewModel: NotificationsViewModel())
     }
 }
-

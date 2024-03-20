@@ -2,7 +2,6 @@ import SwiftUI
 
 extension Path {
     func trimmedPath(for percent: CGFloat) -> Path {
-        // percent difference between points
         let boundsDistance: CGFloat = 0.001
         let completion: CGFloat = 1 - boundsDistance
 

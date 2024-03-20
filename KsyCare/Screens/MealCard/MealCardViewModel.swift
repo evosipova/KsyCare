@@ -5,6 +5,21 @@ class MealCardViewModel: ObservableObject {
     @Published var allCards: [MealCardModel] = []
     private var midnightUpdater: Timer?
 
+    var insulinProgress: CGFloat {
+        let count = cards.filter { $0.insulin != nil && Calendar.current.isDateInToday($0.creationTime) }.count
+        return min(CGFloat(count) / 3.0, 1.0)
+    }
+
+    var bloodProgress: CGFloat {
+        let count = cards.filter { $0.bloodSugar != nil && Calendar.current.isDateInToday($0.creationTime) }.count
+        return min(CGFloat(count) / 3.0, 1.0)
+    }
+
+    var foodProgress: CGFloat {
+        let count = cards.filter { $0.breadUnits != nil && Calendar.current.isDateInToday($0.creationTime) }.count
+        return min(CGFloat(count) / 3.0, 1.0)
+    }
+
     func addCard(card: MealCardModel) {
         allCards.append(card)
 
@@ -57,5 +72,3 @@ class MealCardViewModel: ObservableObject {
         return groups
     }
 }
-
-

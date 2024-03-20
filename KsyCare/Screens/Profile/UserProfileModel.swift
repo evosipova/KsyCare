@@ -2,6 +2,8 @@ import Foundation
 import UIKit
 
 struct UserProfileModel {
+    var name: String
+    var surname: String
     var avatar: UIImage?
     var email: String
     var birthDate: Date
@@ -9,5 +11,4 @@ struct UserProfileModel {
     var weight: Double
     var height: Double
     var diabetesType: String
-    var bloodSugarNorm: String
 }

@@ -4,6 +4,9 @@ struct HomeView: View {
     @EnvironmentObject var mealCardsData: MealCardViewModel
     @State private var lastCheckedDate = Date()
 
+    @State private var showingDetail = false
+    @State private var selectedCard: MealCardModel?
+
     private var todaysCards: [MealCardModel] {
         mealCardsData.allCards.filter { Calendar.current.isDateInToday($0.creationTime) }
     }
@@ -12,49 +15,61 @@ struct HomeView: View {
         NavigationView {
             ZStack {
                 LinearGradient(gradient: Gradient(colors: [Color(red: 0.349, green: 0.624, blue: 0.859),
-                                                           Color(red: 0.549, green: 0.832, blue: 0.921),
-                                                           Color(red: 0.8, green: 0.965, blue: 1)
+                                                           Color(red: 0.8, green: 0.965, blue: 1),
+                                                           Color(red: 0.948, green: 0.992, blue: 0.985)
+
                                                           ]),
                                startPoint: .top, endPoint: .bottom)
                 .edgesIgnoringSafeArea(.all)
 
-                ScrollView {
-                    VStack() {
-                        circleSection
-                        todaySection
+                if todaysCards.isEmpty {
+                    ScrollView {
+                        VStack {
+                            Spacer()
+                            Image("noRecord-pdf")
+                                .resizable()
+                                .aspectRatio(contentMode: .fit)
+                                .frame(width: 250, height: 250)
+                                .foregroundColor(Color("5AA0DB"))
+
+                            Text("Нет записей")
+                                .font(.system(size: 24))
+                                .foregroundColor(Color("2A2931"))
+                        }
+                        .padding(.top, 200)
                     }
-                    .padding(.top, 30)
-                }
-                .frame(maxHeight: .infinity)
-                .edgesIgnoringSafeArea(.bottom)
-                .background(Color.gray.opacity(0.1))
-                .onAppear {
-                    setUpTimer()
+                } else {
+                    ScrollView {
+                        VStack {
+                            circleSection
+                                .padding(.top, 10)
+                            todaySection
+                        }
+                    }
                 }
             }
-            .navigationBarHidden(true)
+            .onAppear {
+                setUpTimer()
+            }
         }
+        .padding(.bottom, 80)
         .navigationBarHidden(true)
     }
 
-
     private var circleSection: some View {
         ZStack {
-            Circle()
-                .stroke(lineWidth: 10)
+            RingView(progress: mealCardsData.insulinProgress, color: Color("58EEE5"))
                 .frame(width: 214, height: 214)
-                .foregroundColor(mealCardsData.hasInsulinInfoToday ? .blue : Color.gray.opacity(0.5))
-            Circle()
-                .stroke(lineWidth: 10)
+
+            RingView(progress: mealCardsData.bloodProgress, color: Color("2BBEBE"))
                 .frame(width: 174, height: 174)
-                .foregroundColor(mealCardsData.hasBloodInfoToday ? .red : Color.gray.opacity(0.5))
-            Circle()
-                .stroke(lineWidth: 10)
+
+            RingView(progress: mealCardsData.foodProgress, color: Color("ABF1ED"))
                 .frame(width: 134, height: 134)
-                .foregroundColor(mealCardsData.hasFoodInfoToday ? Color("FoodColor") : Color.gray.opacity(0.5))
-            Image(systemName: "heart.fill")
+
+            Image(systemName: "heart")
                 .font(.system(size: 60))
-                .foregroundColor(.secondary)
+                .foregroundColor(Color("58EEE5"))
         }
         .padding(.bottom, 20)
     }
@@ -67,11 +82,17 @@ struct HomeView: View {
                 .padding(.top, 20)
 
             ForEach(mealCardsData.cards, id: \.id) { card in
-                NavigationLink(destination: MealCardDetailView(card: card)) {
-                    MealCard(viewModel: mealCardsData, card: card)
+                Button(action: {
+                    self.selectedCard = card
+                    self.showingDetail = true
+                }) {
+                    MealCardView(viewModel: mealCardsData, card: card)
                         .padding(.bottom, 10)
-                        .padding(.horizontal)
+                        .padding(.horizontal, 20)
                 }
+            }
+            .fullScreenCover(item: $selectedCard) { card in
+                MealCardDetailView(card: card)
             }
         }
         .clipShape(RoundedRectangle(cornerRadius: 30, style: .continuous))
@@ -88,19 +109,6 @@ struct HomeView: View {
     }
 }
 
-extension MealCardViewModel {
-    var hasInsulinInfoToday: Bool {
-        cards.contains { $0.insulin != nil }
-    }
-
-    var hasBloodInfoToday: Bool {
-        cards.contains { $0.bloodSugar != nil }
-    }
-
-    var hasFoodInfoToday: Bool {
-        cards.contains { $0.breadUnits != nil }
-    }
-}
 
 struct HomeView_Previews: PreviewProvider {
     static var previews: some View {

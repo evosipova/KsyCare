@@ -16,6 +16,7 @@ struct NoteView: View {
     
     var body: some View {
         NavigationStack {
+            
             ZStack(alignment: .bottom) {
                 content
                 
@@ -24,6 +25,7 @@ struct NoteView: View {
                 }
                 .padding(.bottom, 30)
             }
+            .background(Color("F1FDFB-365E7A"))
             .edgesIgnoringSafeArea(.bottom)
             .navigationBarHidden(true)
             .environment(\.locale, Locale(identifier: "ru_RU"))
@@ -48,7 +50,7 @@ struct NoteView: View {
             HStack {
                 backButton
                 Spacer()
-                doubleRectangle
+                twoRectangles
                 Spacer()
                 Rectangle().foregroundColor(.clear).frame(width: 33, height: 26)
             }
@@ -57,6 +59,7 @@ struct NoteView: View {
             HStack {
                 Text(displayText)
                     .font(.system(size: 24, weight: .bold))
+                    .foregroundColor(Color("4579A5-B5E3EE"))
                 Spacer()
             }
             .padding(.horizontal, 20)
@@ -71,49 +74,72 @@ struct NoteView: View {
                 .resizable()
                 .aspectRatio(contentMode: .fit)
                 .frame(width: 13, height: 26)
+                .foregroundColor(Color("4579A5-B5E3EE"))
         }
-        .padding(.leading, 13)
+        .padding(.leading, 8)
     }
     
-    private var doubleRectangle: some View {
+    private var twoRectangles: some View {
         HStack {
-            Rectangle().frame(width: 50, height: 5).cornerRadius(5).foregroundColor(.blue)
-            Rectangle().frame(width: 50, height: 5).cornerRadius(5).foregroundColor(.blue)
+            ForEach(0..<2) { _ in
+                Rectangle()
+                    .frame(width: 50, height: 5)
+                    .cornerRadius(2.5)
+                    .foregroundColor(Color("rectanglesStroke"))
+            }
         }
     }
     
     private var titleField: some View {
         VStack(alignment: .leading, spacing: 10) {
-            Text("Заголовок").font(.system(size: 20)).padding(.leading, 20)
-            TextField("Без заголовка", text: $title)
-                .padding()
-                .background(Color.gray.opacity(0.2))
-                .cornerRadius(5)
-                .padding(.horizontal, 20)
+            Text("Заголовок")
+                .foregroundColor(Color("2A2931-CCF6FF"))
+                .font(.system(size: 20))
+                .padding(.leading, 20)
+            
+            TextField("", text: $title, prompt: Text("Без заголовка")
+                .foregroundColor(Color("7A9DA8")))
+            .padding()
+            .background(Color("CCF6FF"))
+            .cornerRadius(5)
+            .overlay(
+                RoundedRectangle(cornerRadius: 5)
+                    .stroke(Color("B6E4EF-548493"), lineWidth: 2)
+            )
+            .padding(.horizontal, 20)
         }
         .padding(.top, 10)
     }
     
     private var datePickerSection: some View {
-        HStack {
+        HStack() {
             Text("Дата и время")
+                .foregroundColor(Color("2A2931-CCF6FF"))
                 .font(.system(size: 20))
-                .frame(width: 150, alignment: .leading)
             
-            Spacer(minLength: 20)
-            
+            Spacer()
             DatePicker("", selection: $selectedDate, displayedComponents: .date)
-                .datePickerStyle(.automatic)
-                .frame(width: 120, alignment: .trailing)
+                .datePickerStyle(CompactDatePickerStyle())
+                .labelsHidden()
+                .foregroundColor(Color("2A2931-CCF6FF"))
+                .accentColor(Color("2A2931-CCF6FF"))
+                .overlay(
+                    RoundedRectangle(cornerRadius: 5)
+                        .stroke(Color("B6E4EF-548493"), lineWidth: 2)
+                )
             
             DatePicker("", selection: $selectedDate, displayedComponents: .hourAndMinute)
-                .datePickerStyle(.compact)
-                .frame(width: 60)
+                .labelsHidden()
+                .foregroundColor(Color("2A2931-CCF6FF"))
+                .accentColor(Color("2A2931-CCF6FF"))
+                .overlay(
+                    RoundedRectangle(cornerRadius: 5)
+                        .stroke(Color("B6E4EF-548493"), lineWidth: 2)
+                    
+                )
         }
         .padding(.top, 10)
-        .padding(.trailing, 30)
-        .padding(.leading, 20)
-        
+        .padding(.horizontal, 20)
     }
     
     private var datePickerButton: some View {
@@ -134,13 +160,23 @@ struct NoteView: View {
     
     private var commentField: some View {
         VStack(alignment: .leading, spacing: 10) {
-            Text("Комментарий").font(.system(size: 20)).padding(.leading, 20)
-            TextField("Введи комментарий", text: $comments)
-                .padding()
-                .background(Color.gray.opacity(0.2))
-                .cornerRadius(5)
-                .padding(.horizontal, 20)
-                .padding(.bottom, 100)
+            Text("Комментарий")
+                .font(.system(size: 20))
+                .padding(.leading, 20)
+                .foregroundColor(Color("2A2931-CCF6FF"))
+            
+            
+            TextField("", text: $comments, prompt: Text("Введи комментарий")
+                .foregroundColor(Color("7A9DA8")))
+            .padding()
+            .background(Color("CCF6FF"))
+            .cornerRadius(5)
+            .overlay(
+                RoundedRectangle(cornerRadius: 5)
+                    .stroke(Color("B6E4EF-548493"), lineWidth: 2)
+            )
+            .padding(.horizontal, 20)
+            .padding(.bottom, 100)
         }
         .padding(.top, 10)
     }
@@ -159,8 +195,8 @@ struct NoteView: View {
         }) {
             Text("Готово").frame(minWidth: 0, maxWidth: .infinity).padding().contentShape(Rectangle())
         }
-        .foregroundColor(.white)
-        .background(Color.blue)
+        .foregroundColor(Color("2A2931-CCF6FF"))
+        .background(Color("58EEE5-27D8CD"))
         .cornerRadius(10)
         .padding(.horizontal, 20)
         .fullScreenCover(isPresented: $showingNavigationBarView) {
@@ -175,3 +211,4 @@ struct NoteView_Previews: PreviewProvider {
         NoteView(selectedSugarLevel: .constant(5.0), displayText: "Сахар крови", cardType: .bloodSugar).environmentObject(MealCardViewModel())
     }
 }
+

@@ -40,6 +40,7 @@ struct ProfileView: View {
                 }
                 .padding(.bottom, 10)
             }
+            .padding(.horizontal, 7)
             .frame(maxHeight: .infinity)
             .edgesIgnoringSafeArea(.bottom)
             .background(Color.gray.opacity(0.1))
@@ -64,7 +65,7 @@ struct ProfileView: View {
                 .font(.system(size: 24, weight: .bold))
                 .fontWeight(.bold)
                 .foregroundColor(Color.black)
-                .padding(.leading, 27)
+                .padding(.leading, 20)
             Spacer()
             Menu {
                 Button("Редактировать профиль") {
@@ -77,8 +78,10 @@ struct ProfileView: View {
                     showScreensaverView.toggle()
                 }
             } label: {
-                Image(systemName: "gear")
-                    .font(.system(size: 28))
+                Image("settings-pdf")
+                    .resizable()
+                    .frame(width: 28, height: 28)
+                    .font(.system(size: 24))
                     .foregroundColor(Color.black)
                     .padding(.trailing, 27)
             }
@@ -126,6 +129,16 @@ struct ProfileView: View {
 
     private var personalInfoSection: some View {
         VStack(alignment: .leading, spacing: 10) {
+
+            HStack(alignment: .center) {
+                Text(viewModel.userProfile.name)
+                    .font(.headline)
+
+                Text(viewModel.userProfile.surname)
+                    .font(.headline)
+            }
+            .frame(maxWidth: .infinity)
+
             HStack {
                 Text("Личная информация")
                     .font(.headline)
@@ -187,23 +200,17 @@ struct ProfileView: View {
                 Text(viewModel.userProfile.diabetesType)
                     .foregroundColor(.gray)
             }
-            HStack {
-                Text("Норма сахара:")
-                Spacer()
-                Text(viewModel.userProfile.bloodSugarNorm)
-                    .foregroundColor(.gray)
-            }
 
             Button(action: {
                 showNotificationsView.toggle()
             }) {
-
-                    Text("Уведомления")
+                Text("Уведомления")
+                    .foregroundColor(Color("2A2931-CCF6FF"))
                 Spacer()
             }
             .padding()
             .frame(maxWidth: .infinity, alignment: .leading)
-            .background(Color("Test"))
+            .background(Color("ABF1ED"))
             .cornerRadius(8)
         }
         .padding()

@@ -8,19 +8,26 @@ struct AddNoteView: View {
         VStack(alignment: .leading, spacing: 20) {
             Text("Добавить запись")
                 .font(.custom("Amiko", size: 20).bold())
-                .foregroundColor(.black)
+                .foregroundColor(Color("2A2931-CCF6FF"))
                 .padding(.top, 7)
                 .padding(.leading, 28)
-            
-            Divider()
+
+            Rectangle()
+                .frame(height: 3)
+                .foregroundColor(Color("B6E4EF-548493"))
                 .padding(.horizontal, 28)
-            
+
             ForEach(viewModel.getButtons(), id: \.title) { button in
                 Button(action: { button.showingView.wrappedValue = true }) {
                     HStack {
-                        Image(systemName: button.systemImage)
+                        Image(button.imageName)
+                            .resizable()
+                            .aspectRatio(contentMode: .fit)
+                            .frame(width: 28, height: 28)
+                            .foregroundColor(Color("58EEE5"))
                         Text(button.title)
                             .font(.custom("Amiko", size: 20))
+                            .foregroundColor(Color("2A2931-CCF6FF"))
                         Spacer()
                     }
                 }
@@ -34,8 +41,8 @@ struct AddNoteView: View {
         }
         .frame(maxWidth: .infinity)
         .padding()
-        .background(Color.white)
-        .foregroundColor(.black)
+        .background(Color("F1FDFB-365E7A"))
+        .foregroundColor(Color("2A2931-CCF6FF"))
         .cornerRadius(40)
     }
 }

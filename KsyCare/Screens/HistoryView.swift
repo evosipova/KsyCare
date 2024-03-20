@@ -12,21 +12,46 @@ struct HistoryView: View {
         return formatter
     }()
 
-
     var body: some View {
         NavigationView {
-            ScrollView {
-                VStack() {
-                    headingSection
-                    filterSection
-                    cardsSection
+            ZStack {
+                LinearGradient(gradient: Gradient(colors: [Color(red: 0.349, green: 0.624, blue: 0.859),
+                                                           Color(red: 0.8, green: 0.965, blue: 1),
+                                                           Color(red: 0.948, green: 0.992, blue: 0.985)
+                                                          ]),
+                               startPoint: .top, endPoint: .bottom)
+                .edgesIgnoringSafeArea(.all)
+
+                if mealCardsData.allCards.isEmpty {
+                    ScrollView {
+                        VStack {
+                            headingSection
+                                .padding(.bottom, 171)
+                            Spacer()
+                            Image("noRecord-pdf")
+                                .resizable()
+                                .aspectRatio(contentMode: .fit)
+                                .frame(width: 250, height: 250)
+                                .foregroundColor(Color("5AA0DB"))
+
+                            Text("Нет записей")
+                                .font(.system(size: 24))
+                                .foregroundColor(Color("2A2931"))
+                        }
+                    }
+                } else {
+                    ScrollView {
+                        VStack {
+                            headingSection
+                            filterSection
+                            cardsSection
+                        }
+                    }
                 }
-                .padding(.bottom, 10)
             }
-            .frame(maxHeight: .infinity)
-            .edgesIgnoringSafeArea(.bottom)
-            .background(Color.gray.opacity(0.1))
         }
+        .padding(.bottom, 80)
+        .navigationBarHidden(true)
     }
 
     private var headingSection: some View {
@@ -41,32 +66,40 @@ struct HistoryView: View {
     }
 
     private var filterSection: some View {
-        HStack(alignment: .center) {
+        HStack() {
             Spacer()
-                .padding()
 
             Button(action: {
                 if let newMonth = calendar.date(byAdding: .month, value: -1, to: selectedMonth) {
                     selectedMonth = newMonth
                 }
             }) {
-                Image(systemName: "chevron.left")
+                Image(systemName: "arrowshape.left.fill")
+                    .foregroundColor(Color("4579A5-B5E3EE"))
+                    .font(.largeTitle)
             }
+            .padding([.leading, .trailing], 0)
 
             Text(dateFormatter.string(from: selectedMonth).capitalizingFirstLetter())
                 .lineLimit(1)
-                .minimumScaleFactor(0.5)
+
                 .frame(minWidth: 0, maxWidth: .infinity, alignment: .center)
+                .font(.largeTitle)
+                .foregroundColor(Color("2A2931-CCF6FF"))
+                .padding()
 
             Button(action: {
                 if let newMonth = calendar.date(byAdding: .month, value: 1, to: selectedMonth) {
                     selectedMonth = newMonth
                 }
             }) {
-                Image(systemName: "chevron.right")
+                Image(systemName: "arrowshape.right.fill")
+                    .foregroundColor(Color("4579A5-B5E3EE"))
+                    .font(.largeTitle)
             }
+            .padding([.leading, .trailing], 0)
+
             Spacer()
-                .padding()
         }
         .padding()
     }
@@ -83,9 +116,9 @@ struct HistoryView: View {
                 Section(header: headerView(for: month)) {
                     ForEach(cardsForMonth, id: \.id) { card in
                         NavigationLink(destination: MealCardDetailView(card: card)) {
-                            MealCard(viewModel: mealCardsData, card: card)
+                            MealCardView(viewModel: mealCardsData, card: card)
                                 .padding(.bottom, 10)
-                                .padding(.horizontal)
+                                .padding(.horizontal, 20)
                         }
                     }
                 }
