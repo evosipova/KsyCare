@@ -22,19 +22,16 @@ struct StatisticsView: View {
                 LineChartView(data: insulinDataForChart(month: selectedMonth),
                               title: "Инсулин",
                               form: ChartForm.large, rateValue: calculateRateValue(data: insulinDataForChart(month: selectedMonth)))
-                .frame(maxWidth: .infinity)
                 
                 Spacer()
                     .padding(.top, 20)
-                //
-                //                LineChartView(data: bloodSugarDataForChart(month: selectedMonth),
                 
-                LineChartView(data: [282.502, 284.495, 283.51, 285.019, 285.197, 286.118, 288.737, 288.455, 289.391, 287.691, 285.878, 286.46, 286.252, 284.652, 284.129, 284.188],
+                LineChartView(data: bloodSugarDataForChart(month: selectedMonth),
                               title: "Кровь",
                               form: ChartForm.large,
                               rateValue: calculateRateValue(data: bloodSugarDataForChart(month: selectedMonth)))
-                .frame(maxWidth: .infinity)
             }
+            
         }
         .background(            LinearGradient(gradient: Gradient(colors: [Color(red: 0.349, green: 0.624, blue: 0.859),
                                                                            Color(red: 0.8, green: 0.965, blue: 1),
@@ -108,17 +105,19 @@ struct StatisticsView: View {
     }
     
     private func insulinDataForChart(month: Date) -> [Double] {
-        let insulinData = mealCardsData.allCards
+        let sortedInsulinData = mealCardsData.allCards
             .filter { calendar.isDate($0.creationTime, equalTo: month, toGranularity: .month) }
+            .sorted(by: { $0.creationTime < $1.creationTime })
             .compactMap { $0.insulin }
-        return insulinData.isEmpty ? [0.0] : insulinData
+        return sortedInsulinData.isEmpty ? [0.0] : sortedInsulinData
     }
     
     private func bloodSugarDataForChart(month: Date) -> [Double] {
-        let bloodSugarData = mealCardsData.allCards
+        let sortedBloodSugarData = mealCardsData.allCards
             .filter { calendar.isDate($0.creationTime, equalTo: month, toGranularity: .month) }
+            .sorted(by: { $0.creationTime < $1.creationTime }) 
             .compactMap { $0.bloodSugar }
-        return bloodSugarData.isEmpty ? [0.0] : bloodSugarData
+        return sortedBloodSugarData.isEmpty ? [0.0] : sortedBloodSugarData
     }
 }
 

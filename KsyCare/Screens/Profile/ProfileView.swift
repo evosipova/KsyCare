@@ -10,7 +10,7 @@ struct ProfileView: View {
     @State private var inputImage: UIImage?
     @State private var isShowingPhotosPicker = false
     @State private var selectedPhotoItem: PhotosPickerItem? = nil
-    
+
     private func navigationButton<Destination: View>(_ title: String, destination: Destination, color: Color) -> some View {
         NavigationLink(destination: destination) {
             HStack {
@@ -26,7 +26,7 @@ struct ProfileView: View {
             .cornerRadius(8)
         }
     }
-    
+
     var body: some View {
         NavigationView {
             ScrollView {
@@ -47,7 +47,7 @@ struct ProfileView: View {
                                                                                Color(red: 0.948, green: 0.992, blue: 0.985)]),
                                                    startPoint: .top, endPoint: .bottom))
         }
-        
+
         .fullScreenCover(isPresented: $showTeamView) {
             TeamScreen()
         }
@@ -61,10 +61,11 @@ struct ProfileView: View {
             NotificationsView(viewModel: NotificationsViewModel())
         }
     }
-    
+
     private var headingSection: some View {
         HStack {
             Text("Профиль")
+                .accessibilityHint("Экран")
                 .font(.system(size: 24, weight: .bold))
                 .fontWeight(.bold)
                 .foregroundColor(Color("2A2931"))
@@ -87,10 +88,16 @@ struct ProfileView: View {
                     .frame(width: 30, height: 30)
                     .foregroundColor(Color("2A2931"))
                     .padding(.trailing, 20)
+                    .accessibilityHidden(true)
+                    //.accessibilityLabel("Настройки")
+                   // .accessibilityHint("Кнопка")
             }
+            .accessibilityLabel("Настройки")
+            .accessibilityHint("Кнопка")
+           // .accessibilityHidden(true)
         }
     }
-    
+
     private var avatarSection: some View {
         VStack {
             Button(action: {
@@ -100,7 +107,7 @@ struct ProfileView: View {
                     Circle()
                         .foregroundColor(.gray)
                         .frame(width: 190, height: 190)
-                    
+
                     if let inputImage = inputImage {
                         Image(uiImage: inputImage)
                             .resizable()
@@ -113,16 +120,20 @@ struct ProfileView: View {
                             .scaledToFit()
                             .frame(width: 45, height: 45)
                             .foregroundColor(.white)
+                            .accessibilityLabel("Аватар пользователя")
+                            .accessibilityHint("Кнопка")
                     }
                 }
             }
+            .accessibilityElement(children: .ignore)
+            .accessibilityLabel("Аватар пользователя")
             .photosPicker(isPresented: $isShowingPhotosPicker, selection: $selectedPhotoItem, matching: .images)
             .onChange(of: selectedPhotoItem) { newItem in
                 Task {
                     guard let selectedItem = newItem,
                           let data = try? await selectedItem.loadTransferable(type: Data.self),
                           let image = UIImage(data: data) else { return }
-                    
+
                     inputImage = image
                     loadImage()
                 }
@@ -131,26 +142,26 @@ struct ProfileView: View {
             .padding(.top)
         }
     }
-    
+
     private func loadImage() {
         guard let inputImage = inputImage else { return }
         viewModel.userProfile.avatar = inputImage
     }
-    
+
     private var personalInfoSection: some View {
         VStack(alignment: .leading, spacing: 10) {
-            
+
             HStack(alignment: .center) {
                 Text(viewModel.userProfile.name)
                     .font(.headline)
                     .foregroundColor(Color("2A2931"))
-                
+
                 Text(viewModel.userProfile.surname)
                     .font(.headline)
                     .foregroundColor(Color("2A2931"))
             }
             .frame(maxWidth: .infinity)
-            
+
             HStack {
                 Text("Личная информация")
                     .foregroundColor(Color("F1FDFB-365E7A"))
@@ -164,7 +175,8 @@ struct ProfileView: View {
                 RoundedRectangle(cornerRadius: 5)
                     .stroke(Color("B6E4EF-548493"), lineWidth: 2)
             )
-            
+            .accessibilityLabel(Text("Личная информация"))
+
             HStack {
                 Text("Почта:")
                     .foregroundColor(Color("2A2931"))
@@ -172,6 +184,10 @@ struct ProfileView: View {
                 Text(viewModel.userProfile.email)
                     .foregroundColor(.gray)
             }
+            .accessibilityElement(children: .ignore)
+            .accessibilityLabel(Text("Почта, \(viewModel.userProfile.email)"))
+
+
             HStack {
                 Text("Дата рождения:")
                     .foregroundColor(Color("2A2931"))
@@ -179,6 +195,10 @@ struct ProfileView: View {
                 Text("\(viewModel.userProfile.birthDate, formatter: dateFormatter)")
                     .foregroundColor(.gray)
             }
+            .accessibilityElement(children: .ignore)
+            .accessibilityLabel(Text("Почта, \(   Text("\(viewModel.userProfile.birthDate, formatter: dateFormatter)"))"))
+
+
             HStack {
                 Text("Пол:")
                     .foregroundColor(Color("2A2931"))
@@ -203,8 +223,8 @@ struct ProfileView: View {
         }
         .padding()
     }
-    
-    
+
+
     private var therapySection: some View {
         VStack(alignment: .leading, spacing: 10) {
             HStack {
@@ -216,12 +236,11 @@ struct ProfileView: View {
             }
             .background(Color("599FDB-B6E4EF"))
             .cornerRadius(5)
-            .cornerRadius(5)
             .overlay(
                 RoundedRectangle(cornerRadius: 5)
                     .stroke(Color("B6E4EF-548493"), lineWidth: 2)
             )
-            
+
             HStack {
                 Text("Тип диабета:")
                     .foregroundColor(Color("2A2931-CCF6FF"))
@@ -229,14 +248,14 @@ struct ProfileView: View {
                 Text(viewModel.userProfile.diabetesType)
                     .foregroundColor(.gray)
             }
-            
+
             Button(action: {
                 showNotificationsView.toggle()
             }) {
                 Text("Уведомления")
                     .foregroundColor(Color("2A2931"))
                 Spacer()
-                
+
                 Image(systemName: "arrowshape.right.fill")
                     .foregroundColor(Color("2A2931"))
             }
@@ -251,7 +270,7 @@ struct ProfileView: View {
         }
         .padding()
     }
-    
+
     private let dateFormatter: DateFormatter = {
         let formatter = DateFormatter()
         formatter.dateStyle = .long

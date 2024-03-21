@@ -103,6 +103,7 @@ struct NotificationsView: View {
                 .aspectRatio(contentMode: .fit)
                 .frame(width: 13, height: 26)
         }
+        .accessibilityLabel(Text("Назад"))
         .padding(.leading, 0)
     }
 
@@ -118,6 +119,7 @@ struct NotificationsView: View {
                 .background(Color("chevron.left"))
                 .cornerRadius(5)
         }
+        .accessibilityLabel(Text("Добавить уведомление"))
         .frame(width: 40, height: 40)
     }
 }
