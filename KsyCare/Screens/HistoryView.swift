@@ -57,6 +57,7 @@ struct HistoryView: View {
     private var headingSection: some View {
         HStack {
             Text("История")
+                .accessibilityHint("Экран")
                 .font(.system(size: 24, weight: .bold))
                 .fontWeight(.bold)
                 .foregroundColor(Color.black)
@@ -77,6 +78,7 @@ struct HistoryView: View {
                 Image(systemName: "arrowshape.left.fill")
                     .foregroundColor(Color("4579A5-B5E3EE"))
                     .font(.largeTitle)
+                    .accessibilityLabel("Предыдущий месяц")
             }
             .padding([.leading, .trailing], 0)
 
@@ -96,6 +98,7 @@ struct HistoryView: View {
                 Image(systemName: "arrowshape.right.fill")
                     .foregroundColor(Color("4579A5-B5E3EE"))
                     .font(.largeTitle)
+                    .accessibilityLabel("Следующий месяц")
             }
             .padding([.leading, .trailing], 0)
 

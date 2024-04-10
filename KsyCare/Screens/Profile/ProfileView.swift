@@ -72,9 +72,6 @@ struct ProfileView: View {
                 .padding(.leading, 20)
             Spacer()
             Menu {
-                Button("Редактировать профиль") {
-                    showTeamView.toggle()
-                }
                 Button("О команде") {
                     showTeamScreen.toggle()
                 }
@@ -243,7 +240,7 @@ struct ProfileView: View {
 
             HStack {
                 Text("Тип диабета:")
-                    .foregroundColor(Color("2A2931-CCF6FF"))
+                    .foregroundColor(Color("2A2931"))
                 Spacer()
                 Text(viewModel.userProfile.diabetesType)
                     .foregroundColor(.gray)

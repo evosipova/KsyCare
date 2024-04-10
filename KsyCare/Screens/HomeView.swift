@@ -31,6 +31,8 @@ struct HomeView: View {
                                 .aspectRatio(contentMode: .fit)
                                 .frame(width: 250, height: 250)
                                 .foregroundColor(Color("5AA0DB"))
+                                .accessibilityLabel("Нет записей")
+                                .accessibilityHint("Изображение")
 
                             Text("Нет записей")
                                 .font(.system(size: 24))

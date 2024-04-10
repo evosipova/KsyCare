@@ -151,7 +151,7 @@ public struct LineChartView: View {
 
                     .frame(width: frame.width, height: frame.height)
                     .clipShape(RoundedRectangle(cornerRadius: 20))
-                    .offset(x: -5, y: 30)
+                    .offset(x: -0, y: 30)
                     .padding(.bottom, 50)
                 }
             }.frame(width: self.formSize.width, height: self.formSize.height)
@@ -190,7 +190,7 @@ public struct LineChartView: View {
 struct WidgetView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
-            LineChartView(data: [5], title: "Line chart", form: ChartForm.large)
+            LineChartView(data: [5, 10, 230, 15], title: "Line chart", form: ChartForm.large)
                 .environment(\.colorScheme, .light)
 
             LineChartView(data: [282.502, 284.495, 283.51, 285.019, 285.197, 286.118, 288.737, 288.455, 289.391, 287.691, 285.878, 286.46, 286.252, 284.652, 284.129, 284.188], title: "Line chart", legend: "Basic")

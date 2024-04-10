@@ -8,6 +8,7 @@ struct CustomTabBarView: View {
             switch viewModel.selectedTab {
             case 0:
                 HomeView()
+                    .accessibilityLabel("")
             case 1:
                 HistoryView()
             case 3:
@@ -57,11 +58,11 @@ struct CustomTabBarView: View {
 
     func getIconName(for index: Int) -> String {
         switch index {
-        case 0: return "tap1-pdf"
-        case 1: return "tap2-pdf"
+        case 0: return "Сегодня"
+        case 1: return "История"
         case 2: return "plus.circle.fill"
-        case 3: return "tap3-pdf"
-        case 4: return "tap4-pdf"
+        case 3: return "Статистика"
+        case 4: return "Профиль"
         default: return ""
         }
     }

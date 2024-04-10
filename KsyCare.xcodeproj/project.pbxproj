@@ -220,10 +220,10 @@
 			isa = PBXGroup;
 			children = (
 				5EC2A7032BA49AFB007D4188 /* Notifications */,
+				5EC2A6F52BA2567F007D4188 /* ImagePicker.swift */,
 				5ECCBE8A2B4732FE0042CC5F /* ProfileView.swift */,
 				5EC2A6EC2BA23519007D4188 /* UserProfileModel.swift */,
 				5EC2A6F12BA23551007D4188 /* ProfileViewModel.swift */,
-				5EC2A6F52BA2567F007D4188 /* ImagePicker.swift */,
 				5E951DE42B952D1800CF5016 /* TeamScreen.swift */,
 			);
 			path = Profile;
@@ -490,7 +490,7 @@
 				5E48BCBB2BA50EA800D364A7 /* NotificationDelegate.swift in Sources */,
 				5EC2A6F22BA23551007D4188 /* ProfileViewModel.swift in Sources */,
 				5E2E1D162BA7345E00D1C9BF /* RegistrationSecondView.swift in Sources */,
-				5E351F1F2B5DFD7B004A3803 /* MealCard.swift in Sources */,
+				5E351F1F2B5DFD7B004A3803 /* MealCardView.swift in Sources */,
 				FAEF242A2BA651F300BF6347 /* NetworkService.swift in Sources */,
 				5E48BCB52BA4DDE500D364A7 /* RepeatOption.swift in Sources */,
 				5E48BCB72BA4E01700D364A7 /* NotificationCard.swift in Sources */,
