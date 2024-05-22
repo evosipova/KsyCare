@@ -2,15 +2,7 @@ import SwiftUI
 
 struct HistoryView: View {
     @EnvironmentObject var mealCardsData: MealCardViewModel
-    @State private var selectedMonth = Date()
-
-    let calendar = Calendar.current
-    let dateFormatter: DateFormatter = {
-        let formatter = DateFormatter()
-        formatter.locale = Locale(identifier: "ru_RU")
-        formatter.dateFormat = "LLLL yyyy"
-        return formatter
-    }()
+    @StateObject private var viewModel = HistoryViewModel()
 
     var body: some View {
         NavigationView {
@@ -71,9 +63,7 @@ struct HistoryView: View {
             Spacer()
 
             Button(action: {
-                if let newMonth = calendar.date(byAdding: .month, value: -1, to: selectedMonth) {
-                    selectedMonth = newMonth
-                }
+                viewModel.incrementMonth(by: -1)
             }) {
                 Image(systemName: "arrowshape.left.fill")
                     .foregroundColor(Color("4579A5-B5E3EE"))
@@ -82,18 +72,15 @@ struct HistoryView: View {
             }
             .padding([.leading, .trailing], 0)
 
-            Text(dateFormatter.string(from: selectedMonth).capitalizingFirstLetter())
+            Text(viewModel.dateFormatter.string(from: viewModel.selectedMonth).capitalizingFirstLetter())
                 .lineLimit(1)
-
                 .frame(minWidth: 0, maxWidth: .infinity, alignment: .center)
                 .font(.largeTitle)
                 .foregroundColor(Color("2A2931-CCF6FF"))
                 .padding()
 
             Button(action: {
-                if let newMonth = calendar.date(byAdding: .month, value: 1, to: selectedMonth) {
-                    selectedMonth = newMonth
-                }
+                viewModel.incrementMonth(by: 1)
             }) {
                 Image(systemName: "arrowshape.right.fill")
                     .foregroundColor(Color("4579A5-B5E3EE"))
@@ -108,15 +95,12 @@ struct HistoryView: View {
     }
 
     private var cardsSection: some View {
-        let filteredCards = mealCardsData.allCards.filter {
-            Calendar.current.isDate($0.creationTime, equalTo: selectedMonth, toGranularity: .month)
-        }
-        let groupedCards = mealCardsData.cardsGroupedByDate(from: filteredCards)
+        let groupedCards = viewModel.filterCardsByMonth()
 
         return VStack {
             ForEach(groupedCards.keys.sorted(), id: \.self) { month in
                 let cardsForMonth = groupedCards[month]!
-                Section(header: headerView(for: month)) {
+                Section(header: Text(viewModel.headerView(for: month)).font(.custom("Amiko-Bold", size: 18)).frame(height: 24).padding(.leading, 27).frame(maxWidth: .infinity, alignment: .leading)) {
                     ForEach(cardsForMonth, id: \.id) { card in
                         NavigationLink(destination: MealCardDetailView(card: card)) {
                             MealCardView(viewModel: mealCardsData, card: card)
@@ -128,56 +112,6 @@ struct HistoryView: View {
             }
         }
         .clipShape(RoundedRectangle(cornerRadius: 30, style: .continuous))
-    }
-
-    private func filterCardsByMonth(cards: [MealCardModel], month: Date) -> [Date: [MealCardModel]] {
-        let calendar = Calendar.current
-        let startOfMonth = calendar.startOfMonth(for: month)
-        let endOfMonth = calendar.endOfMonth(for: month)
-
-        let filteredCards = cards.filter {
-            $0.creationTime >= startOfMonth && $0.creationTime <= endOfMonth
-        }
-
-        return mealCardsData.cardsGroupedByDate(from: filteredCards)
-    }
-
-    private func headerView(for date: Date) -> some View {
-        Text(date, formatter: itemFormatter)
-            .font(.custom("Amiko-Bold", size: 18))
-            .frame(height: 24)
-            .padding(.leading, 27)
-            .frame(maxWidth: .infinity, alignment: .leading)
-    }
-
-    private var itemFormatter: DateFormatter {
-        let formatter = DateFormatter()
-        formatter.dateFormat = "dd.MM.yy"
-        return formatter
-    }
-}
-
-extension Calendar {
-    func startOfMonth(for date: Date) -> Date {
-        let components = dateComponents([.year, .month], from: date)
-        return self.date(from: components)!
-    }
-
-    func endOfMonth(for date: Date) -> Date {
-        var components = DateComponents()
-        components.month = 1
-        components.second = -1
-        return self.date(byAdding: components, to: startOfMonth(for: date))!
-    }
-}
-
-extension String {
-    func capitalizingFirstLetter() -> String {
-        return prefix(1).capitalized + dropFirst()
-    }
-
-    mutating func capitalizeFirstLetter() {
-        self = self.capitalizingFirstLetter()
     }
 }
 
