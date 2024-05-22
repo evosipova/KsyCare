@@ -22,6 +22,8 @@
 		5E48BCB72BA4E01700D364A7 /* NotificationCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E48BCB62BA4E01700D364A7 /* NotificationCard.swift */; };
 		5E48BCB92BA4E09000D364A7 /* NotificationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E48BCB82BA4E09000D364A7 /* NotificationModel.swift */; };
 		5E48BCBB2BA50EA800D364A7 /* NotificationDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E48BCBA2BA50EA800D364A7 /* NotificationDelegate.swift */; };
+		5E635EFE2BFE36BF004919F7 /* HistoryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E635EFD2BFE36BF004919F7 /* HistoryModel.swift */; };
+		5E635F002BFE36D2004919F7 /* HistoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E635EFF2BFE36D2004919F7 /* HistoryViewModel.swift */; };
 		5E7018192B9A049D00874E5B /* MealCardDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E7018182B9A049D00874E5B /* MealCardDetailView.swift */; };
 		5E7756012B882032007F68CB /* CustomTabBarItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E7756002B882032007F68CB /* CustomTabBarItem.swift */; };
 		5E7756042B882548007F68CB /* AddNoteViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E7756032B882548007F68CB /* AddNoteViewModel.swift */; };
@@ -92,6 +94,8 @@
 		5E48BCB62BA4E01700D364A7 /* NotificationCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationCard.swift; sourceTree = "<group>"; };
 		5E48BCB82BA4E09000D364A7 /* NotificationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationModel.swift; sourceTree = "<group>"; };
 		5E48BCBA2BA50EA800D364A7 /* NotificationDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationDelegate.swift; sourceTree = "<group>"; };
+		5E635EFD2BFE36BF004919F7 /* HistoryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryModel.swift; sourceTree = "<group>"; };
+		5E635EFF2BFE36D2004919F7 /* HistoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryViewModel.swift; sourceTree = "<group>"; };
 		5E7018182B9A049D00874E5B /* MealCardDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealCardDetailView.swift; sourceTree = "<group>"; };
 		5E7756002B882032007F68CB /* CustomTabBarItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBarItem.swift; sourceTree = "<group>"; };
 		5E7756032B882548007F68CB /* AddNoteViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNoteViewModel.swift; sourceTree = "<group>"; };
@@ -160,11 +164,11 @@
 		5E351F172B476BAB004A3803 /* Screens */ = {
 			isa = PBXGroup;
 			children = (
+				5E635EFC2BFE36B1004919F7 /* History */,
 				5EC2A7022BA3D5DE007D4188 /* Statistics */,
 				5EC2A6EB2BA234FF007D4188 /* Profile */,
 				5E351F202B5F4DB5004A3803 /* NoteScreen */,
 				5ECCBE8E2B4733560042CC5F /* HomeView.swift */,
-				5ECCBE922B4735450042CC5F /* HistoryView.swift */,
 				5EDB7EF92B854942000F234D /* MealCard */,
 			);
 			path = Screens;
@@ -182,6 +186,16 @@
 				5E2E1D1E2BA8D56700D1C9BF /* RingView.swift */,
 			);
 			path = NoteScreen;
+			sourceTree = "<group>";
+		};
+		5E635EFC2BFE36B1004919F7 /* History */ = {
+			isa = PBXGroup;
+			children = (
+				5ECCBE922B4735450042CC5F /* HistoryView.swift */,
+				5E635EFD2BFE36BF004919F7 /* HistoryModel.swift */,
+				5E635EFF2BFE36D2004919F7 /* HistoryViewModel.swift */,
+			);
+			path = History;
 			sourceTree = "<group>";
 		};
 		5E7756022B882533007F68CB /* AddNote */ = {
@@ -490,6 +504,7 @@
 				5E48BCBB2BA50EA800D364A7 /* NotificationDelegate.swift in Sources */,
 				5EC2A6F22BA23551007D4188 /* ProfileViewModel.swift in Sources */,
 				5E2E1D162BA7345E00D1C9BF /* RegistrationSecondView.swift in Sources */,
+				5E635EFE2BFE36BF004919F7 /* HistoryModel.swift in Sources */,
 				5E351F1F2B5DFD7B004A3803 /* MealCardView.swift in Sources */,
 				FAEF242A2BA651F300BF6347 /* NetworkService.swift in Sources */,
 				5E48BCB52BA4DDE500D364A7 /* RepeatOption.swift in Sources */,
@@ -505,6 +520,7 @@
 				5E951DE52B952D1800CF5016 /* TeamScreen.swift in Sources */,
 				5EC2A6ED2BA23519007D4188 /* UserProfileModel.swift in Sources */,
 				5ECCBE872B46F7500042CC5F /* LoginView.swift in Sources */,
+				5E635F002BFE36D2004919F7 /* HistoryViewModel.swift in Sources */,
 				5ECCBE8F2B4733560042CC5F /* HomeView.swift in Sources */,
 				5E2E1D212BA8EBEE00D1C9BF /* LineHelpers.swift in Sources */,
 				5ECCBE912B4735080042CC5F /* AddNoteView.swift in Sources */,
