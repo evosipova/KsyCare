@@ -2,7 +2,7 @@ import Foundation
 
 class NetworkService {
     static let shared = NetworkService(); private init() { }
-    private let localhost = "http://127.0.0.1:8080"
+    private let localhost = "http://89.175.18.189:8080"
 
     func auth(login: String, password: String) async throws -> User {
         let dto = UserDTO(login: login, password: password)

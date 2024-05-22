@@ -24,6 +24,7 @@ struct TeamScreen: View {
                                 .aspectRatio(contentMode: .fit)
                                 .frame(width: 13, height: 26)
                                 .foregroundColor(Color("chevron.left"))
+                                .accessibilityLabel("Назад")
                         }
                             .padding(.leading, 15),
                         alignment: .leading
@@ -40,6 +41,8 @@ struct TeamScreen: View {
                             .font(.headline)
                             .padding(.vertical, 10)
                             .foregroundColor(Color("textDark"))
+                            .accessibilityLabel("Разработчики")
+                            .accessibilityHint("Текст")
                     }
                     .frame(maxWidth: .infinity, alignment: .center)
                     .background(Color("box"))

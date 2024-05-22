@@ -19,7 +19,6 @@ public struct LineChartView: View {
             if (oldValue != self.currentValue && showIndicatorDot) {
                 HapticFeedback.playSelection()
             }
-
         }
     }
     var frame = CGSize(width: 180, height: 120)
@@ -59,13 +58,15 @@ public struct LineChartView: View {
                             .font(.title)
                             .bold()
                             .foregroundColor(self.colorScheme == .dark ? self.darkModeStyle.textColor : self.style.textColor)
+                            .padding(.top, -20)
+
                         if (self.legend != nil){
                             Text(self.legend!)
                                 .font(.callout)
                                 .foregroundColor(self.colorScheme == .dark ? self.darkModeStyle.legendTextColor :self.style.legendTextColor)
                         }
-                        HStack {
 
+                        HStack {
                             if (self.rateValue ?? 0 != 0)
                             {
                                 if (self.rateValue ?? 0 >= 0){
@@ -89,31 +90,87 @@ public struct LineChartView: View {
                     }
                     .transition(.scale)
                 }
-                Spacer()
-                GeometryReader{ geometry in
-                    Line(data: self.data,
-                         frame: .constant(geometry.frame(in: .local)),
-                         touchLocation: self.$touchLocation,
-                         showIndicator: self.$showIndicatorDot,
-                         minDataValue: .constant(nil),
-                         maxDataValue: .constant(nil)
-                    )
+
+
+                if data.points.count == 1, let firstDataPoint = data.points.first, firstDataPoint.1 == 0.0 {
+                    ZStack(alignment: .center) {
+                        Image("noRecord-pdf")
+                            .resizable()
+                            .aspectRatio(contentMode: .fit)
+                            .frame(width: 145, height: 145)
+                            .padding(.top, 40)
+                            .padding(.leading, 120)
+                            .foregroundColor(self.colorScheme == .dark ? Color("5AA0DB") : Color("5AA0DB"))
+                    }
+                    .padding(.vertical, -70)
+                } else if data.points.count == 1 {
+                    let value = data.points.first!.1
+                    Text("\(value, specifier: valueSpecifier)")
+                        .padding(.bottom, -20)
+                        .font(.system(size: 65))
+                        .foregroundColor(self.colorScheme == .dark ? self.darkModeStyle.textColor : self.style.textColor)
+                        .padding(.leading, 150)
                 }
-                .frame(width: frame.width, height: frame.height)
-                .clipShape(RoundedRectangle(cornerRadius: 20))
-                .offset(x: 0, y: 0)
+                if data.points.count == 1, let firstDataPoint = data.points.first, firstDataPoint.1 == 0.0 {
+                    GeometryReader{ geometry in
+                        Line(data: self.data,
+                             frame: .constant(geometry.frame(in: .local)),
+                             touchLocation: self.$touchLocation,
+                             showIndicator: self.$showIndicatorDot,
+                             minDataValue: .constant(nil),
+                             maxDataValue: .constant(nil)
+                        )
+                    }
+                    .frame(width: frame.width, height: frame.height)
+                    .clipShape(RoundedRectangle(cornerRadius: 20))
+                    .offset(x: -5, y: 30)
+                } else if data.points.count == 1 {
+                    GeometryReader{ geometry in
+                        Line(data: self.data,
+                             frame: .constant(geometry.frame(in: .local)),
+                             touchLocation: self.$touchLocation,
+                             showIndicator: self.$showIndicatorDot,
+                             minDataValue: .constant(nil),
+                             maxDataValue: .constant(nil)
+                        )
+                    }
+
+                    .frame(width: frame.width, height: frame.height)
+                    .clipShape(RoundedRectangle(cornerRadius: 20))
+                    .offset(x: -5, y: 30)
+                } else {
+                    GeometryReader{ geometry in
+                        Line(data: self.data,
+                             frame: .constant(geometry.frame(in: .local)),
+                             touchLocation: self.$touchLocation,
+                             showIndicator: self.$showIndicatorDot,
+                             minDataValue: .constant(nil),
+                             maxDataValue: .constant(nil)
+                        )
+                    }
+
+                    .frame(width: frame.width, height: frame.height)
+                    .clipShape(RoundedRectangle(cornerRadius: 20))
+                    .offset(x: -0, y: 30)
+                    .padding(.bottom, 50)
+                }
             }.frame(width: self.formSize.width, height: self.formSize.height)
         }
         .gesture(DragGesture()
-        .onChanged({ value in
-            self.touchLocation = value.location
-            self.showIndicatorDot = true
-            self.getClosestDataPoint(toPoint: value.location, width:self.frame.width, height: self.frame.height)
-        })
-            .onEnded({ value in
-                self.showIndicatorDot = false
+            .onChanged({ value in
+                if data.points.count > 1 {
+                    self.touchLocation = value.location
+                    self.showIndicatorDot = true
+                    self.getClosestDataPoint(toPoint: value.location, width: self.frame.width, height: self.frame.height)
+                }
             })
+                .onEnded({ value in
+                    if data.points.count > 1 || (data.points.count == 1 && data.points.first!.1 != 0.0) {
+                        self.showIndicatorDot = false
+                    }
+                })
         )
+
     }
 
     @discardableResult func getClosestDataPoint(toPoint: CGPoint, width:CGFloat, height: CGFloat) -> CGPoint {
@@ -133,11 +190,14 @@ public struct LineChartView: View {
 struct WidgetView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
-            LineChartView(data: [8,23,54,32,12,37,7,23,43], title: "Line chart", legend: "Basic", form: ChartForm.large)
+            LineChartView(data: [5, 10, 230, 15], title: "Line chart", form: ChartForm.large)
                 .environment(\.colorScheme, .light)
 
             LineChartView(data: [282.502, 284.495, 283.51, 285.019, 285.197, 286.118, 288.737, 288.455, 289.391, 287.691, 285.878, 286.46, 286.252, 284.652, 284.129, 284.188], title: "Line chart", legend: "Basic")
-            .environment(\.colorScheme, .light)
+                .environment(\.colorScheme, .light)
         }
     }
 }
+
+
+
